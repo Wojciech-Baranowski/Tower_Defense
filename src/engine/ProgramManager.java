@@ -4,12 +4,10 @@ public class ProgramManager extends AbstractProgram
 {
 
     private Image testImage;
-    private Image background;
 
     public ProgramManager()
     {
-        testImage = new Image("/res/dobe.png", 600, 600);
-        background = new Image("/res/background.png", 800, 450);
+        testImage = new Image("/res/dobe.png", 600, 600, 0);
     }
 
     public void update(ProgramContainer pc, double dt)
@@ -21,8 +19,7 @@ public class ProgramManager extends AbstractProgram
     @Override
     public void render(ProgramContainer pc, Renderer r)
     {
-        r.drawImage(pc, testImage, 0, 0);
-        r.drawStaticImage(pc, background, 0, 0);
+       //r.drawImage(pc, testImage, 0, 0);
         pc.getWorld().render(pc, r);
         //r.drawStaticText(pc, Integer.toString(pc.getFps()), 4, 0, 0XFF00FF00);
     }

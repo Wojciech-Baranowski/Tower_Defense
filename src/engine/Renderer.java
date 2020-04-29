@@ -99,6 +99,29 @@ public class Renderer
                 setPixel(x + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, image.getP()[x + y * image.getW()]);
             }
         }
+        if(image.getFrame() == 1)
+        {
+            for(int y = newY; y < newHeight; y++)
+            {
+                setPixel(newX + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF4E1541);
+                setPixel(newWidth - 1 + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF4E1541);
+            }
+            for(int x = newX; x < newWidth; x++)
+            {
+                setPixel(x + offX + pc.getCamera().offX, newY + offY + pc.getCamera().offY, 0xFF4E1541);
+                setPixel(x + offX + pc.getCamera().offX, newHeight - 1 + offY + pc.getCamera().offY, 0xFF4E1541);
+            }
+            for(int y = newY + 1; y < newHeight - 1; y++)
+            {
+                setPixel(newX + 1 + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF5F0C4C);
+                setPixel(newWidth - 2 + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF5F0C4C);
+            }
+            for(int x = newX + 1; x < newWidth - 1; x++)
+            {
+                setPixel(x + offX + pc.getCamera().offX, newY + 1 + offY + pc.getCamera().offY, 0xFF5F0C4C);
+                setPixel(x + offX + pc.getCamera().offX, newHeight - 2 + offY + pc.getCamera().offY, 0xFF5F0C4C);
+            }
+        }
     }
     public void drawStaticImage(ProgramContainer pc, Image image, int offX, int offY)
     {
@@ -129,6 +152,29 @@ public class Renderer
             for(int x = newX; x < newWidth; x++)
             {
                 setPixel(x + offX, y + offY, image.getP()[x + y * image.getW()]);
+            }
+        }
+        if(image.getFrame() == 1)
+        {
+            for(int y = newY; y < newHeight; y++)
+            {
+                setPixel(newX + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF4E1541);
+                setPixel(newWidth - 1 + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF4E1541);
+            }
+            for(int x = newX; x < newWidth; x++)
+            {
+                setPixel(x + offX + pc.getCamera().offX, newY + offY + pc.getCamera().offY, 0xFF4E1541);
+                setPixel(x + offX + pc.getCamera().offX, newHeight - 1 + offY + pc.getCamera().offY, 0xFF4E1541);
+            }
+            for(int y = newY + 1; y < newHeight - 1; y++)
+            {
+                setPixel(newX + 1 + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF5F0C4C);
+                setPixel(newWidth - 2 + offX + pc.getCamera().offX, y + offY + pc.getCamera().offY, 0xFF5F0C4C);
+            }
+            for(int x = newX + 1; x < newWidth - 1; x++)
+            {
+                setPixel(x + offX + pc.getCamera().offX, newY + 1 + offY + pc.getCamera().offY, 0xFF5F0C4C);
+                setPixel(x + offX + pc.getCamera().offX, newHeight - 2 + offY + pc.getCamera().offY, 0xFF5F0C4C);
             }
         }
     }

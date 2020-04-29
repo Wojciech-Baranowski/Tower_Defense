@@ -2,7 +2,8 @@ package engine;
 
 import java.awt.event.MouseEvent;
 
-public class Button {
+public class Button extends Field
+{
     protected int posX;
     protected int posY;
     protected int width;
@@ -11,23 +12,16 @@ public class Button {
     protected Image img2;
     protected boolean isClicked;
 
-    Button(String path, int posX, int posY, int width, int height) {
-        this.posX = posX;
-        this.posY = posY;
-        this.width = width;
-        this.height = height;
-        img = new Image(path, width, height);
-        img2 = new Image("/res/blank.png", width, height);
+    Button(String path, int posX, int posY, int width, int height, int frame) {
+        super(path, posX, posY, width, height, frame);
+        img2 = new Image("/res/blank.png", width, height, frame);
         isClicked = false;
     }
 
-    Button(String path, String path2, int posX, int posY, int width, int height) {
-        this.posX = posX;
-        this.posY = posY;
-        this.width = width;
-        this.height = height;
-        img = new Image(path, width, height);
-        img2 = new Image(path2, width, height);
+    Button(String path, String path2, int posX, int posY, int width, int height, int frame) {
+
+        super(path, posX, posY, width, height, frame);
+        img2 = new Image(path2, width, height, frame);
         isClicked = false;
     }
 
@@ -58,24 +52,14 @@ public class Button {
     public void holdClick(ProgramContainer pc) {
         if ((pc.getInput().isButton(MouseEvent.BUTTON1)) && (isOnButton(pc) == true)) {
             if(isClicked == false)
+            {
                 imageSwap();
-            isClicked = true;
+                isClicked = true;
+            }
         } else if (isClicked == true) {
             isClicked = false;
             imageSwap();
         }
-    }
-
-    public int getPosX() {
-        return posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
-    public Image getImg() {
-        return img;
     }
 
     public boolean isClicked() {

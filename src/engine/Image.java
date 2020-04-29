@@ -11,10 +11,11 @@ public class Image
     private int w, h;
     private int[] p;
     private int[] r;
-
-    public Image(String path, int width, int height)
+    private int frame;
+    public Image(String path, int width, int height, int frame)
     {
         BufferedImage image = null;
+        this.frame = frame;
         try
         {
             image = ImageIO.read(Image.class.getResourceAsStream((path)));
@@ -68,5 +69,9 @@ public class Image
 
     public void setP(int[] p) {
         this.p = p;
+    }
+
+    public int getFrame() {
+        return frame;
     }
 }
