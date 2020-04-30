@@ -17,7 +17,7 @@ public class ProgramContainer implements Runnable
     private int fps;
 
     private boolean running = false;
-    private final  double UPDATE_CAP = 1.0 / 90.0;
+    private final  double UPDATE_CAP = 1.0 / 60.0;
     private int width = 1024, height = 576;
     private double time = 0;
     private double passedTime = 0;

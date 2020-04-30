@@ -1,7 +1,11 @@
 package engine;
 
+import Entities.Enemies.CrystalShard;
+import Entities.Enemy;
+import Map.Road;
+import Map.Tile;
+
 import java.awt.event.KeyEvent;
-import java.util.*;
 
 public class World
 {
@@ -13,19 +17,31 @@ public class World
     private Image measureGrid;
     private Image backgroundGrid;
     private Field testField;
-    private Tile[][] tiles;
+    private Tile[] tiles;
+    private int[] tileId;
+
+    private CrystalShard testEnemy;
 
     public World(ProgramContainer pc)
     {
         this.paused = true;
-        tiles = new Tile[16][9];
-        for(int i = 0; i < 16; i++)
+        tiles = new Tile[144];
+        tileId = new int[]{
+                0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
+                0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
+                0   , 0   , 123 , 124 , 124 , 124 , 114 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
+                0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
+                0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
+                0   , 0   , 112 , 142 , 142 , 142 , 142 , 142 , 1243, 124 , 124 , 124 , 124 , 134 , 0   , 0   ,
+                0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 131 , 0   , 0   ,
+                124 , 124 , 124 , 124 , 124 , 124 , 124 , 124 , 114 , 0   , 0   , 0   , 0   , 121 , 124 , 124 ,
+                0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
+        };
+        for(int i = 0; i < 144; i++)
         {
-            for(int j = 0; j < 9; j++)
-            {
-                tiles[i][j] = new Tile("", i * 64, j * 64, 64, 64, 0);
-            }
+            tileInitializer(i, tileId[i]);
         }
+        testEnemy = new CrystalShard(6 * 64 + 32, 32);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         testField = new Field(100, 100, 100, 100, 1);
@@ -37,22 +53,20 @@ public class World
         showGrid(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
-        if(paused == true)
+        if(paused == false)
         {
-
+            testEnemy.move(tileId);
         }
     }
     public void render(ProgramContainer pc, Renderer r)
     {
         r.drawStaticImage(pc,backgroundGrid, 0, 0);
         //r.drawImage(pc, testField.getImg(), testField.getPosX(), testField.getPosY());
-        for(int i = 0; i < 16; i++)
+        for(int i = 0; i < 144; i++)
         {
-            for(int j = 0; j < 9; j++)
-            {
-                r.drawImage(pc, tiles[i][j].getImg(), tiles[i][j].getPosX(), tiles[i][j].getPosY());
-            }
+            r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
+        r.drawImage(pc, testEnemy.getImg(), testEnemy.getPosX(), testEnemy.getPosY());
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }
@@ -78,7 +92,35 @@ public class World
             isGrid = true;
         }
     }
+
+    private void tileInitializer(int i, int id)
+    {
+        if(id == 0)
+            tiles[i] = new Tile("", (i % 16) * 64, (i / 16) * 64, 64, 64);
+        if((int)(id / (Math.pow(10, (int)(Math.log10(id))))) == 1)
+        {
+            boolean dir[] = new boolean[4];
+            int d = id % 10;
+            while(id > 10)
+            {
+                dir[id % 10 - 1] = true;
+                id /= 10;
+            }
+            String p = "/res/road/";
+            for(int j = 1; j <= 4; j++)
+            {
+                if(dir[j - 1] == true)
+                {
+                    p += j;
+                }
+            }
+            p += ".png";
+            tiles[i] = new Road(p, (i % 16) * 64, (i / 16) * 64, 64, 64, d);
+        }
+    }
+
     public boolean isPaused() {
         return paused;
     }
 }
+
