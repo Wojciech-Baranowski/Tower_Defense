@@ -1,37 +1,52 @@
 package Entities;
 
+import Map.Road;
 import engine.Image;
 
 public class Enemy extends Entity
 {
     protected int hp;
     protected int cost;
-    protected int moveProgress;
     protected int direction;
-    public Enemy(Image img, int posX, int posY, float vel, int hp, int cost) {
+    protected int startDirection;
+    public Enemy(Image img, int posX, int posY, float vel, int hp, int cost, int startDirection) {
         super(img, posX, posY, vel);
         this.hp = hp;
         this.cost = cost;
-        this.moveProgress = 0;
+        this.startDirection = startDirection;
+        this.direction = startDirection;
     }
     public void move(int[] tileId)
     {
-        if(moveProgress == 0)
+        if(((direction == 1) || (direction == 3)) && (posY % 32 <= vel) && (posY % 64 > vel))
+        {
             direction = directionChoose(tileId);
+            if((direction == 2) || (direction == 4))
+            {
+                posY += System.nanoTime() % 16 - 8;
+            }
+        }
+        else if(((direction == 2) || (direction == 4)) && (posX % 32 <= vel) && (posX % 64 > vel))
+        {
+            direction = directionChoose(tileId);
+            if((direction == 1) || (direction == 3))
+            {
+                posX += System.nanoTime() % 16 - 8;
+            }
+        }
         if(direction == 1)
-            posY -= Math.min(64 - moveProgress, vel);
+            posY -= vel;
         if(direction == 2)
-            posX += Math.min(64 - moveProgress, vel);
+            posX += vel;
         if(direction == 3)
-            posY += Math.min(64 - moveProgress, vel);
+            posY += vel;
         if(direction == 4)
-            posX -= Math.min(64 - moveProgress, vel);
-        moveProgress += vel;
-        if(moveProgress >= 64)
-            moveProgress = 0;
+            posX -= vel;
     }
-    protected int directionChoose(int[] tileId)
+    private int directionChoose(int[] tileId)
     {
+       if(currentGirdId() >= 0)
         return tileId[currentGirdId()] % 10;
+       return startDirection;
     }
 }

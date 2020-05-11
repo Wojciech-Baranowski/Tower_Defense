@@ -2,6 +2,7 @@ package engine;
 
 import Entities.Enemies.CrystalShard;
 import Entities.Enemy;
+import Game.Wave;
 import Map.Road;
 import Map.Tile;
 
@@ -22,6 +23,8 @@ public class World
 
     private CrystalShard testEnemy;
 
+    private Wave testWave;
+
     public World(ProgramContainer pc)
     {
         this.paused = true;
@@ -39,9 +42,10 @@ public class World
         };
         for(int i = 0; i < 144; i++)
         {
-            tileInitializer(i, tileId[i]);
+            Tile.tileInitializer(tiles, i, tileId[i]);
         }
-        testEnemy = new CrystalShard(6 * 64 + 32, 32);
+        testEnemy = new CrystalShard(6 * 64 + 32, 32, 3);
+        testWave = new Wave("1.1.1.", 6 * 64, 0, 32, (Road)tiles[6]);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         testField = new Field(100, 100, 100, 100, 1);
@@ -56,6 +60,10 @@ public class World
         if(paused == false)
         {
             testEnemy.move(tileId);
+            for(int i = 0; i < testWave.getEnemies().length; i++)
+            {
+                testWave.getEnemies()[i].move(tileId);
+            }
         }
     }
     public void render(ProgramContainer pc, Renderer r)
@@ -67,6 +75,10 @@ public class World
             r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
         r.drawImage(pc, testEnemy.getImg(), testEnemy.getPosX(), testEnemy.getPosY());
+        for(int i = 0; i < testWave.getEnemies().length; i++)
+        {
+            r.drawImage(pc, testWave.getEnemies()[i].getImg(), testWave.getEnemies()[i].getPosX(), testWave.getEnemies()[i].getPosY());
+        }
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }
@@ -90,32 +102,6 @@ public class World
         else if((isGrid == false) && (pc.getInput().isKeyDown(KeyEvent.VK_G)))
         {
             isGrid = true;
-        }
-    }
-
-    private void tileInitializer(int i, int id)
-    {
-        if(id == 0)
-            tiles[i] = new Tile("", (i % 16) * 64, (i / 16) * 64, 64, 64);
-        if((int)(id / (Math.pow(10, (int)(Math.log10(id))))) == 1)
-        {
-            boolean dir[] = new boolean[4];
-            int d = id % 10;
-            while(id > 10)
-            {
-                dir[id % 10 - 1] = true;
-                id /= 10;
-            }
-            String p = "/res/road/";
-            for(int j = 1; j <= 4; j++)
-            {
-                if(dir[j - 1] == true)
-                {
-                    p += j;
-                }
-            }
-            p += ".png";
-            tiles[i] = new Road(p, (i % 16) * 64, (i / 16) * 64, 64, 64, d);
         }
     }
 
