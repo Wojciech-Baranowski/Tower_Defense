@@ -3,12 +3,13 @@ package Entities;
 import Map.Road;
 import engine.Image;
 
-public class Enemy extends Entity
+public abstract class Enemy extends Entity
 {
     protected int hp;
     protected int cost;
     protected int direction;
     protected int startDirection;
+    protected int onMap = 0;
     public Enemy(Image img, int posX, int posY, float vel, int hp, int cost, int startDirection) {
         super(img, posX, posY, vel);
         this.hp = hp;
@@ -34,19 +35,56 @@ public class Enemy extends Entity
                 posX += System.nanoTime() % 16 - 8;
             }
         }
-        if(direction == 1)
-            posY -= vel;
-        if(direction == 2)
-            posX += vel;
-        if(direction == 3)
-            posY += vel;
-        if(direction == 4)
-            posX -= vel;
+        if(isOnMap())
+        {
+            if(direction == 1)
+                posY -= vel;
+            if(direction == 2)
+                posX += vel;
+            if(direction == 3)
+                posY += vel;
+            if(direction == 4)
+                posX -= vel;
+        }
+        else
+        {
+            if(direction == 1)
+                posY -= 1.5;
+            if(direction == 2)
+                posX += 1.5;
+            if(direction == 3)
+                posY += 1.5;
+            if(direction == 4)
+                posX -= 1.5;
+        }
+
+    }
+    private boolean isOnMap()
+    {
+        if((posX >= 0) && (posX <= 1024) && (posY >= 0 ) && (posY <= 576))
+        {
+            onMap = 1;
+            return true;
+        }
+        return false;
+    }
+    public boolean hasPassed()
+    {
+        if(((posX < 0) || (posX > 1024) || (posY < 0) || (posY > 576)) && (onMap == 1))
+        {
+            onMap = 2;
+            return true;
+        }
+        return false;
     }
     private int directionChoose(int[] tileId)
     {
-       if(currentGirdId() >= 0)
+       if(isOnMap())
         return tileId[currentGirdId()] % 10;
        return startDirection;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }

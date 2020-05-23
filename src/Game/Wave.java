@@ -1,5 +1,6 @@
 package Game;
 
+import Entities.Enemies.CrystalBall;
 import Entities.Enemies.CrystalShard;
 import Entities.Enemy;
 import Map.Road;
@@ -25,24 +26,57 @@ public class Wave
         c = info.toCharArray();
         int n = 0;
         int j = 0;
+        int m = 1;
         for(int i = 0; i < info.length(); i++)
         {
             if(c[i] == '.')
             {
                 n++;
             }
+            if(c[i] == 'x')
+            {
+                m = 0;
+                i++;
+                while(c[i] != '.')
+                {
+                    m = m * 10 + c[i] - '0';
+                    i++;
+                }
+                n += m;
+            }
         }
         enemies = new Enemy[n];
         n = c[0] - '0';
         for(int i = 1; i < info.length(); i++)
         {
+            m = 1;
+            if(c[i] == 'x')
+            {
+                m = 0;
+                i++;
+                while(c[i] != '.')
+                {
+                    m = m * 10 + c[i] - '0';
+                    i++;
+                }
+            }
             if(c[i] == '.')
             {
                 if(n == 1)
                 {
-                    makeUnitSpace();
-                    System.out.println(posY);
-                    enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.waveDirection);
+                    for(int k = 0; k < m; k++)
+                    {
+                        makeUnitSpace();
+                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.waveDirection);
+                    }
+                }
+                if(n == 2)
+                {
+                    for(int k = 0; k < m; k++)
+                    {
+                        makeUnitSpace();
+                        enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.waveDirection);
+                    }
                 }
                 n = 0;
             }

@@ -2,7 +2,7 @@ package Entities;
 
 import engine.Image;
 
-public class Entity
+public abstract class Entity
 {
     protected Image img;
     protected int posX;

@@ -2,6 +2,7 @@ package engine;
 
 import Entities.Enemies.CrystalShard;
 import Entities.Enemy;
+import Game.Stats;
 import Game.Wave;
 import Map.Road;
 import Map.Tile;
@@ -24,6 +25,7 @@ public class World
     private CrystalShard testEnemy;
 
     private Wave testWave;
+    private Stats stats;
 
     public World(ProgramContainer pc)
     {
@@ -45,10 +47,11 @@ public class World
             Tile.tileInitializer(tiles, i, tileId[i]);
         }
         testEnemy = new CrystalShard(6 * 64 + 32, 32, 3);
-        testWave = new Wave("1.1.1.", 6 * 64, 0, 32, (Road)tiles[6]);
+        testWave = new Wave("1x10.2x5.", 6 * 64, 0, 32, (Road)tiles[6]);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         testField = new Field(100, 100, 100, 100, 1);
+        stats = new Stats(20, 100);
     }
 
     public void update(ProgramContainer pc, double currentTime)
@@ -59,10 +62,17 @@ public class World
         passedTime = currentTime;
         if(paused == false)
         {
+            if(stats.getHp() <= 0)
+                return;
             testEnemy.move(tileId);
             for(int i = 0; i < testWave.getEnemies().length; i++)
             {
                 testWave.getEnemies()[i].move(tileId);
+                if(testWave.getEnemies()[i].hasPassed())
+                {
+                    stats.setHp(stats.getHp() - testWave.getEnemies()[i].getCost());
+                    System.out.println(stats.getHp());
+                }
             }
         }
     }
