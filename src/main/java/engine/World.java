@@ -1,5 +1,6 @@
 package engine;
 
+import Game.Level;
 import Game.Stats;
 import Game.Wave;
 import Map.Road;
@@ -16,32 +17,19 @@ public class World
 
     private Image measureGrid;
     private Image backgroundGrid;
+    private Level level;
     private Tile[] tiles;
-    private int[] tileId;
-
-    private Wave testWave;
     private Stats stats;
     private String zer0 = "";
-    public World(ProgramContainer pc) {
-
+    public World(ProgramContainer pc)
+    {
         this.paused = true;
         tiles = new Tile[144];
-        tileId = new int[]{
-                0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 123 , 124 , 124 , 124 , 114 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 112 , 142 , 142 , 142 , 142 , 142 , 1243, 124 , 124 , 124 , 124 , 134 , 0   , 0   ,
-                0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 131 , 0   , 0   ,
-                124 , 124 , 124 , 124 , 124 , 124 , 124 , 124 , 114 , 0   , 0   , 0   , 0   , 121 , 124 , 124 ,
-                0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-        };
-        for(int i = 0; i < 144; i++)
-        {
-            Tile.tileInitializer(tiles, i, tileId[i]);
-        }
-        testWave = new Wave("1x10.2x5.1x10.", 6 * 64, 0, 32, (Road)tiles[6]);
+        level = JSONReader.parseJSON(FReader.read("levels/testLevel.txt"));
+        //level = new Level("x.txt");
+        //System.out.println(JSONReader.toJSON(level));
+        //System.out.println(FReader.read("levels/testLevel.txt"));
+        level.levelInit(tiles);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         stats = new Stats(20, 100);
@@ -57,12 +45,12 @@ public class World
         {
             if(stats.getHp() <= 0)
                 return;
-            for(int i = 0; i < testWave.getEnemies().length; i++)
+            for(int i = 0; i < level.getWaves()[level.getCurrentWave()].getEnemies().length; i++)
             {
-                testWave.getEnemies()[i].move(tileId);
-                if(testWave.getEnemies()[i].hasPassed())
+                level.getWaves()[level.getCurrentWave()].getEnemies()[i].move(level.getTileId());
+                if(level.getWaves()[level.getCurrentWave()].getEnemies()[i].hasPassed())
                 {
-                    stats.setHp(stats.getHp() - testWave.getEnemies()[i].getCost());
+                    stats.setHp(stats.getHp() - level.getWaves()[level.getCurrentWave()].getEnemies()[i].getCost());
                     System.out.println(stats.getHp());
                 }
             }
@@ -75,13 +63,13 @@ public class World
         {
             r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
-        for(int i = 0; i < testWave.getEnemies().length; i++)
+        for(int i = 0; i < level.getWaves()[level.getCurrentWave()].getEnemies().length; i++)
         {
-            r.drawImage(pc, testWave.getEnemies()[i].getImg(), testWave.getEnemies()[i].getPosX(), testWave.getEnemies()[i].getPosY());
+            r.drawImage(pc, level.getWaves()[level.getCurrentWave()].getEnemies()[i].getImg(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosX(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosY());
         }
-        for(int i = 0; i < testWave.getEnemies().length; i++)
+        for(int i = 0; i < level.getWaves()[level.getCurrentWave()].getEnemies().length; i++)
         {
-            r.drawImage(pc, testWave.getEnemies()[i].getHealthBar(), testWave.getEnemies()[i].getPosX(), testWave.getEnemies()[i].getPosY() - 6);
+            r.drawImage(pc, level.getWaves()[level.getCurrentWave()].getEnemies()[i].getHealthBar(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosX(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosY() - 6);
         }
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);

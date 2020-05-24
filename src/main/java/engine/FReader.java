@@ -14,7 +14,7 @@ public  class FReader
 
             while (line != null) {
                 sb.append(line);
-                sb.append("$");
+                //sb.append("$");
                 line = br.readLine();
             }
             everything = sb.toString();
