@@ -1,7 +1,5 @@
 package engine;
 
-import Entities.Enemies.CrystalShard;
-import Entities.Enemy;
 import Game.Stats;
 import Game.Wave;
 import Map.Road;
@@ -18,17 +16,14 @@ public class World
 
     private Image measureGrid;
     private Image backgroundGrid;
-    private Field testField;
     private Tile[] tiles;
     private int[] tileId;
 
-    private CrystalShard testEnemy;
-
     private Wave testWave;
     private Stats stats;
+    private String zer0 = "";
+    public World(ProgramContainer pc) {
 
-    public World(ProgramContainer pc)
-    {
         this.paused = true;
         tiles = new Tile[144];
         tileId = new int[]{
@@ -46,11 +41,9 @@ public class World
         {
             Tile.tileInitializer(tiles, i, tileId[i]);
         }
-        testEnemy = new CrystalShard(6 * 64 + 32, 32, 3);
         testWave = new Wave("1x10.2x5.1x10.", 6 * 64, 0, 32, (Road)tiles[6]);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
-        testField = new Field(100, 100, 100, 100, 1);
         stats = new Stats(20, 100);
     }
 
@@ -64,7 +57,6 @@ public class World
         {
             if(stats.getHp() <= 0)
                 return;
-            testEnemy.move(tileId);
             for(int i = 0; i < testWave.getEnemies().length; i++)
             {
                 testWave.getEnemies()[i].move(tileId);
@@ -79,12 +71,10 @@ public class World
     public void render(ProgramContainer pc, Renderer r)
     {
         r.drawStaticImage(pc,backgroundGrid, 0, 0);
-        //r.drawImage(pc, testField.getImg(), testField.getPosX(), testField.getPosY());
         for(int i = 0; i < 144; i++)
         {
             r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
-        r.drawImage(pc, testEnemy.getImg(), testEnemy.getPosX(), testEnemy.getPosY());
         for(int i = 0; i < testWave.getEnemies().length; i++)
         {
             r.drawImage(pc, testWave.getEnemies()[i].getImg(), testWave.getEnemies()[i].getPosX(), testWave.getEnemies()[i].getPosY());

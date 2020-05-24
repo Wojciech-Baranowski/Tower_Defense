@@ -2,6 +2,7 @@ package engine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class ProgramContainer implements Runnable
 {
@@ -28,8 +29,7 @@ public class ProgramContainer implements Runnable
     {
         this.program = program;
     }
-    public void start()
-    {
+    public void start(){
         window = new Window(this);
         renderer = new Renderer(this);
         input = new Input(this);

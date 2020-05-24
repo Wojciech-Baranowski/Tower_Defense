@@ -1,5 +1,7 @@
 package engine;
 
+import java.io.IOException;
+
 public class ProgramManager extends AbstractProgram
 {
 
@@ -25,8 +27,7 @@ public class ProgramManager extends AbstractProgram
     }
 
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         ProgramContainer pc = new ProgramContainer(new ProgramManager());
         pc.start();
     }
