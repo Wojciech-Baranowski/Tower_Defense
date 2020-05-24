@@ -32,7 +32,7 @@ public class Image
         image.flush();
     }
 
-    private void rescale(int nwidth, int nheight)
+    public void rescale(int nwidth, int nheight)
     {
         double sw = ((double)(nwidth) / (double)(w));
         double sh = ((double)(nheight) / (double)(h));
@@ -67,11 +67,8 @@ public class Image
         return p;
     }
 
-    public void setP(int[] p) {
-        this.p = p;
-    }
-
     public int getFrame() {
         return frame;
     }
+
 }

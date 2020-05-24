@@ -47,7 +47,7 @@ public class World
             Tile.tileInitializer(tiles, i, tileId[i]);
         }
         testEnemy = new CrystalShard(6 * 64 + 32, 32, 3);
-        testWave = new Wave("1x10.2x5.", 6 * 64, 0, 32, (Road)tiles[6]);
+        testWave = new Wave("1x10.2x5.1x10.", 6 * 64, 0, 32, (Road)tiles[6]);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         testField = new Field(100, 100, 100, 100, 1);
@@ -88,6 +88,10 @@ public class World
         for(int i = 0; i < testWave.getEnemies().length; i++)
         {
             r.drawImage(pc, testWave.getEnemies()[i].getImg(), testWave.getEnemies()[i].getPosX(), testWave.getEnemies()[i].getPosY());
+        }
+        for(int i = 0; i < testWave.getEnemies().length; i++)
+        {
+            r.drawImage(pc, testWave.getEnemies()[i].getHealthBar(), testWave.getEnemies()[i].getPosX(), testWave.getEnemies()[i].getPosY() - 6);
         }
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);

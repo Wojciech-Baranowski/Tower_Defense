@@ -2,20 +2,26 @@ package Entities;
 
 import Map.Road;
 import engine.Image;
+import engine.Renderer;
 
 public abstract class Enemy extends Entity
 {
     protected int hp;
+    protected int maxHp;
     protected int cost;
     protected int direction;
     protected int startDirection;
     protected int onMap = 0;
-    public Enemy(Image img, int posX, int posY, float vel, int hp, int cost, int startDirection) {
+    protected Image healthBar;
+    public Enemy(Image img, int posX, int posY, float vel, int maxHp, int cost, int startDirection) {
         super(img, posX, posY, vel);
-        this.hp = hp;
+        this.maxHp = maxHp;
         this.cost = cost;
         this.startDirection = startDirection;
         this.direction = startDirection;
+        hp = maxHp / 2;
+        healthBar = new Image("/res/entities/healthBarFull.png", 16, 2, 0);
+        healthUpdate();
     }
     public void move(int[] tileId)
     {
@@ -59,6 +65,14 @@ public abstract class Enemy extends Entity
         }
 
     }
+    public void healthUpdate()
+    {
+        for(int i = 15; i >= (16 * ((float)(hp) / (float)(maxHp))) - 1; i--)
+        {
+            healthBar.getP()[i] = 0xFFFF0000;
+            healthBar.getP()[i + 16] = 0xFFFF0000;
+        }
+    }
     private boolean isOnMap()
     {
         if((posX >= 0) && (posX <= 1024) && (posY >= 0 ) && (posY <= 576))
@@ -86,5 +100,17 @@ public abstract class Enemy extends Entity
 
     public int getCost() {
         return cost;
+    }
+
+    public Image getHealthBar() {
+        return healthBar;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
     }
 }
