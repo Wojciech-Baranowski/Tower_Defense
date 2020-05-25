@@ -3,10 +3,8 @@ package Game;
 
 import Map.Road;
 import Map.Tile;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import engine.FReader;
-import engine.JSONReader;
+import engine.ProgramContainer;
+import engine.Renderer;
 
 public class Level
 {
@@ -24,12 +22,13 @@ public class Level
         this.waveInfo = waveInfo;
         this.wavesAmmount = wavesAmmount;
     }
-    public void update(Stats stats)
+    public void update(double passedTime, Stats stats)
     {
         for(int j = 0; j < wavesAmmount; j++)
         {
             if(waves[j].isRunning())
             {
+                waveStartCheck(passedTime);
                 for(int i = 0; i < waves[j].getEnemies().length; i++)
                 {
                     waves[j].getEnemies()[i].move(tileId);
@@ -42,6 +41,20 @@ public class Level
             }
             else
                 break;
+        }
+    }
+    public void render(ProgramContainer pc, Renderer r)
+    {
+        for(int j = 0; j < wavesAmmount; j++)
+        {
+            for(int i = 0; i < waves[j].getEnemies().length; i++)
+            {
+                r.drawImage(pc, waves[j].getEnemies()[i].getImg(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY());
+            }
+            for(int i = 0; i < waves[j].getEnemies().length; i++)
+            {
+                r.drawImage(pc, waves[j].getEnemies()[i].getHealthBar(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY() - 6);
+            }
         }
     }
     public void levelInit(Tile[] tiles)
@@ -58,17 +71,21 @@ public class Level
         }
         waves[0].setRunning(true);
     }
-    public void waveStart(double passedTime)
+    public void waveStartCheck(double passedTime)
     {
         if(wavesAmmount - 1 == currentWave)
             return;
         if(passedTime - waves[currentWave].getTimeStamp() > waveDelay[currentWave])
         {
-            waves[currentWave + 1].setTimeStamp(passedTime);
-            waves[currentWave + 1].setRunning(true);
+            waveStart(passedTime);
         }
     }
-
+    public void waveStart(double passedTime)
+    {
+        currentWave++;
+        waves[currentWave].setTimeStamp(passedTime);
+        waves[currentWave].setRunning(true);
+    }
     public int getWavesAmmount() {
         return wavesAmmount;
     }

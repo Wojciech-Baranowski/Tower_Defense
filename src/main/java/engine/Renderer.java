@@ -6,9 +6,13 @@ public class Renderer
 {
     private int pW, pH;
     private int[] p;
-    private Font font = Font.STANDARD;
+    private Font[] font;
     Renderer(ProgramContainer pc)
     {
+        font = new Font[3];
+        font[0] = Font.F23;
+        font[1] = Font.F18;
+        font[2] = Font.F13;
         pW = pc.getWidth();
         pH = pc.getHeight();
         p = ((DataBufferInt)pc.getWindow().getImage().getRaster().getDataBuffer()).getData();
@@ -27,27 +31,27 @@ public class Renderer
         return;
         p[x + y * pW] = value;
     }
-    public void drawText(ProgramContainer pc, String text, int offX, int offY, int color)
+    public void drawText(ProgramContainer pc, String text, int offX, int offY, int color, int type)
     {
         int offset = 0;
         for(int i = 0; i < text.length(); i++)
         {
             int unicode = text.codePointAt(i) - 32;
 
-            for(int y = 0; y < font.getFontImage().getH(); y++)
+            for(int y = 0; y < font[type].getFontImage().getH(); y++)
             {
-                for(int x = 0; x < font.getWidths()[unicode]; x++)
+                for(int x = 0; x < font[type].getWidths()[unicode]; x++)
                 {
-                    if(font.getFontImage().getP()[(x + font.getOffsets()[unicode]) + y * font.getFontImage().getW()] == 0xFF000000)
+                    if(font[type].getFontImage().getP()[(x + font[type].getOffsets()[unicode]) + y * font[type].getFontImage().getW()] == 0xFF000000)
                     {
                         setPixel(x + offX + offset + pc.getCamera().offX, y + offY + pc.getCamera().offY, color);
                     }
                 }
             }
-            offset += font.getWidths()[unicode];
+            offset += font[type].getWidths()[unicode];
         }
     }
-    public void drawStaticText(ProgramContainer pc, String text, int offX, int offY, int color)
+    public void drawStaticText(ProgramContainer pc, String text, int offX, int offY, int color, int type)
     {
         int offset = 0;
 
@@ -55,17 +59,17 @@ public class Renderer
         {
             int unicode = text.codePointAt(i) - 32;
 
-            for(int y = 0; y < font.getFontImage().getH(); y++)
+            for(int y = 0; y < font[type].getFontImage().getH(); y++)
             {
-                for(int x = 0; x < font.getWidths()[unicode]; x++)
+                for(int x = 0; x < font[type].getWidths()[unicode]; x++)
                 {
-                    if(font.getFontImage().getP()[(x + font.getOffsets()[unicode]) + y * font.getFontImage().getW()] == 0xFF000000)
+                    if(font[type].getFontImage().getP()[(x + font[type].getOffsets()[unicode]) + y * font[type].getFontImage().getW()] == 0xFF000000)
                     {
                         setPixel(x + offX + offset, y + offY, color);
                     }
                 }
             }
-            offset += font.getWidths()[unicode];
+            offset += font[type].getWidths()[unicode];
         }
     }
     public void drawImage(ProgramContainer pc, Image image, int offX, int offY)

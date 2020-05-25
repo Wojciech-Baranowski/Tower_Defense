@@ -1,5 +1,6 @@
 package engine;
 
+import Game.Gui;
 import Game.Level;
 import Game.Stats;
 import Map.Tile;
@@ -11,23 +12,27 @@ public class World
 {
     private double deltaTime;
     private double passedTime = 0;
+
     private boolean paused;
     private boolean isGrid;
 
     private Image measureGrid;
     private Image backgroundGrid;
+
     private Level level;
+    private Gui gui;
     private Tile[] tiles;
     private Stats stats;
-    private String zer0 = "";
+    private String zer0 = "Mateusz, sam jestes leb xD";
     public World(ProgramContainer pc)
     {
+        measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
+        backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         this.paused = true;
+        gui = new Gui();
         tiles = new Tile[144];
         level = JSONReader.parseJSON(FReader.read("levels/testLevel.txt"));
         level.levelInit(tiles);
-        measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
-        backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         stats = new Stats(20, 100);
     }
 
@@ -41,7 +46,7 @@ public class World
         {
             if(stats.getHp() <= 0)
                 return;
-            level.update(stats);
+            level.update(passedTime, stats);
         }
     }
     public void render(ProgramContainer pc, Renderer r)
@@ -51,14 +56,8 @@ public class World
         {
             r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
-        for(int i = 0; i < level.getWaves()[level.getCurrentWave()].getEnemies().length; i++)
-        {
-            r.drawImage(pc, level.getWaves()[level.getCurrentWave()].getEnemies()[i].getImg(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosX(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosY());
-        }
-        for(int i = 0; i < level.getWaves()[level.getCurrentWave()].getEnemies().length; i++)
-        {
-            r.drawImage(pc, level.getWaves()[level.getCurrentWave()].getEnemies()[i].getHealthBar(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosX(), level.getWaves()[level.getCurrentWave()].getEnemies()[i].getPosY() - 6);
-        }
+        level.render(pc, r);
+        gui.render(pc, r);
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }
