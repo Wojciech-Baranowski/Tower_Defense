@@ -10,14 +10,18 @@ public class Wave
     private Enemy[] enemies;
     private int posX;
     private int posY;
+    private double timeStamp;
     private int unitDistance;
     private Road startPoint;
+    private boolean isRunning;
     public Wave(String info, int posX, int posY, int unitDistance, Road startPoint)
     {
         this.posX = posX;
         this.posY = posY;
         this.unitDistance = unitDistance;
         this.startPoint = startPoint;
+        this.timeStamp = 0;
+        this.isRunning = false;
         decryptor(info);
     }
     private void decryptor(String info)
@@ -106,5 +110,21 @@ public class Wave
 
     public int getPosY() {
         return posY;
+    }
+
+    public double getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(double timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean running) {
+        isRunning = running;
     }
 }

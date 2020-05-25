@@ -2,9 +2,8 @@ package engine;
 
 import Game.Level;
 import Game.Stats;
-import Game.Wave;
-import Map.Road;
 import Map.Tile;
+import com.alibaba.fastjson.JSONObject;
 
 import java.awt.event.KeyEvent;
 
@@ -26,9 +25,6 @@ public class World
         this.paused = true;
         tiles = new Tile[144];
         level = JSONReader.parseJSON(FReader.read("levels/testLevel.txt"));
-        //level = new Level("x.txt");
-        //System.out.println(JSONReader.toJSON(level));
-        //System.out.println(FReader.read("levels/testLevel.txt"));
         level.levelInit(tiles);
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
@@ -45,15 +41,7 @@ public class World
         {
             if(stats.getHp() <= 0)
                 return;
-            for(int i = 0; i < level.getWaves()[level.getCurrentWave()].getEnemies().length; i++)
-            {
-                level.getWaves()[level.getCurrentWave()].getEnemies()[i].move(level.getTileId());
-                if(level.getWaves()[level.getCurrentWave()].getEnemies()[i].hasPassed())
-                {
-                    stats.setHp(stats.getHp() - level.getWaves()[level.getCurrentWave()].getEnemies()[i].getCost());
-                    System.out.println(stats.getHp());
-                }
-            }
+            level.update(stats);
         }
     }
     public void render(ProgramContainer pc, Renderer r)

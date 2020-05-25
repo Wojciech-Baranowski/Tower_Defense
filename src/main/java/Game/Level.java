@@ -3,6 +3,10 @@ package Game;
 
 import Map.Road;
 import Map.Tile;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import engine.FReader;
+import engine.JSONReader;
 
 public class Level
 {
@@ -12,25 +16,33 @@ public class Level
     private int[] tileId;
     private int[] waveDelay;
     private String[] waveInfo;
-    public Level(String path)
+    public Level(int currentWave, int[] tileId, int[] waveDelay, String[] waveInfo, int wavesAmmount)
     {
-        wavesAmmount = 1;
-        waveInfo = new String[wavesAmmount];
-        waveDelay = new int[wavesAmmount];
-        tileId = new int[]{
-                0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 123 , 124 , 124 , 124 , 114 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 113 , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-                0   , 0   , 112 , 142 , 142 , 142 , 142 , 142 , 1243, 124 , 124 , 124 , 124 , 134 , 0   , 0   ,
-                0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 113 , 0   , 0   , 0   , 0   , 131 , 0   , 0   ,
-                124 , 124 , 124 , 124 , 124 , 124 , 124 , 124 , 114 , 0   , 0   , 0   , 0   , 121 , 124 , 124 ,
-                0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   , 0   ,
-        };
-
-        waveInfo[0] = "1x10.2x5.1x10.";
-        waveDelay[0] = 10;
+        this.currentWave = currentWave;
+        this.tileId = tileId;
+        this.waveDelay = waveDelay;
+        this.waveInfo = waveInfo;
+        this.wavesAmmount = wavesAmmount;
+    }
+    public void update(Stats stats)
+    {
+        for(int j = 0; j < wavesAmmount; j++)
+        {
+            if(waves[j].isRunning())
+            {
+                for(int i = 0; i < waves[j].getEnemies().length; i++)
+                {
+                    waves[j].getEnemies()[i].move(tileId);
+                    if(waves[j].getEnemies()[i].hasPassed())
+                    {
+                        stats.setHp(stats.getHp() - waves[j].getEnemies()[i].getCost());
+                        System.out.println(stats.getHp());
+                    }
+                }
+            }
+            else
+                break;
+        }
     }
     public void levelInit(Tile[] tiles)
     {
@@ -43,6 +55,17 @@ public class Level
         for(int i = 0; i < wavesAmmount; i++)
         {
             waves[i] = new Wave(waveInfo[i], 6 * 64, 0, 32, (Road)tiles[6]);
+        }
+        waves[0].setRunning(true);
+    }
+    public void waveStart(double passedTime)
+    {
+        if(wavesAmmount - 1 == currentWave)
+            return;
+        if(passedTime - waves[currentWave].getTimeStamp() > waveDelay[currentWave])
+        {
+            waves[currentWave + 1].setTimeStamp(passedTime);
+            waves[currentWave + 1].setRunning(true);
         }
     }
 
