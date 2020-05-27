@@ -11,16 +11,37 @@ public class Level
     private int wavesAmmount;
     private int currentWave;
     private Wave[] waves;
+    private int[] wavePosition;
     private int[] tileId;
     private int[] waveDelay;
     private String[] waveInfo;
-    public Level(int currentWave, int[] tileId, int[] waveDelay, String[] waveInfo, int wavesAmmount)
+    public Level(int currentWave, int[] tileId, int[] waveDelay, String[] waveInfo, int wavesAmmount, int[] wavePosition)
     {
         this.currentWave = currentWave;
         this.tileId = tileId;
         this.waveDelay = waveDelay;
         this.waveInfo = waveInfo;
         this.wavesAmmount = wavesAmmount;
+        this.wavePosition = wavePosition;
+    }
+    public void levelInit(Tile[] tiles)
+    {
+        waves = new Wave[wavesAmmount];
+        for(int i = 0; i < 144; i++)
+        {
+            Tile.tileInitializer(tiles, i, tileId[i]);
+        }
+        for(int i = 0; i < wavesAmmount; i++)
+        {
+            if(wavePosition[i] < 16)
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 - 32, 32, (Road)tiles[wavePosition[i]]);
+            else if(wavePosition[i] > 127)
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 + 32, 32, (Road)tiles[wavePosition[i]]);
+            else if(wavePosition[i] % 16 == 0)
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 - 32, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]]);
+            else if(wavePosition[i] % 16 == 15)
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 + 100, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]]);
+        }
     }
     public void update(double passedTime, Stats stats)
     {
@@ -35,7 +56,6 @@ public class Level
                     if(waves[j].getEnemies()[i].hasPassed())
                     {
                         stats.setHp(stats.getHp() - waves[j].getEnemies()[i].getCost());
-                        System.out.println(stats.getHp());
                     }
                 }
             }
@@ -56,20 +76,6 @@ public class Level
                 r.drawImage(pc, waves[j].getEnemies()[i].getHealthBar(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY() - 6);
             }
         }
-    }
-    public void levelInit(Tile[] tiles)
-    {
-        currentWave = 0;
-        waves = new Wave[wavesAmmount];
-        for(int i = 0; i < 144; i++)
-        {
-            Tile.tileInitializer(tiles, i, tileId[i]);
-        }
-        for(int i = 0; i < wavesAmmount; i++)
-        {
-            waves[i] = new Wave(waveInfo[i], 6 * 64, 0, 32, (Road)tiles[6]);
-        }
-        waves[0].setRunning(true);
     }
     public void waveStartCheck(double passedTime)
     {
@@ -108,5 +114,17 @@ public class Level
 
     public int[] getWaveDelay() {
         return waveDelay;
+    }
+
+    public void setCurrentWave(int currentWave) {
+        this.currentWave = currentWave;
+    }
+
+    public void setWaveDelay(int[] waveDelay) {
+        this.waveDelay = waveDelay;
+    }
+
+    public int[] getWavePosition() {
+        return wavePosition;
     }
 }

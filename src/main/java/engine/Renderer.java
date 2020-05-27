@@ -9,10 +9,13 @@ public class Renderer
     private Font[] font;
     Renderer(ProgramContainer pc)
     {
-        font = new Font[3];
-        font[0] = Font.F23;
-        font[1] = Font.F18;
-        font[2] = Font.F13;
+        font = new Font[6];
+        font[0] = Font.F25;
+        font[1] = Font.F20;
+        font[2] = Font.F15;
+        font[3] = Font.FB25;
+        font[4] = Font.FB20;
+        font[5] = Font.FB15;
         pW = pc.getWidth();
         pH = pc.getHeight();
         p = ((DataBufferInt)pc.getWindow().getImage().getRaster().getDataBuffer()).getData();

@@ -4,21 +4,18 @@ import java.awt.event.MouseEvent;
 
 public class Button extends Field
 {
-    protected int posX;
-    protected int posY;
-    protected int width;
-    protected int height;
-    protected Image img;
     protected Image img2;
     protected boolean isClicked;
+    protected  boolean justClicked;
 
-    Button(String path, int posX, int posY, int width, int height, int frame) {
+    public Button(String path, int posX, int posY, int width, int height, int frame) {
         super(path, posX, posY, width, height, frame);
         img2 = new Image("/res/blank.png", width, height, frame);
         isClicked = false;
+        justClicked = false;
     }
 
-    Button(String path, String path2, int posX, int posY, int width, int height, int frame) {
+    public Button(String path, String path2, int posX, int posY, int width, int height, int frame) {
 
         super(path, posX, posY, width, height, frame);
         img2 = new Image(path2, width, height, frame);
@@ -55,6 +52,11 @@ public class Button extends Field
             {
                 imageSwap();
                 isClicked = true;
+                justClicked = true;
+            }
+            else
+            {
+                justClicked = false;
             }
         } else if (isClicked == true) {
             isClicked = false;
@@ -68,5 +70,9 @@ public class Button extends Field
 
     public void setClicked(boolean clicked) {
         isClicked = clicked;
+    }
+
+    public boolean isJustClicked() {
+        return justClicked;
     }
 }

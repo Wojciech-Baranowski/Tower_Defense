@@ -33,7 +33,7 @@ public class World
         tiles = new Tile[144];
         level = JSONReader.parseJSON(FReader.read("levels/testLevel.txt"));
         level.levelInit(tiles);
-        stats = new Stats(20, 100);
+        stats = new Stats(20, 10, 20, 30, 40);
     }
 
     public void update(ProgramContainer pc, double currentTime)
@@ -42,7 +42,8 @@ public class World
         showGrid(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
-        if(paused == false)
+        gui.update(pc, level);
+        if(paused == true)
         {
             if(stats.getHp() <= 0)
                 return;
@@ -57,7 +58,7 @@ public class World
             r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
         level.render(pc, r);
-        gui.render(pc, r);
+        gui.render(pc, r, stats, level, passedTime);
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }

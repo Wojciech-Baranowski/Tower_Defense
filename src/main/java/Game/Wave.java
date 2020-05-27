@@ -127,4 +127,5 @@ public class Wave
     public void setRunning(boolean running) {
         isRunning = running;
     }
+
 }
