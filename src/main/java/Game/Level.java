@@ -43,8 +43,12 @@ public class Level
                 waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 + 100, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]]);
         }
     }
-    public void update(double passedTime, Stats stats)
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Stats stats)
     {
+        for(int i = 0; i < 144; i++)
+        {
+            tiles[i].update(pc, tiles);
+        }
         for(int j = 0; j < wavesAmmount; j++)
         {
             if(waves[j].isRunning())

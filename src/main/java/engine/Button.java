@@ -38,11 +38,15 @@ public class Button extends Field
 
     public void click(ProgramContainer pc) {
         if ((isClicked == false) && (pc.getInput().isButtonDown(MouseEvent.BUTTON1)) && (isOnButton(pc) == true)) {
+            justClicked = true;
             isClicked = true;
             imageSwap();
         } else if ((isClicked == true) && (pc.getInput().isButtonDown(MouseEvent.BUTTON1)) && (isOnButton(pc)) == true) {
             isClicked = false;
             imageSwap();
+        }
+        else {
+            justClicked = false;
         }
     }
 
@@ -74,5 +78,9 @@ public class Button extends Field
 
     public boolean isJustClicked() {
         return justClicked;
+    }
+
+    public void setJustClicked(boolean justClicked) {
+        this.justClicked = justClicked;
     }
 }

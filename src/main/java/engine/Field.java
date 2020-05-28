@@ -39,4 +39,12 @@ public class Field
     public Image getImg() {
         return img;
     }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
 }

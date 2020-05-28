@@ -3,6 +3,7 @@ package engine;
 import Game.Gui;
 import Game.Level;
 import Game.Stats;
+import Game.UpgradeMenu;
 import Map.Tile;
 import com.alibaba.fastjson.JSONObject;
 
@@ -23,7 +24,7 @@ public class World
     private Gui gui;
     private Tile[] tiles;
     private Stats stats;
-    private String zer0 = "Mateusz, sam jestes leb xD";
+    public final static String zer0 = "Mateusz, sam jestes leb xD";
     public World(ProgramContainer pc)
     {
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
@@ -42,12 +43,13 @@ public class World
         showGrid(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
-        gui.update(pc, level);
+        gui.update(pc, level, passedTime);
+        UpgradeMenu.update(pc);
         if(paused == true)
         {
             if(stats.getHp() <= 0)
                 return;
-            level.update(passedTime, stats);
+            level.update(pc, tiles, passedTime, stats);
         }
     }
     public void render(ProgramContainer pc, Renderer r)
@@ -59,6 +61,7 @@ public class World
         }
         level.render(pc, r);
         gui.render(pc, r, stats, level, passedTime);
+        UpgradeMenu.render(pc, r);
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }

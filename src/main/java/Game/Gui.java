@@ -11,7 +11,7 @@ public class Gui
         background = new Field("/res/gui.png", 0, 0, 1024, 576, 1);
         nextWave = new Button("/res/guiButton.png", "/res/guiButtonClicked.png", 912, 200, 96, 48, 1);
     }
-    public void update(ProgramContainer pc, Level level)
+    public void update(ProgramContainer pc, Level level, double passedTime)
     {
         nextWave.holdClick(pc);
         if(nextWave.isJustClicked() == true)
@@ -19,6 +19,7 @@ public class Gui
             if(level.getWaves()[0].isRunning() == false)
             {
                 level.getWaves()[0].setRunning(true);
+                level.getWaves()[0].setTimeStamp(passedTime);
                 level.setCurrentWave(0);
             }
             else if(level.getCurrentWave() + 1 < level.getWavesAmmount())

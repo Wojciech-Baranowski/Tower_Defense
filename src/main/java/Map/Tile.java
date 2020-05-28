@@ -1,6 +1,8 @@
 package Map;
 
+import Game.UpgradeMenu;
 import engine.Field;
+import engine.ProgramContainer;
 
 public class Tile extends Field
 {
@@ -31,5 +33,32 @@ public class Tile extends Field
             p += ".png";
             tiles[i] = new Road(p, (i % 16) * 64, (i / 16) * 64, 64, 64, d, Road.startPoint(i, d, dir));
         }
+        else if((int)(id / (Math.pow(10, (int)(Math.log10(id))))) == 2)
+        {
+            if(id / 10000 == 20)
+            {
+                boolean[] b = new boolean[4];
+                if((id / 1000) % 10 == 1)
+                    b[0] = true;
+                else
+                    b[0] = false;
+                if((id / 100) % 10 == 1)
+                    b[1] = true;
+                else
+                    b[1] = false;
+                if((id / 10) % 10 == 1)
+                    b[2] = true;
+                else
+                    b[2] = false;
+                if(id % 10 == 1)
+                    b[3] = true;
+                else
+                    b[3] = false;
+                tiles[i] = new Tower("/res/towers/summoningTile.png", (i % 16) * 64, (i / 16) * 64, 64, 64, b);
+            }
+        }
+    }
+    public void update(ProgramContainer pc, Tile[] tiles)
+    {
     }
 }
