@@ -1,9 +1,6 @@
 package engine;
 
-import Game.Gui;
-import Game.Level;
-import Game.Stats;
-import Game.UpgradeMenu;
+import Game.*;
 import Map.Tile;
 import com.alibaba.fastjson.JSONObject;
 
@@ -24,6 +21,7 @@ public class World
     private Gui gui;
     private Tile[] tiles;
     private Stats stats;
+    private Prices prices;
     public final static String zer0 = "Mateusz, sam jestes leb xD";
     public World(ProgramContainer pc)
     {
@@ -32,9 +30,10 @@ public class World
         this.paused = true;
         gui = new Gui();
         tiles = new Tile[144];
-        level = JSONReader.parseJSON(FReader.read("levels/testLevel.txt"));
+        stats = JSONReader.parseJSOStats(FReader.read("data/stats.txt"));
+        prices = JSONReader.parseJSONPrices((FReader.read("data/prices.txt")));
+        level = JSONReader.parseJSONLevel(FReader.read("levels/testLevel.txt"));
         level.levelInit(tiles);
-        stats = new Stats(20, 10, 20, 30, 40);
     }
 
     public void update(ProgramContainer pc, double currentTime)
@@ -44,7 +43,7 @@ public class World
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
         gui.update(pc, level, passedTime);
-        UpgradeMenu.update(pc);
+        BuildMenu.update(pc, tiles, level.getTileId());
         if(paused == true)
         {
             if(stats.getHp() <= 0)
@@ -61,7 +60,7 @@ public class World
         }
         level.render(pc, r);
         gui.render(pc, r, stats, level, passedTime);
-        UpgradeMenu.render(pc, r);
+        BuildMenu.render(pc, r, prices);
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }

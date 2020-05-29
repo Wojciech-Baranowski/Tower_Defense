@@ -4,8 +4,8 @@ public class Road extends Tile
 {
     private int direction;
     public int waveDirection;
-    public Road(String path, int posX, int posY, int width, int height, int direction, int waveDirection) {
-        super(path, posX, posY, width, height);
+    public Road(String path, int posX, int posY, int width, int height, int id, int direction, int waveDirection) {
+        super(path, posX, posY, width, height, id);
         this.direction = direction;
         this.waveDirection = waveDirection;
     }

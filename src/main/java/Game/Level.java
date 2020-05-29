@@ -59,7 +59,7 @@ public class Level
                     waves[j].getEnemies()[i].move(tileId);
                     if(waves[j].getEnemies()[i].hasPassed())
                     {
-                        stats.setHp(stats.getHp() - waves[j].getEnemies()[i].getCost());
+                        Stats.hp -= waves[j].getEnemies()[i].getCost();
                     }
                 }
             }
