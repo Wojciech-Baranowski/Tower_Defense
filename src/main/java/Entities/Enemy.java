@@ -1,8 +1,6 @@
 package Entities;
 
-import Map.Road;
 import engine.Image;
-import engine.Renderer;
 
 public abstract class Enemy extends Entity
 {

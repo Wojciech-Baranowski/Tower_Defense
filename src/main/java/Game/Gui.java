@@ -22,7 +22,7 @@ public class Gui
                 level.getWaves()[0].setTimeStamp(passedTime);
                 level.setCurrentWave(0);
             }
-            else if(level.getCurrentWave() + 1 < level.getWavesAmmount())
+            else if(level.getCurrentWave() + 1 < level.getWavesAmount())
             {
                 level.getWaveDelay()[level.getCurrentWave()] = 0;
             }
@@ -36,12 +36,12 @@ public class Gui
         r.drawStaticText(pc, "A: " + stats.getAir(), 912, 80, 0xFF000000, 3);
         r.drawStaticText(pc, "W: " + stats.getWater(), 912, 112, 0xFF000000, 3);
         r.drawStaticText(pc, "E: " + stats.getEarth(), 912, 144, 0xFF000000, 3);
-        r.drawStaticText(pc, "Wave: " + (level.getCurrentWave() + 1) + "/" + level.getWavesAmmount(), 912, 176, 0xFF000000, 4);
+        r.drawStaticText(pc, "Wave: " + (level.getCurrentWave() + 1) + "/" + level.getWavesAmount(), 912, 176, 0xFF000000, 4);
         r.drawStaticImage(pc, nextWave.getImg(), nextWave.getPosX(), nextWave.getPosY());
         r.drawStaticText(pc, "Next wave in:", 914, 204, 0xFF000000, 5);
         if(level.getCurrentWave() >= 0)
         {
-            if((level.getCurrentWave() + 1 < level.getWavesAmmount()) && (level.getWaveDelay()[level.getCurrentWave()] - passedTime + level.getWaves()[level.getCurrentWave()].getTimeStamp() >= 0))
+            if((level.getCurrentWave() + 1 < level.getWavesAmount()) && (level.getWaveDelay()[level.getCurrentWave()] - passedTime + level.getWaves()[level.getCurrentWave()].getTimeStamp() >= 0))
             {
                 r.drawStaticText(pc, "" + (double)((int)((level.getWaveDelay()[level.getCurrentWave()] - passedTime + level.getWaves()[level.getCurrentWave()].getTimeStamp()) * 10)) / (double)(10), 940, 224, 0xFF000000, 4);
             }

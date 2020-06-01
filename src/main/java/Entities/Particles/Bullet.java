@@ -5,7 +5,7 @@ import Entities.Entity;
 import Game.Level;
 import engine.Image;
 
-public class Bullet extends Entity
+public abstract class Bullet extends Entity
 {
     protected int dmg;
     protected int targetId;
@@ -65,7 +65,6 @@ public class Bullet extends Entity
             n = Math.round(-(int)vel);
             m = 0;
         }
-        System.out.println(n + " " + m);
         posX += (int)n;
         posY += (int)m;
     }

@@ -20,7 +20,7 @@ public class BuildMenu extends Field
         super(path, posX, posY, width, height, frame);
         id = -1;
     }
-    public static void update(ProgramContainer pc, Tile[] tiles, int[] tileId, double passedTime)
+    public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
         FIRE.holdClick(pc);
         AIR.holdClick(pc);

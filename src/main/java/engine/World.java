@@ -45,7 +45,7 @@ public class World
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
         gui.update(pc, level, passedTime);
-        BuildMenu.update(pc, tiles, level.getTileId(), passedTime);
+        BuildMenu.update(pc, tiles, passedTime, level.getTileId());
         if(paused == true)
         {
             if(stats.getHp() <= 0)

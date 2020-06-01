@@ -3,12 +3,14 @@ package Game;
 
 import Map.Road;
 import Map.Tile;
+import Map.TowerPlace;
+import Map.Towers.FireTower;
 import engine.ProgramContainer;
 import engine.Renderer;
 
 public class Level
 {
-    private int wavesAmmount;
+    private int wavesAmount;
     private int currentWave;
     private Wave[] waves;
     private int[] wavePosition;
@@ -21,17 +23,18 @@ public class Level
         this.tileId = tileId;
         this.waveDelay = waveDelay;
         this.waveInfo = waveInfo;
-        this.wavesAmmount = wavesAmmount;
+        this.wavesAmount = wavesAmmount;
         this.wavePosition = wavePosition;
     }
     public void levelInit(Tile[] tiles)
     {
-        waves = new Wave[wavesAmmount];
+        waves = new Wave[wavesAmount];
         for(int i = 0; i < 144; i++)
         {
             Tile.tileInitializer(tiles, i, tileId[i]);
         }
-        for(int i = 0; i < wavesAmmount; i++)
+        roadPosition(tiles);
+        for(int i = 0; i < wavesAmount; i++)
         {
             if(wavePosition[i] < 16)
                 waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 - 32, 32, (Road)tiles[wavePosition[i]]);
@@ -47,9 +50,21 @@ public class Level
     {
         for(int i = 0; i < 144; i++)
         {
-            tiles[i].update(pc, tiles, passedTime, this);
+            if(tiles[i].getClass() == TowerPlace.class)
+            {
+                tiles[i].update(pc);
+            }
+            if(tiles[i].getClass() == FireTower.class)
+            {
+                tiles[i].update(pc, tiles, passedTime, this);
+            }
+            else
+            {
+                tiles[i].update(pc, tiles, passedTime);
+            }
+
         }
-        for(int j = 0; j < wavesAmmount; j++)
+        for(int j = 0; j < wavesAmount; j++)
         {
             if(waves[j].isRunning())
             {
@@ -69,7 +84,7 @@ public class Level
     }
     public void render(ProgramContainer pc, Renderer r)
     {
-        for(int j = 0; j < wavesAmmount; j++)
+        for(int j = 0; j < wavesAmount; j++)
         {
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
@@ -83,7 +98,7 @@ public class Level
     }
     public void waveStartCheck(double passedTime)
     {
-        if(wavesAmmount - 1 == currentWave)
+        if(wavesAmount - 1 == currentWave)
             return;
         if(passedTime - waves[currentWave].getTimeStamp() > waveDelay[currentWave])
         {
@@ -96,8 +111,41 @@ public class Level
         waves[currentWave].setTimeStamp(passedTime);
         waves[currentWave].setRunning(true);
     }
-    public int getWavesAmmount() {
-        return wavesAmmount;
+
+    private void roadPosition(Tile[] tiles)
+    {
+        int out = 0;
+        for(int i = 0; i < 144; i++)
+        {
+            if(tiles[i].getClass() == Road.class)
+            {
+                if((i / 16 == 0) && (((Road)(tiles[i])).getDirection() == 1))
+                {
+                    out = i;
+                    break;
+                }
+                if((i % 16 == 15) && (((Road)(tiles[i])).getDirection() == 2))
+                {
+                    out = i;
+                    break;
+                }
+                if((i / 16 == 8) && (((Road)(tiles[i])).getDirection() == 3))
+                {
+                    out = i;
+                    break;
+                }
+                if((i % 16 == 0) && (((Road)(tiles[i])).getDirection() == 4))
+                {
+                    out = i;
+                    break;
+                }
+            }
+        }
+
+    }
+
+    public int getWavesAmount() {
+        return wavesAmount;
     }
 
     public int getCurrentWave() {

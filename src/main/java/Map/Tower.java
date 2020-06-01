@@ -3,19 +3,18 @@ package Map;
 import Entities.Particles.Bullet;
 import Entities.Particles.Bullets.FireArrow;
 import Game.Level;
-import Game.Prices;
 import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;
 
 import java.util.Vector;
 
-public class Tower extends Tile
+public abstract class Tower extends Tile
 {
-    private int upgradeLvl;
-    private double fireTimeStamp;
-    private Vector<Bullet> bullets;
-    private int towerId;
+    protected int upgradeLvl;
+    protected double fireTimeStamp;
+    protected Vector<Bullet> bullets;
+    protected int towerId;
     public Tower(String path, int posX, int posY, int width, int height, int id, int upgradeLvl, double fireTimeStamp, int towerId)
     {
         super(path, posX, posY, width, height, id);
@@ -27,7 +26,6 @@ public class Tower extends Tile
 
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
     {
-        super.update(pc, tiles, passedTime, level);
         fire(passedTime);
         for(int i = 0; i < bullets.size(); i++)
         {
@@ -49,7 +47,7 @@ public class Tower extends Tile
             fireTimeStamp = passedTime;
             if(towerId == 1)
             {
-                bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), posX, posY, 4, 1, 0, 0));
+                bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), posX + 32, posY + 4, 4, 1, 0, 0));
             }
         }
     }

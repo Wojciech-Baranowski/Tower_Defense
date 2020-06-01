@@ -3,7 +3,8 @@ package Map;
 public class Road extends Tile
 {
     private int direction;
-    public int waveDirection;
+    private int waveDirection;
+    private int positionInOrder;
     public Road(String path, int posX, int posY, int width, int height, int id, int direction, int waveDirection) {
         super(path, posX, posY, width, height, id);
         this.direction = direction;
@@ -24,5 +25,17 @@ public class Road extends Tile
 
     public int getWaveDirection() {
         return waveDirection;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public int getPositionInOrder() {
+        return positionInOrder;
+    }
+
+    public void setPositionInOrder(int positionInOrder) {
+        this.positionInOrder = positionInOrder;
     }
 }

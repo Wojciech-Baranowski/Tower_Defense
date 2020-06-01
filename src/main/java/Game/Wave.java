@@ -71,7 +71,7 @@ public class Wave
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.waveDirection);
+                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection());
                     }
                 }
                 if(n == 2)
@@ -79,7 +79,7 @@ public class Wave
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.waveDirection);
+                        enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection());
                     }
                 }
                 n = 0;

@@ -1,12 +1,11 @@
 package Map;
 
 import Game.Level;
-import Game.Prices;
 import engine.Field;
 import engine.ProgramContainer;
 import engine.Renderer;
 
-public class Tile extends Field
+public abstract class Tile extends Field
 {
     protected int id;
     public Tile(String path, int posX, int posY, int width, int height, int id) {
@@ -16,7 +15,7 @@ public class Tile extends Field
     public static void tileInitializer(Tile[] tiles, int i, int id)
     {
         if(id == 0)
-            tiles[i] = new Tile("", (i % 16) * 64, (i / 16) * 64, 64, 64, i);
+            tiles[i] = new BackgroundTile("", (i % 16) * 64, (i / 16) * 64, 64, 64, i);
         if((int)(id / (Math.pow(10, (int)(Math.log10(id))))) == 1)
         {
             boolean dir[] = new boolean[4];
@@ -62,12 +61,8 @@ public class Tile extends Field
             }
         }
     }
-    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
-    {
-
-    }
-    public void render(ProgramContainer pc, Renderer r)
-    {
-
-    }
+    public void update(ProgramContainer pc){}
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime){}
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level){}
+    public void render(ProgramContainer pc, Renderer r){}
 }
