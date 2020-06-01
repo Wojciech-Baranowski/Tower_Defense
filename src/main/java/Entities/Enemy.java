@@ -15,11 +15,12 @@ public abstract class Enemy extends Entity
     protected Image healthBar;
     public Enemy(Image img, int posX, int posY, float vel, int maxHp, int cost, int startDirection) {
         super(img, posX, posY, vel);
+        this.vel = vel;
         this.maxHp = maxHp;
         this.cost = cost;
         this.startDirection = startDirection;
         this.direction = startDirection;
-        hp = maxHp / 2;
+        hp = maxHp;
         healthBar = new Image("/res/entities/healthBarFull.png", 16, 2, 0);
         healthUpdate();
     }

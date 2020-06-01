@@ -47,7 +47,7 @@ public class Level
     {
         for(int i = 0; i < 144; i++)
         {
-            tiles[i].update(pc, tiles);
+            tiles[i].update(pc, tiles, passedTime, this);
         }
         for(int j = 0; j < wavesAmmount; j++)
         {

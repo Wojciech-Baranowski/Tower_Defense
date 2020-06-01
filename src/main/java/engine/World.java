@@ -16,6 +16,7 @@ public class World
 
     private Image measureGrid;
     private Image backgroundGrid;
+    private Image background;
 
     private Level level;
     private Gui gui;
@@ -27,6 +28,7 @@ public class World
     {
         measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
+        background = new Image("/res/background.png", 1024, 576, 1);
         this.paused = true;
         gui = new Gui();
         tiles = new Tile[144];
@@ -43,7 +45,7 @@ public class World
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
         gui.update(pc, level, passedTime);
-        BuildMenu.update(pc, tiles, level.getTileId());
+        BuildMenu.update(pc, tiles, level.getTileId(), passedTime);
         if(paused == true)
         {
             if(stats.getHp() <= 0)
@@ -53,12 +55,17 @@ public class World
     }
     public void render(ProgramContainer pc, Renderer r)
     {
-        r.drawStaticImage(pc,backgroundGrid, 0, 0);
+        //r.drawStaticImage(pc, backgroundGrid, 0, 0);
+        r.drawStaticImage(pc, background, 0, 0);
         for(int i = 0; i < 144; i++)
         {
             r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
         }
         level.render(pc, r);
+        for(int i = 0; i < 144; i++)
+        {
+            tiles[i].render(pc, r);
+        }
         gui.render(pc, r, stats, level, passedTime);
         BuildMenu.render(pc, r, prices);
         if(isGrid == true)

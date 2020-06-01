@@ -1,6 +1,7 @@
 package Map;
 
 import Game.BuildMenu;
+import Game.Level;
 import engine.Button;
 import engine.Image;
 import engine.ProgramContainer;
@@ -74,7 +75,7 @@ public class TowerPlace extends Tile
             }
         }
     }
-    public void update(ProgramContainer pc, Tile[] tiles)
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
     {
         menu.holdClick(pc);
         if(menu.isJustClicked())

@@ -31,8 +31,4 @@ public abstract class Entity
         return posY;
     }
 
-    public float getVel() {
-        return vel;
-    }
-
 }

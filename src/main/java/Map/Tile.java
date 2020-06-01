@@ -1,7 +1,10 @@
 package Map;
 
+import Game.Level;
+import Game.Prices;
 import engine.Field;
 import engine.ProgramContainer;
+import engine.Renderer;
 
 public class Tile extends Field
 {
@@ -59,7 +62,11 @@ public class Tile extends Field
             }
         }
     }
-    public void update(ProgramContainer pc, Tile[] tiles)
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
+    {
+
+    }
+    public void render(ProgramContainer pc, Renderer r)
     {
 
     }

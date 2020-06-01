@@ -1,10 +1,10 @@
 package Game;
 
 import Map.Tile;
-import Map.Towers.AirTower;
-import Map.Towers.EarthTower;
+//import Map.Towers.AirTower;
+//import Map.Towers.EarthTower;
 import Map.Towers.FireTower;
-import Map.Towers.WaterTower;
+//import Map.Towers.WaterTower;
 import engine.*;
 
 public class BuildMenu extends Field
@@ -20,7 +20,7 @@ public class BuildMenu extends Field
         super(path, posX, posY, width, height, frame);
         id = -1;
     }
-    public static void update(ProgramContainer pc, Tile[] tiles, int[] tileId)
+    public static void update(ProgramContainer pc, Tile[] tiles, int[] tileId, double passedTime)
     {
         FIRE.holdClick(pc);
         AIR.holdClick(pc);
@@ -36,7 +36,7 @@ public class BuildMenu extends Field
             close();
             Stats.fire -= Prices.basicPrices[0];
             tileId[id] = 21;
-            tiles[id] = new FireTower("/res/towers/fireTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
+            tiles[id] = new FireTower("/res/towers/fireTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 1);
 
         }
         if((AIR.isJustClicked()) && (Stats.air >= Prices.basicPrices[1]))
@@ -44,7 +44,7 @@ public class BuildMenu extends Field
             close();
             Stats.air -= Prices.basicPrices[1];
             tileId[id] = 22;
-            tiles[id] = new AirTower("/res/towers/airTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
+           // tiles[id] = new AirTower("/res/towers/airTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
 
         }
         if((WATER.isJustClicked()) && (Stats.water >= Prices.basicPrices[2]))
@@ -52,7 +52,7 @@ public class BuildMenu extends Field
             close();
             Stats.water -= Prices.basicPrices[2];
             tileId[id] = 23;
-            tiles[id] = new WaterTower("/res/towers/waterTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
+            //tiles[id] = new WaterTower("/res/towers/waterTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
 
         }
         if((EARTH.isJustClicked()) && (Stats.earth >= Prices.basicPrices[3]))
@@ -60,7 +60,7 @@ public class BuildMenu extends Field
             close();
             Stats.earth -= Prices.basicPrices[3];
             tileId[id] = 24;
-            tiles[id] = new EarthTower("/res/towers/earthTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
+            //tiles[id] = new EarthTower("/res/towers/earthTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
 
         }
     }
