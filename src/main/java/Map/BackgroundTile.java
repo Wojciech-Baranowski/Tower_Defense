@@ -10,4 +10,14 @@ public class BackgroundTile extends Tile
     {
         super(path, posX, posY, width, height, id);
     }
+
+    @Override
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level) {
+
+    }
+
+    @Override
+    public void render(ProgramContainer pc, Renderer r) {
+
+    }
 }

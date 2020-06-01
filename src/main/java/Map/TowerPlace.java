@@ -1,9 +1,11 @@
 package Map;
 
 import Game.BuildMenu;
+import Game.Level;
 import engine.Button;
 import engine.Image;
 import engine.ProgramContainer;
+import engine.Renderer;
 
 public class TowerPlace extends Tile
 {
@@ -74,12 +76,17 @@ public class TowerPlace extends Tile
             }
         }
     }
-    public void update(ProgramContainer pc)
-    {
+    @Override
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level) {
         menu.holdClick(pc);
         if(menu.isJustClicked())
         {
             BuildMenu.open(posX, posY, id, typePermission);
         }
+    }
+
+    @Override
+    public void render(ProgramContainer pc, Renderer r) {
+
     }
 }

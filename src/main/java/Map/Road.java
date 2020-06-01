@@ -1,5 +1,9 @@
 package Map;
 
+import Game.Level;
+import engine.ProgramContainer;
+import engine.Renderer;
+
 public class Road extends Tile
 {
     private int direction;
@@ -37,5 +41,15 @@ public class Road extends Tile
 
     public void setPositionInOrder(int positionInOrder) {
         this.positionInOrder = positionInOrder;
+    }
+
+    @Override
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level) {
+
+    }
+
+    @Override
+    public void render(ProgramContainer pc, Renderer r) {
+
     }
 }

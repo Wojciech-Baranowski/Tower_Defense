@@ -61,8 +61,6 @@ public abstract class Tile extends Field
             }
         }
     }
-    public void update(ProgramContainer pc){}
-    public void update(ProgramContainer pc, Tile[] tiles, double passedTime){}
-    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level){}
-    public void render(ProgramContainer pc, Renderer r){}
+    public abstract void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level);
+    public abstract void render(ProgramContainer pc, Renderer r);
 }

@@ -50,23 +50,7 @@ public class Level
     {
         for(int i = 0; i < 144; i++)
         {
-            if(tiles[i].getClass() == TowerPlace.class)
-            {
-                tiles[i].update(pc);
-            }
-            if(tiles[i].getClass() == Road.class)
-            {
-                tiles[i].update(pc);
-            }
-            if(tiles[i].getClass() == FireTower.class)
-            {
-                tiles[i].update(pc, tiles, passedTime, this);
-            }
-            else
-            {
-                tiles[i].update(pc, tiles, passedTime);
-            }
-
+            tiles[i].update(pc, tiles, passedTime, this);
         }
         for(int j = 0; j < wavesAmount; j++)
         {
@@ -145,7 +129,34 @@ public class Level
                 }
             }
         }
-
+        ((Road)(tiles[out])).setPositionInOrder(0);
+        roadCheck(tiles, out);
+    }
+    void roadCheck(Tile[] tiles, int id)
+    {
+        if(tiles[id].getClass() == Road.class)
+        {
+            if((id / 16 > 0) && (tiles[id - 16].getClass() == Road.class) && (((Road)(tiles[id - 16])).getDirection() == 3))
+            {
+                ((Road)(tiles[id - 16])).setPositionInOrder(((Road)(tiles[id])).getPositionInOrder() + 1);
+                roadCheck(tiles, id - 16);
+            }
+            if((id % 16 != 15) && (tiles[id + 1].getClass() == Road.class) && (((Road)(tiles[id + 1])).getDirection() == 4))
+            {
+                ((Road)(tiles[id + 1])).setPositionInOrder(((Road)(tiles[id])).getPositionInOrder() + 1);
+                roadCheck(tiles, id + 1);
+            }
+            if((id / 16 < 8) && (tiles[id + 16].getClass() == Road.class) && (((Road)(tiles[id + 16])).getDirection() == 1))
+            {
+                ((Road)(tiles[id + 16])).setPositionInOrder(((Road)(tiles[id])).getPositionInOrder() + 1);
+                roadCheck(tiles, id + 16);
+            }
+            if((id % 16 != 0) && (tiles[id - 1].getClass() == Road.class) && (((Road)(tiles[id - 1])).getDirection() == 2))
+            {
+                ((Road)(tiles[id - 1])).setPositionInOrder(((Road)(tiles[id])).getPositionInOrder() + 1);
+                roadCheck(tiles, id - 1);
+            }
+        }
     }
 
     public int getWavesAmount() {

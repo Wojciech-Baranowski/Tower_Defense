@@ -36,7 +36,7 @@ public class BuildMenu extends Field
             close();
             Stats.fire -= Prices.basicPrices[0];
             tileId[id] = 21;
-            tiles[id] = new FireTower("/res/towers/fireTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 1);
+            tiles[id] = new FireTower("/res/towers/fireTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 1, 100);
 
         }
         if((AIR.isJustClicked()) && (Stats.air >= Prices.basicPrices[1]))
