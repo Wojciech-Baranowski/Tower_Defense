@@ -54,6 +54,10 @@ public class Level
             {
                 tiles[i].update(pc);
             }
+            if(tiles[i].getClass() == Road.class)
+            {
+                tiles[i].update(pc);
+            }
             if(tiles[i].getClass() == FireTower.class)
             {
                 tiles[i].update(pc, tiles, passedTime, this);
