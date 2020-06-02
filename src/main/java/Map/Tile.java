@@ -1,6 +1,7 @@
 package Map;
 
 import Game.Level;
+import Map.Towers.FireTower;
 import engine.Field;
 import engine.ProgramContainer;
 import engine.Renderer;

@@ -11,6 +11,7 @@ public abstract class Enemy extends Entity
     protected int startDirection;
     protected int onMap = 0;
     protected Image healthBar;
+    protected boolean alive;
     public Enemy(Image img, int posX, int posY, float vel, int maxHp, int cost, int startDirection) {
         super(img, posX, posY, vel);
         this.vel = vel;
@@ -18,6 +19,7 @@ public abstract class Enemy extends Entity
         this.cost = cost;
         this.startDirection = startDirection;
         this.direction = startDirection;
+        this.alive = true;
         hp = maxHp;
         healthBar = new Image("/res/entities/healthBarFull.png", 16, 2, 0);
         healthUpdate();
@@ -111,5 +113,20 @@ public abstract class Enemy extends Entity
 
     public int getMaxHp() {
         return maxHp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public int getOnMap() {
+        return onMap;
     }
 }

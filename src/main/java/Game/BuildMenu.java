@@ -3,8 +3,9 @@ package Game;
 import Map.Tile;
 //import Map.Towers.AirTower;
 //import Map.Towers.EarthTower;
+import Map.Towers.EarthTower;
 import Map.Towers.FireTower;
-//import Map.Towers.WaterTower;
+import Map.Towers.WaterTower;
 import engine.*;
 
 public class BuildMenu extends Field
@@ -36,7 +37,7 @@ public class BuildMenu extends Field
             close();
             Stats.fire -= Prices.basicPrices[0];
             tileId[id] = 21;
-            tiles[id] = new FireTower("/res/towers/fireTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 1, 100);
+            tiles[id] = new FireTower("/res/towers/fireTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 1, 200, 0.5);
 
         }
         if((AIR.isJustClicked()) && (Stats.air >= Prices.basicPrices[1]))
@@ -52,16 +53,14 @@ public class BuildMenu extends Field
             close();
             Stats.water -= Prices.basicPrices[2];
             tileId[id] = 23;
-            //tiles[id] = new WaterTower("/res/towers/waterTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
-
+            tiles[id] = new FireTower("/res/towers/waterTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 3, 200, 1);
         }
         if((EARTH.isJustClicked()) && (Stats.earth >= Prices.basicPrices[3]))
         {
             close();
             Stats.earth -= Prices.basicPrices[3];
             tileId[id] = 24;
-            //tiles[id] = new EarthTower("/res/towers/earthTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
-
+            tiles[id] = new FireTower("/res/towers/earthTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1, passedTime, 4, 150, 2);
         }
     }
     public static void render(ProgramContainer pc, Renderer r, Prices prices)

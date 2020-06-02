@@ -59,10 +59,13 @@ public class Level
                 waveStartCheck(passedTime);
                 for(int i = 0; i < waves[j].getEnemies().length; i++)
                 {
-                    waves[j].getEnemies()[i].move(tileId);
-                    if(waves[j].getEnemies()[i].hasPassed())
+                    if(waves[j].getEnemies()[i].isAlive())
                     {
-                        Stats.hp -= waves[j].getEnemies()[i].getCost();
+                        waves[j].getEnemies()[i].move(tileId);
+                        if(waves[j].getEnemies()[i].hasPassed())
+                        {
+                            Stats.hp -= waves[j].getEnemies()[i].getCost();
+                        }
                     }
                 }
             }
@@ -76,10 +79,12 @@ public class Level
         {
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
+                if(waves[j].getEnemies()[i].isAlive())
                 r.drawImage(pc, waves[j].getEnemies()[i].getImg(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY());
             }
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
+                if(waves[j].getEnemies()[i].isAlive())
                 r.drawImage(pc, waves[j].getEnemies()[i].getHealthBar(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY() - 6);
             }
         }

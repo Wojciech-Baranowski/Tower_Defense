@@ -10,16 +10,19 @@ public abstract class Bullet extends Entity
     protected int dmg;
     protected int targetId;
     protected int targetWaveId;
+    protected boolean destination;
     public Bullet(Image img, int posX, int posY, float vel, int dmg, int targetId, int targetWaveId)
     {
         super(img, posX, posY, vel);
         this.dmg = dmg;
         this.targetId = targetId;
         this.targetWaveId = targetWaveId;
+        this.destination = false;
     }
     public void update(Enemy enemy)
     {
         move(enemy);
+        hit(enemy);
     }
     public void move(Enemy enemy)
     {
@@ -67,6 +70,25 @@ public abstract class Bullet extends Entity
         }
         posX += (int)n;
         posY += (int)m;
+    }
+
+    private void hit(Enemy enemy)
+    {
+        if(Math.pow(vel, 2) >= Math.pow((enemy.getPosX() - posX), 2) + Math.pow((enemy.getPosY() - posY), 2))
+        {
+            destination = true;
+            enemy.setHp(enemy.getHp() - dmg);
+            if(enemy.getHp() <= 0)
+            {
+                enemy.setAlive(false);
+                return;
+            }
+            enemy.healthUpdate();
+        }
+    }
+
+    public boolean isDestination() {
+        return destination;
     }
 
     public int getTargetId() {
