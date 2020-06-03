@@ -20,9 +20,11 @@ public class Stats
     public static double fireFireDelay;
     public static double waterFireDelay;
     public static double earthFireDelay;
+    public static double airFireDelayBoost;
+    public static double airRangeBoost;
     public static int earthSplashRange;
     public static double earthSplashDmgPercentage;
-    public Stats(int hp, int fire, int water, int earth, int air, int fireDmg, int waterDmg, int earthDmg, int fireRange, int airRange, int waterRange, int earthRange, int fireBulletVelocity, int waterBulletVelocity, int earthBulletVelocity, double fireFireDelay, double waterFireDelay, double earthFireDelay, int earthSplashRange, double earthSplashDmgPercentage)
+    public Stats(int hp, int fire, int water, int earth, int air, int fireDmg, int waterDmg, int earthDmg, int fireRange, int airRange, int waterRange, int earthRange, int fireBulletVelocity, int waterBulletVelocity, int earthBulletVelocity, double fireFireDelay, double waterFireDelay, double earthFireDelay, double airFireDelayBoost, double airRangeBoost, int earthSplashRange, double earthSplashDmgPercentage)
     {
         this.hp = hp;
         this.fire = fire;
@@ -42,6 +44,8 @@ public class Stats
         this.fireFireDelay = fireFireDelay;
         this.waterFireDelay = waterFireDelay;
         this.earthFireDelay = earthFireDelay;
+        this.airFireDelayBoost = airFireDelayBoost;
+        this.airRangeBoost = airRangeBoost;
         this.earthSplashRange = earthSplashRange;
         this.earthSplashDmgPercentage = earthSplashDmgPercentage;
     }
@@ -123,5 +127,13 @@ public class Stats
 
     public static double getEarthFireDelay() {
         return earthFireDelay;
+    }
+
+    public static double getAirFireDelayBoost() {
+        return airFireDelayBoost;
+    }
+
+    public static double getAirRangeBoost() {
+        return airRangeBoost;
     }
 }

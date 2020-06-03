@@ -4,6 +4,7 @@ import Map.Tile;
 //import Map.Towers.AirTower;
 //import Map.Towers.EarthTower;
 import Map.TowerPlace;
+import Map.Towers.AirTower;
 import Map.Towers.EarthTower;
 import Map.Towers.FireTower;
 import Map.Towers.WaterTower;
@@ -44,15 +45,14 @@ public class BuildMenu extends Field
             Stats.fire -= Prices.basicPrices[0];
             tileId[id] = 21;
             tiles[id] = new FireTower((id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
-
+            AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
         if((AIR.isJustClicked()) && (Stats.air >= Prices.basicPrices[1]))
         {
             close();
             Stats.air -= Prices.basicPrices[1];
             tileId[id] = 22;
-           // tiles[id] = new AirTower("/res/towers/airTower.png", (id % 16) * 64, (id / 16) * 64, 64, 64, id, 1);
-
+            tiles[id] = new AirTower(tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirFireDelayBoost());
         }
         if((WATER.isJustClicked()) && (Stats.water >= Prices.basicPrices[2]))
         {
@@ -60,6 +60,7 @@ public class BuildMenu extends Field
             Stats.water -= Prices.basicPrices[2];
             tileId[id] = 23;
             tiles[id] = new WaterTower((id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.waterRange, Stats.waterFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
         if((EARTH.isJustClicked()) && (Stats.earth >= Prices.basicPrices[3]))
         {
@@ -67,6 +68,7 @@ public class BuildMenu extends Field
             Stats.earth -= Prices.basicPrices[3];
             tileId[id] = 24;
             tiles[id] = new EarthTower((id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.earthRange, Stats.earthFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
     }
     public static void render(ProgramContainer pc, Renderer r, Prices prices)

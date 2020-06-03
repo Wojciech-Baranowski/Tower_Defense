@@ -17,6 +17,8 @@
 	"fireBulletVelocity": 6,
 	"waterBulletVelocity": 4,
 	"earthBulletVelocity": 4,
+	"airFireDelayBoost": 0.5,
+	"airRangeBoost": 1.5,
 	"earthSplashRange": 50,
 	"earthSplashDmgPercentage": 0.25, 
 }

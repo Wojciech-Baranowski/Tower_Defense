@@ -47,7 +47,9 @@ public abstract class Tower extends Tile
             if(!b.isDestination())
                 bullets.add(b);
         }
+        indUpdate(pc, tiles, passedTime, level);
     }
+    public abstract void indUpdate(ProgramContainer pc, Tile[] tiles, double passedTime, Level level);
     public void render(ProgramContainer pc, Renderer r)
     {
         int s = bullets.size();
@@ -57,8 +59,9 @@ public abstract class Tower extends Tile
             r.drawImage(pc, b.getImg(), b.getPosX(), b.getPosY());
             bullets.add(b);
         }
+        indRender(pc, r);
     }
-
+    public abstract void indRender(ProgramContainer pc, Renderer r);
     public void fire(Level level, Tile[] tiles, double passedTime)
     {
         if(passedTime - fireTimeStamp >= fireDelay)
@@ -126,5 +129,21 @@ public abstract class Tower extends Tile
         if((int)Math.sqrt(Math.pow((enemy.getPosX() - posX), 2) + Math.pow((enemy.getPosY() - posY), 2)) <= range)
         return true;
         return false;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public double getFireDelay() {
+        return fireDelay;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
+    public void setFireDelay(double fireDelay) {
+        this.fireDelay = fireDelay;
     }
 }

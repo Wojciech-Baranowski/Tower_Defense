@@ -1,7 +1,11 @@
 package Map.Towers;
 
+import Game.Level;
+import Map.Tile;
 import Map.Tower;
 import engine.Image;
+import engine.ProgramContainer;
+import engine.Renderer;
 
 public class FireTower extends Tower
 {
@@ -11,4 +15,13 @@ public class FireTower extends Tower
         super(FIRETOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, range, fireDelay, typePermission);
     }
 
+    @Override
+    public void indUpdate(ProgramContainer pc, Tile[] tiles, double passedTime, Level level) {
+
+    }
+
+    @Override
+    public void indRender(ProgramContainer pc, Renderer r) {
+
+    }
 }
