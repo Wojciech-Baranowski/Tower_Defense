@@ -3,6 +3,7 @@ package Map;
 import Game.Level;
 import Map.Towers.FireTower;
 import engine.Field;
+import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;
 
@@ -11,6 +12,10 @@ public abstract class Tile extends Field
     protected int id;
     public Tile(String path, int posX, int posY, int width, int height, int id) {
         super(path, posX, posY, width, height, 0);
+        this.id = id;
+    }
+    public Tile(Image image, int posX, int posY, int id) {
+        super(image, posX, posY);
         this.id = id;
     }
     public static void tileInitializer(Tile[] tiles, int i, int id)

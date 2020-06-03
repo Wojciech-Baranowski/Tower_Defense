@@ -17,6 +17,12 @@ public class Field
         this.height = height;
         img = new Image("/res/defaultField.png", width, height, frame);
     }
+    public Field(Image image, int posX, int posY)
+    {
+        this.posX = posX;
+        this.posY = posY;
+        img = image;
+    }
     public Field(String path, int posX, int posY, int width, int height, int frame)
     {
         this.posX = posX;

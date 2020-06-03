@@ -6,6 +6,7 @@ import Entities.Particles.Bullets.EarthBomb;
 import Entities.Particles.Bullets.FireArrow;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Level;
+import Game.Stats;
 import Game.Wave;
 import engine.Image;
 import engine.Pair;
@@ -22,14 +23,16 @@ public abstract class Tower extends Tile
     protected int towerId;
     protected int range;
     protected double fireDelay;
-    public Tower(String path, int posX, int posY, int width, int height, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay)
+    protected boolean[] typePermission;
+    public Tower(Image image, int posX, int posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission)
     {
-        super(path, posX, posY, width, height, id);
+        super(image, posX, posY, id);
         this.upgradeLvl = upgradeLvl;
         this.fireTimeStamp = 0;
         this.towerId = towerId;
         this.range = range;
         this.fireDelay = fireDelay;
+        this.typePermission = typePermission;
         bullets = new LinkedList<Bullet>();
     }
 
@@ -40,7 +43,7 @@ public abstract class Tower extends Tile
         for(int i = 0; i < s; i++)
         {
             Bullet b = bullets.poll();
-            b.update(level.getWaves()[b.getTargetWaveId()].getEnemies()[b.getTargetId()]);
+            b.update(level);
             if(!b.isDestination())
                 bullets.add(b);
         }
@@ -66,7 +69,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), posX + 32, posY + 4, 6, 25, enemyId.second, enemyId.first));
+                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), posX + 32, posY + 4, Stats.fireBulletVelocity, Stats.fireDmg, enemyId.second, enemyId.first));
                 }
             }
             if(towerId == 3)
@@ -74,7 +77,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), posX + 32, posY + 4, 4, 50, enemyId.second, enemyId.first));
+                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), posX + 32, posY + 4, Stats.waterBulletVelocity, Stats.waterDmg, enemyId.second, enemyId.first));
                 }
             }
             if(towerId == 4)
@@ -82,7 +85,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), posX + 32, posY + 4, 4, 100, enemyId.second, enemyId.first));
+                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), posX + 32, posY + 4, Stats.earthBulletVelocity, Stats.earthDmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
                 }
             }
         }

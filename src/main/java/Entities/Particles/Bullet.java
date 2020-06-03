@@ -19,11 +19,13 @@ public abstract class Bullet extends Entity
         this.targetWaveId = targetWaveId;
         this.destination = false;
     }
-    public void update(Enemy enemy)
+    public void update(Level level)
     {
-        move(enemy);
-        hit(enemy);
+        move(level.getWaves()[targetWaveId].getEnemies()[targetId]);
+        hit(level.getWaves()[targetWaveId].getEnemies()[targetId]);
+        indUpdate(level);
     }
+    public abstract void indUpdate(Level level);
     public void move(Enemy enemy)
     {
         double n = 0;

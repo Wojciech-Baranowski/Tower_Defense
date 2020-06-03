@@ -1,12 +1,14 @@
 package Map.Towers;
 
 import Map.Tower;
+import engine.Image;
 
 public class FireTower extends Tower
 {
-    public FireTower(String path, int posX, int posY, int width, int height, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay)
+    private static final Image FIRETOWER = new Image("/res/towers/fireTower.png",64, 64, 0);
+    public FireTower(int posX, int posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission)
     {
-        super(path, posX, posY, width, height, id, upgradeLvl, fireTimeStamp, towerId, range, fireDelay);
+        super(FIRETOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, range, fireDelay, typePermission);
     }
 
 }

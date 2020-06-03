@@ -8,8 +8,8 @@ public class Gui
     Button nextWave;
     public Gui()
     {
-        background = new Field("/res/gui.png", 0, 0, 1024, 576, 1);
-        nextWave = new Button("/res/guiButton.png", "/res/guiButtonClicked.png", 912, 200, 96, 48, 1);
+        background = new Field("/res/gui.png", 0, 0, 1024, 576, 0xFF641D54);
+        nextWave = new Button("/res/guiButton.png", "/res/guiButtonClicked.png", 912, 200, 96, 48, 0xFF641D54);
     }
     public void update(ProgramContainer pc, Level level, double passedTime)
     {

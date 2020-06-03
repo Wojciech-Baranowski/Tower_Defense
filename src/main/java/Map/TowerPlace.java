@@ -89,4 +89,8 @@ public class TowerPlace extends Tile
     public void render(ProgramContainer pc, Renderer r) {
 
     }
+
+    public boolean[] getTypePermission() {
+        return typePermission;
+    }
 }

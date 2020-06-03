@@ -32,19 +32,19 @@ public class Image
         image.flush();
     }
 
-    public void rescale(int nwidth, int nheight)
+    public void rescale(int nWidth, int nHeight)
     {
-        double sw = ((double)(nwidth) / (double)(w));
-        double sh = ((double)(nheight) / (double)(h));
-        for(int j = 0; j < nheight; j++)
+        double sw = ((double)(nWidth) / (double)(w));
+        double sh = ((double)(nHeight) / (double)(h));
+        for(int j = 0; j < nHeight; j++)
         {
-            for(int i = 0; i < nwidth; i++)
+            for(int i = 0; i < nWidth; i++)
             {
-                p[i + j * nwidth] = r[(int)((double)(i) / (double)(sw)) + (int)((double)(j) / (double)(sh)) * w];
+                p[i + j * nWidth] = r[(int)((double)(i) / (double)(sw)) + (int)((double)(j) / (double)(sh)) * w];
             }
         }
-        w = nwidth;
-        h = nheight;
+        w = nWidth;
+        h = nHeight;
     }
 
     public int getW() {
