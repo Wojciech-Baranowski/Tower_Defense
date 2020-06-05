@@ -2,12 +2,9 @@ package Map;
 
 import Game.BuildMenu;
 import Game.Level;
-import engine.Button;
-import engine.Image;
-import engine.ProgramContainer;
-import engine.Renderer;
+import engine.*;
 
-public class TowerPlace extends Tile
+public class TowerPlace extends Tile implements Clickable
 {
     private static final Image FIRE = new Image("/res/towers/summoningTileFire.png", 32, 32, 0);
     private static final Image AIR = new Image("/res/towers/summoningTileAir.png", 32, 32, 0);
@@ -72,12 +69,9 @@ public class TowerPlace extends Tile
         }
     }
     @Override
-    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level) {
-        /*this.holdClick(pc);
-        if(this.isJustClicked())
-        {
-            BuildMenu.open(posX, posY, id, typePermission);
-        }*/
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
+    {
+        onClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH());
     }
 
     @Override
@@ -87,5 +81,14 @@ public class TowerPlace extends Tile
 
     public boolean[] getTypePermission() {
         return typePermission;
+    }
+
+    @Override
+    public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
+    {
+        if(this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH()))
+        {
+            BuildMenu.open(posX, posY, id, typePermission);
+        }
     }
 }

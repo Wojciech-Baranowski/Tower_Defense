@@ -16,8 +16,7 @@ public class Gui
     private static int rangeBoost = 0;
     public static void update(ProgramContainer pc, Level level, double passedTime)
     {
-        nextWave.click(pc);
-        if(nextWave.isJustClicked() == true)
+        if(nextWave.isClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH()))
         {
             if(level.getWaves()[0].isRunning() == false)
             {

@@ -17,10 +17,14 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
     private int mouseX, mouseY;
     private int scroll;
 
+    public static boolean justClicked;
+    public static boolean isHold;
 
     Input(ProgramContainer pc)
     {
         this.pc = pc;
+        justClicked = false;
+        isHold = false;
         mouseX = 0;
         mouseY = 0;
         scroll = 0;
@@ -42,6 +46,17 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
         {
             buttonsLast[i] = buttons[i];
         }
+    }
+
+    public static boolean isHold(ProgramContainer pc)
+    {
+        if(pc.getInput().isButton(MouseEvent.BUTTON1))
+        {
+            Input.isHold = true;
+            return true;
+        }
+        Input.isHold = false;
+        return false;
     }
 
     public boolean isKey(int keyCode)
@@ -148,4 +163,6 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
     public int getScroll() {
         return scroll;
     }
+
 }
+

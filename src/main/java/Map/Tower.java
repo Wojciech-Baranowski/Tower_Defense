@@ -7,14 +7,11 @@ import Entities.Particles.Bullets.FireArrow;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Level;
 import Game.Stats;
-import engine.Image;
-import engine.Pair;
-import engine.ProgramContainer;
-import engine.Renderer;
+import engine.*;
 
 import java.util.*;
 
-public abstract class Tower extends Tile
+public abstract class Tower extends Tile implements Clickable
 {
     String name;
     protected int upgradeLvl;
@@ -50,6 +47,7 @@ public abstract class Tower extends Tile
             if(!b.isDestination())
                 bullets.add(b);
         }
+        onClick(pc, posX, posY, img.getW(), img.getH());
         indUpdate(pc, tiles, passedTime, level);
     }
     public abstract void indUpdate(ProgramContainer pc, Tile[] tiles, double passedTime, Level level);

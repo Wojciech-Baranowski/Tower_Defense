@@ -27,16 +27,11 @@ public class BuildMenu extends Field
     }
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
-        FIRE.click(pc);
-        AIR.click(pc);
-        WATER.click(pc);
-        EARTH.click(pc);
-        closer.click(pc);
-        if(closer.isJustClicked())
+        if(closer.isClick(pc, closer.getPosX(), closer.getPosY(), closer.getImg().getW(), closer.getImg().getH()))
         {
             BuildMenu.close();
         }
-        if((FIRE.isJustClicked()) && (Stats.fire >= Prices.basicPrices[0]))
+        if((FIRE.isClick(pc, FIRE.getPosX(), FIRE.getPosY(), FIRE.getImg().getW(), FIRE.getImg().getH())) && (Stats.fire >= Prices.basicPrices[0]))
         {
             close();
             Stats.fire -= Prices.basicPrices[0];
@@ -44,14 +39,14 @@ public class BuildMenu extends Field
             tiles[id] = new FireTower("FireTower",(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.fireDmg, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((AIR.isJustClicked()) && (Stats.air >= Prices.basicPrices[1]))
+        if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.air >= Prices.basicPrices[1]))
         {
             close();
             Stats.air -= Prices.basicPrices[1];
             tileId[id] = 22;
             tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, 0, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirAttackSpeedBoost(), Stats.getAirRangeBoost());
         }
-        if((WATER.isJustClicked()) && (Stats.water >= Prices.basicPrices[2]))
+        if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.water >= Prices.basicPrices[2]))
         {
             close();
             Stats.water -= Prices.basicPrices[2];
@@ -59,7 +54,7 @@ public class BuildMenu extends Field
             tiles[id] = new WaterTower("WaterTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.waterDmg, Stats.waterRange, Stats.waterFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((EARTH.isJustClicked()) && (Stats.earth >= Prices.basicPrices[3]))
+        if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.earth >= Prices.basicPrices[3]))
         {
             close();
             Stats.earth -= Prices.basicPrices[3];
@@ -188,6 +183,7 @@ public class BuildMenu extends Field
     }
     public static void close()
     {
+        Input.justClicked = false;
         menu.setPosX(-1000);
         menu.setPosY(-1000);
         closer.setPosX(-1000);
@@ -196,24 +192,18 @@ public class BuildMenu extends Field
         FIRE.setPosY(-1000);
         FIREm.setPosX(-1000);
         FIREm.setPosY(-1000);
-        FIRE.setJustClicked(false);
         AIR.setPosX(-1000);
         AIR.setPosY(-1000);
         AIRm.setPosX(-1000);
         AIRm.setPosY(-1000);
-        AIR.setJustClicked(false);
         WATER.setPosX(-1000);
         WATER.setPosY(-1000);
         WATERm.setPosX(-1000);
         WATERm.setPosY(-1000);
-        WATER.setJustClicked(false);
         EARTH.setPosX(-1000);
         EARTH.setPosY(-1000);
         EARTHm.setPosX(-1000);
         EARTHm.setPosY(-1000);
-        EARTH.setJustClicked(false);
-        closer.setClicked(false);
-        closer.setJustClicked(false);
     }
 }
 

@@ -2,7 +2,6 @@ package engine;
 
 import Game.*;
 import Map.Tile;
-import com.alibaba.fastjson.JSONObject;
 
 import java.awt.event.KeyEvent;
 
@@ -50,6 +49,7 @@ public class World
                 return;
             level.update(pc, tiles, passedTime, stats);
         }
+        Input.isHold(pc);
     }
     public void render(ProgramContainer pc, Renderer r)
     {
