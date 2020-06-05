@@ -43,7 +43,7 @@ public abstract class Tower extends Tile implements Clickable
         for(int i = 0; i < s; i++)
         {
             Bullet b = bullets.poll();
-            b.update(level);
+            b.update(pc, passedTime, level);
             if(!b.isDestination())
                 bullets.add(b);
         }
@@ -57,7 +57,7 @@ public abstract class Tower extends Tile implements Clickable
         for(int i = 0; i < s; i++)
         {
             Bullet b = bullets.poll();
-            r.drawImage(pc, b.getImg(), (int)b.getPosX(), (int)b.getPosY());
+            b.render(pc, r);
             bullets.add(b);
         }
         indRender(pc, r);

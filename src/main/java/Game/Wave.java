@@ -5,6 +5,8 @@ import Entities.Enemies.CrystalShard;
 import Entities.Enemies.Dobbo;
 import Entities.Enemy;
 import Map.Road;
+import engine.ProgramContainer;
+import engine.Renderer;
 
 public class Wave
 {
@@ -15,7 +17,8 @@ public class Wave
     private int unitDistance;
     private Road startPoint;
     private boolean isRunning;
-    public Wave(String info, double posX, double posY, int unitDistance, Road startPoint)
+    private int id;
+    public Wave(String info, double posX, double posY, int unitDistance, Road startPoint, int id)
     {
         this.posX = posX;
         this.posY = posY;
@@ -23,6 +26,7 @@ public class Wave
         this.startPoint = startPoint;
         this.timeStamp = 0;
         this.isRunning = false;
+        this.id = id;
         decryptor(info);
     }
     private void decryptor(String info)
@@ -72,7 +76,7 @@ public class Wave
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 8 + 16, posY + (int)(System.nanoTime()) % 8 + 16, startPoint.getWaveDirection());
+                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 8 + 16, posY + (int)(System.nanoTime()) % 8 + 16, startPoint.getWaveDirection(), id, j - 1);
                     }
                 }
                 if(n == 2)
@@ -80,7 +84,7 @@ public class Wave
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection());
+                        enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection(), id, j - 1);
                     }
                 }
                 if(n == 3)
@@ -88,7 +92,7 @@ public class Wave
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new Dobbo(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection());
+                        enemies[j++] = new Dobbo(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
                     }
                 }
                 n = 0;

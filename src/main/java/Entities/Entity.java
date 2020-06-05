@@ -1,7 +1,10 @@
 package Entities;
 
+import Game.Level;
 import engine.Button;
 import engine.Image;
+import engine.ProgramContainer;
+import engine.Renderer;
 
 public abstract class Entity
 {
@@ -16,6 +19,8 @@ public abstract class Entity
         this.posY = posY;
         this.vel = vel;
     }
+    public abstract void update(ProgramContainer pc, double passedTime, Level level);
+    public abstract void render(ProgramContainer pc, Renderer r);
     protected int currentGirdId()
     {
         return(((int)posX / 64) + 16 * ((int)posY / 64));
@@ -30,5 +35,9 @@ public abstract class Entity
 
     public double getPosY() {
         return posY;
+    }
+
+    public double getVel() {
+        return vel;
     }
 }

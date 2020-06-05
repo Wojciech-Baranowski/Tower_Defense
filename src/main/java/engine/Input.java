@@ -48,7 +48,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
         }
     }
 
-    public static boolean isHold(ProgramContainer pc)
+    public static boolean isHolding(ProgramContainer pc)
     {
         if(pc.getInput().isButton(MouseEvent.BUTTON1))
         {

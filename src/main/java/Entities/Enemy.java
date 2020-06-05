@@ -1,29 +1,74 @@
 package Entities;
 
+import Game.Gui;
+import Game.Level;
+import Game.Stats;
+import engine.Clickable;
 import engine.Image;
+import engine.ProgramContainer;
+import engine.Renderer;
 
-public abstract class Enemy extends Entity
+public abstract class Enemy extends Entity implements Clickable
 {
+    String name;
     protected int hp;
     protected int maxHp;
     protected int cost;
     protected int direction;
     protected int startDirection;
     protected int onMap = 0;
+    protected int wave;
+    protected int id;
     protected Image healthBar;
     protected boolean alive;
-    public Enemy(Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection) {
+    public Enemy(String name, Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id) {
         super(img, posX, posY, vel);
+        this.name = name;
         this.vel = vel;
         this.maxHp = maxHp;
         this.cost = cost;
         this.startDirection = startDirection;
         this.direction = startDirection;
+        this.wave = wave;
+        this.id = id;
         this.alive = true;
-        hp = maxHp;
+        this.hp = maxHp;
         healthBar = new Image("/res/entities/healthBarFull.png", 16, 2, 0);
-        healthUpdate();
+        healthUpdate(0);
     }
+    public void update(ProgramContainer pc, double passedTime, Level level)
+    {
+        if(isAlive())
+        {
+            onClick(pc, posX, posY, img.getW(), img.getH());
+            move(level.getTileId());
+            if(hasPassed())
+            {
+                Stats.hp -= cost;
+            }
+        }
+    }
+    @Override
+    public void render(ProgramContainer pc, Renderer r)
+    {
+        if(isAlive())
+            r.drawImage(pc, img, (int)posX, (int)posY);
+    }
+    @Override
+    public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
+    {
+        if(isClick(pc, posX, posY, width, height))
+        {
+            Gui.enemyInfo(this, wave, id);
+        }
+    }
+    public void healthBarRender(ProgramContainer pc, Renderer r)
+    {
+        if(isAlive())
+            r.drawImage(pc, healthBar, (int)posX, (int)posY - 6);
+    }
+    public abstract void indUpdate(ProgramContainer pc, double passedTime);
+    public abstract void indrender(ProgramContainer pc, Renderer r);
     public void move(int[] tileId)
     {
         if(img.getH() == 32)
@@ -94,12 +139,24 @@ public abstract class Enemy extends Entity
         }
 
     }
-    public void healthUpdate()
+    public void healthUpdate(int dmg)
     {
-        for(int i = 15; i >= (16 * ((float)(hp) / (float)(maxHp))) - 1; i--)
+        hp -= dmg;
+        if(hp <= 0)
         {
-            healthBar.getP()[i] = 0xFFFF0000;
-            healthBar.getP()[i + 16] = 0xFFFF0000;
+            alive = false;
+        }
+        else
+        {
+            for(int i = 15; i >= (16 * ((float)(hp) / (float)(maxHp))) - 1; i--)
+            {
+                healthBar.getP()[i] = 0xFFFF0000;
+                healthBar.getP()[i + 16] = 0xFFFF0000;
+            }
+        }
+        if((Gui.currentWaveId == wave) && (Gui.currentEnemyId == id))
+        {
+            Gui.enemyInfo(this, wave, id);
         }
     }
     private boolean isOnMap()
@@ -157,4 +214,9 @@ public abstract class Enemy extends Entity
     public int getOnMap() {
         return onMap;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

@@ -37,13 +37,13 @@ public class Level
         for(int i = 0; i < wavesAmount; i++)
         {
             if(wavePosition[i] < 16)
-                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 - 32, 32, (Road)tiles[wavePosition[i]]);
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 - 32, 32, (Road)tiles[wavePosition[i]], i);
             else if(wavePosition[i] > 127)
-                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 + 32, 32, (Road)tiles[wavePosition[i]]);
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64, (wavePosition[i] / 16) * 64 + 32, 32, (Road)tiles[wavePosition[i]], i);
             else if(wavePosition[i] % 16 == 0)
-                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 - 32, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]]);
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 - 32, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]], i);
             else if(wavePosition[i] % 16 == 15)
-                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 + 100, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]]);
+                waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 + 100, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]], i);
         }
     }
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Stats stats)
@@ -59,14 +59,7 @@ public class Level
                 waveStartCheck(passedTime);
                 for(int i = 0; i < waves[j].getEnemies().length; i++)
                 {
-                    if(waves[j].getEnemies()[i].isAlive())
-                    {
-                        waves[j].getEnemies()[i].move(tileId);
-                        if(waves[j].getEnemies()[i].hasPassed())
-                        {
-                            Stats.hp -= waves[j].getEnemies()[i].getCost();
-                        }
-                    }
+                    waves[j].getEnemies()[i].update(pc, passedTime, this);
                 }
             }
             else
@@ -79,13 +72,11 @@ public class Level
         {
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
-                if(waves[j].getEnemies()[i].isAlive())
-                r.drawImage(pc, waves[j].getEnemies()[i].getImg(), (int)waves[j].getEnemies()[i].getPosX(), (int)waves[j].getEnemies()[i].getPosY());
+                waves[j].getEnemies()[i].render(pc, r);
             }
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
-                if(waves[j].getEnemies()[i].isAlive())
-                r.drawImage(pc, waves[j].getEnemies()[i].getHealthBar(), (int)waves[j].getEnemies()[i].getPosX(), (int)waves[j].getEnemies()[i].getPosY() - 6);
+                waves[j].getEnemies()[i].healthBarRender(pc, r);
             }
         }
     }

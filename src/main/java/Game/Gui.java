@@ -1,5 +1,6 @@
 package Game;
 
+import Entities.Enemy;
 import Map.Tower;
 import Map.Towers.AirTower;
 import engine.*;
@@ -13,9 +14,15 @@ public class Gui
     private static double attackSpeed = 0;
     private static int range = 0;
     private static double attackSpeedBoost = 0;
-    private static int rangeBoost = 0;
+    private static double rangeBoost = 0;
+    private static int hp = 0;
+    private static double vel = 0;
+    private static int cost = 0;
+    public static int currentWaveId = -1;
+    public static int currentEnemyId = -1;
     public static void update(ProgramContainer pc, Level level, double passedTime)
     {
+        nextWave.onClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH());
         if(nextWave.isClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH()))
         {
             if(level.getWaves()[0].isRunning() == false)
@@ -65,6 +72,12 @@ public class Gui
             r.drawStaticText(pc,"Attack Speed Boost:  +" + attackSpeedBoost + "%", 320, 540, 0xFF000000, 3);
         if(rangeBoost != 0)
             r.drawStaticText(pc,"Range Boost:  +" + rangeBoost + "%", 784, 540, 0xFF000000, 3);
+        if(hp != 0)
+            r.drawStaticText(pc,"Hp:   " + hp, 320, 540, 0xFF000000, 3);
+        if(vel != 0)
+            r.drawStaticText(pc,"Velocity:   " + vel, 512, 540, 0xFF000000, 3);
+        if(cost != 0)
+            r.drawStaticText(pc,"Cost:   " + cost, 784, 540, 0xFF000000, 3);
     }
     private static void clear()
     {
@@ -74,6 +87,11 @@ public class Gui
         range = 0;
         attackSpeedBoost = 0;
         rangeBoost = 0;
+        hp = 0;
+        vel = 0;
+        cost = 0;
+        currentWaveId = -1;
+        currentEnemyId = -1;
     }
     public static void towerInfo(Tower tower)
     {
@@ -89,6 +107,19 @@ public class Gui
         name = tower.getName();
         attackSpeedBoost = tower.getAttackSpeedBoost() * 100;
         rangeBoost = (int)(tower.getRangeBoost() * 100);
+    }
+    public static void enemyInfo(Enemy enemy, int wave, int id)
+    {
+        clear();
+        if(enemy.getHp() > 0)
+        {
+            name = enemy.getName();
+            hp = enemy.getHp();
+            vel = enemy.getVel();
+            cost = enemy.getCost();
+            currentWaveId = wave;
+            currentEnemyId = id;
+        }
     }
 }
 

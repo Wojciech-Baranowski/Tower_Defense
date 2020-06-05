@@ -49,7 +49,7 @@ public class World
                 return;
             level.update(pc, tiles, passedTime, stats);
         }
-        Input.isHold(pc);
+        Input.isHolding(pc);
     }
     public void render(ProgramContainer pc, Renderer r)
     {

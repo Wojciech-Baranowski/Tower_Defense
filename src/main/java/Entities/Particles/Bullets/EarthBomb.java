@@ -40,7 +40,7 @@ public class EarthBomb extends Bullet
                                 level.getWaves()[i].getEnemies()[j].setAlive(false);
                                 continue;
                             }
-                            level.getWaves()[i].getEnemies()[j].healthUpdate();
+                            level.getWaves()[i].getEnemies()[j].healthUpdate(dmg);
                         }
                     }
                 }

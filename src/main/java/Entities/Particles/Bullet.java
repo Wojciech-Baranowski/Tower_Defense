@@ -4,6 +4,8 @@ import Entities.Enemy;
 import Entities.Entity;
 import Game.Level;
 import engine.Image;
+import engine.ProgramContainer;
+import engine.Renderer;
 
 public abstract class Bullet extends Entity
 {
@@ -19,11 +21,17 @@ public abstract class Bullet extends Entity
         this.targetWaveId = targetWaveId;
         this.destination = false;
     }
-    public void update(Level level)
+    @Override
+    public void update(ProgramContainer pc, double passedTime, Level level)
     {
         move(level.getWaves()[targetWaveId].getEnemies()[targetId]);
         hit(level.getWaves()[targetWaveId].getEnemies()[targetId]);
         indUpdate(level);
+    }
+    @Override
+    public void render(ProgramContainer pc, Renderer r)
+    {
+        r.drawImage(pc,img, (int)posX, (int)posY);
     }
     public abstract void indUpdate(Level level);
     public void move(Enemy enemy)
@@ -79,13 +87,7 @@ public abstract class Bullet extends Entity
         if(Math.pow(vel, 2) >= Math.pow((enemy.getPosX() - posX), 2) + Math.pow((enemy.getPosY() - posY), 2))
         {
             destination = true;
-            enemy.setHp(enemy.getHp() - dmg);
-            if(enemy.getHp() <= 0)
-            {
-                enemy.setAlive(false);
-                return;
-            }
-            enemy.healthUpdate();
+            enemy.healthUpdate(dmg);
         }
     }
 
