@@ -19,7 +19,6 @@ public class World
     private Image background;
 
     private Level level;
-    private Gui gui;
     private Tile[] tiles;
     private Stats stats;
     private Prices prices;
@@ -30,7 +29,6 @@ public class World
         backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         background = new Image("/res/background.png", 1024, 576, 1);
         this.paused = true;
-        gui = new Gui();
         tiles = new Tile[144];
         stats = JSONReader.parseJSOStats(FReader.read("data/stats.txt"));
         prices = JSONReader.parseJSONPrices((FReader.read("data/prices.txt")));
@@ -44,7 +42,7 @@ public class World
         showGrid(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
-        gui.update(pc, level, passedTime);
+        Gui.update(pc, level, passedTime);
         BuildMenu.update(pc, tiles, passedTime, level.getTileId());
         if(paused == true)
         {
@@ -63,7 +61,7 @@ public class World
         }
         BuildMenu.render(pc, r, prices);
         level.render(pc, r);
-        gui.render(pc, r, stats, level, passedTime);
+        Gui.render(pc, r, stats, level, passedTime);
         for(int i = 0; i < 144; i++)
         {
             tiles[i].render(pc, r);

@@ -1,19 +1,18 @@
 package engine;
 
-import Map.Towers.FireTower;
-
 import java.awt.event.MouseEvent;
 
-public class Button extends Field
+public class Button extends Field implements Clickable
 {
     protected Image img2;
     protected boolean isClicked;
-    protected  boolean justClicked;
-    public Button(String path, double posX, double posY, int width, int height, int frame) {
+    protected boolean justClicked;
+    public Button(String path, double posX, double posY, int width, int height, int frame)
+    {
         super(path, posX, posY, width, height, frame);
         img2 = new Image("/res/blank.png", width, height, frame);
-        isClicked = false;
         justClicked = false;
+        isClicked = false;
     }
     public Button(String path, String path2, double posX, double posY, int width, int height, int frame) {
 
@@ -21,34 +20,11 @@ public class Button extends Field
         if(path == "")
             img = new Image("/res/blank.png", width, height, frame);
         else
-        img2 = new Image(path, width, height, frame);
-        isClicked = false;
-        isClicked = false;
-    }
-    public Button(Image image, double posX, double posY)
-    {
-        super(image, posX, posY);
-        this.posX = posX;
-        this.posY = posY;
-        img = image;
-        img2 = image;
+        img2 = new Image(path2, width, height, frame);
+
     }
 
-    protected boolean isOnButton(ProgramContainer pc) {
-        if ((pc.getInput().getMouseX() >= posX) && (pc.getInput().getMouseX() <= posX + width) && (pc.getInput().getMouseY() >= posY) && (pc.getInput().getMouseY() <= posY + height))
-            return true;
-        return false;
-    }
-
-
-    public void imageSwap() {
-        Image i;
-        i = img;
-        img = img2;
-        img2 = i;
-    }
-
-    public void click(ProgramContainer pc) {
+    /*public void click(ProgramContainer pc) {
         if ((isClicked == false) && (pc.getInput().isButtonDown(MouseEvent.BUTTON1)) && (isOnButton(pc) == true)) {
             justClicked = true;
             isClicked = true;
@@ -60,13 +36,16 @@ public class Button extends Field
         else {
             justClicked = false;
         }
-    }
+    }*/
 
-    public void holdClick(ProgramContainer pc) {
-        if ((pc.getInput().isButton(MouseEvent.BUTTON1)) && (isOnButton(pc) == true)) {
+    public void click(ProgramContainer pc) {
+        if ((pc.getInput().isButton(MouseEvent.BUTTON1)) && (isOnButton(pc, posX, posY, width, height) == true)) {
             if(isClicked == false)
             {
-                imageSwap();
+                /*if((this.getClass() == FireTower.class) || (this.getClass() == WaterTower.class) || (this.getClass() == EarthTower.class))
+                    Gui.towerInfo((Tower)(this));
+                if(this.getClass() == AirTower.class)
+                    Gui.airTowerInfo((AirTower)(this));*/
                 isClicked = true;
                 justClicked = true;
             }
@@ -76,20 +55,21 @@ public class Button extends Field
             }
         } else if (isClicked == true) {
             isClicked = false;
-            imageSwap();
         }
     }
 
-    public boolean isClicked() {
-        return isClicked;
+    public Image getImg2() {
+        return img2;
     }
 
-    public void setClicked(boolean clicked) {
-        isClicked = clicked;
-    }
 
     public boolean isJustClicked() {
         return justClicked;
+    }
+
+
+    public void setClicked(boolean clicked) {
+        isClicked = clicked;
     }
 
     public void setJustClicked(boolean justClicked) {

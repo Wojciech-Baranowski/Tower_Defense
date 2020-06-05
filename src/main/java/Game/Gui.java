@@ -1,19 +1,22 @@
 package Game;
 
+import Map.Tower;
+import Map.Towers.AirTower;
 import engine.*;
 
 public class Gui
 {
-    Field background;
-    Button nextWave;
-    public Gui()
+    private static final Field background = new Field("/res/gui.png", 0, 0, 1024, 576, 0xFF641D54);;
+    private static Button nextWave = new Button("/res/guiButton.png", "/res/guiButtonClicked.png", 912, 200, 96, 48, 0xFF641D54);;
+    private static String name = "";
+    private static int dmg = 0;
+    private static double attackSpeed = 0;
+    private static int range = 0;
+    private static double attackSpeedBoost = 0;
+    private static int rangeBoost = 0;
+    public static void update(ProgramContainer pc, Level level, double passedTime)
     {
-        background = new Field("/res/gui.png", 0, 0, 1024, 576, 0xFF641D54);
-        nextWave = new Button("/res/guiButton.png", "/res/guiButtonClicked.png", 912, 200, 96, 48, 0xFF641D54);
-    }
-    public void update(ProgramContainer pc, Level level, double passedTime)
-    {
-        nextWave.holdClick(pc);
+        nextWave.click(pc);
         if(nextWave.isJustClicked() == true)
         {
             if(level.getWaves()[0].isRunning() == false)
@@ -28,7 +31,7 @@ public class Gui
             }
         }
     }
-    public void render(ProgramContainer pc, Renderer r, Stats stats, Level level, double passedTime)
+    public static void render(ProgramContainer pc, Renderer r, Stats stats, Level level, double passedTime)
     {
         r.drawStaticImage(pc, background.getImg(), (int)background.getPosX(), (int)background.getPosY());
         r.drawStaticText(pc, "HP: " + stats.getHp(), 912, 16, 0xFF000000, 3);
@@ -51,6 +54,42 @@ public class Gui
 
             }
         }
+        if(name != "")
+        r.drawStaticText(pc, name, 16, 540, 0xFF000000, 3);
+        if(dmg != 0)
+        r.drawStaticText(pc,"Damage:   " + dmg, 320, 540, 0xFF000000, 3);
+        if(attackSpeed != 0)
+        r.drawStaticText(pc,"Attack Speed:   " + attackSpeed, 512, 540, 0xFF000000, 3);
+        if(range != 0)
+        r.drawStaticText(pc,"Range:   " + range, 784, 540, 0xFF000000, 3);
+        if(attackSpeedBoost != 0)
+            r.drawStaticText(pc,"Attack Speed Boost:  +" + attackSpeedBoost + "%", 320, 540, 0xFF000000, 3);
+        if(rangeBoost != 0)
+            r.drawStaticText(pc,"Range Boost:  +" + rangeBoost + "%", 784, 540, 0xFF000000, 3);
+    }
+    private static void clear()
+    {
+        name = "";
+        dmg = 0;
+        attackSpeed = 0;
+        range = 0;
+        attackSpeedBoost = 0;
+        rangeBoost = 0;
+    }
+    public static void towerInfo(Tower tower)
+    {
+        clear();
+        name = tower.getName();
+        dmg = tower.getDmg();
+        attackSpeed = 1 / tower.getFireDelay();
+        range = tower.getRange();
+    }
+    public static void airTowerInfo(AirTower tower)
+    {
+        clear();
+        name = tower.getName();
+        attackSpeedBoost = tower.getAttackSpeedBoost() * 100;
+        rangeBoost = (int)(tower.getRangeBoost() * 100);
     }
 }
 

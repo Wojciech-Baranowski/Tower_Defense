@@ -21,16 +21,18 @@ public abstract class Tower extends Tile
     protected double fireTimeStamp;
     protected Queue<Bullet> bullets;
     protected int towerId;
+    protected int dmg;
     protected int range;
     protected double fireDelay;
     protected boolean[] typePermission;
-    public Tower(String name, Image image, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission)
+    public Tower(String name, Image image, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
     {
         super(image, posX, posY, id);
         this.name = name;
         this.upgradeLvl = upgradeLvl;
         this.fireTimeStamp = 0;
         this.towerId = towerId;
+        this.dmg = dmg;
         this.range = range;
         this.fireDelay = fireDelay;
         this.typePermission = typePermission;
@@ -40,7 +42,6 @@ public abstract class Tower extends Tile
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
     {
         fire(level, tiles, passedTime);
-        holdClick(pc);
         int s = bullets.size();
         for(int i = 0; i < s; i++)
         {
@@ -74,7 +75,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, Stats.fireDmg, enemyId.second, enemyId.first));
+                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, dmg, enemyId.second, enemyId.first));
                 }
             }
             if(towerId == 3)
@@ -82,7 +83,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), (int)posX + 32, (int)posY + 4, Stats.waterBulletVelocity, Stats.waterDmg, enemyId.second, enemyId.first));
+                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), (int)posX + 32, (int)posY + 4, Stats.waterBulletVelocity, dmg, enemyId.second, enemyId.first));
                 }
             }
             if(towerId == 4)
@@ -90,7 +91,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), (int)posX + 32, (int)posY + 4, Stats.earthBulletVelocity, Stats.earthDmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
+                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), (int)posX + 32, (int)posY + 4, Stats.earthBulletVelocity, dmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
                 }
             }
         }
@@ -147,5 +148,13 @@ public abstract class Tower extends Tile
 
     public void setFireDelay(double fireDelay) {
         this.fireDelay = fireDelay;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDmg() {
+        return dmg;
     }
 }

@@ -26,7 +26,6 @@ public abstract class Enemy extends Entity
     }
     public void move(int[] tileId)
     {
-
         if(img.getH() == 32)
         {
             if(((direction == 1) || (direction == 3)) && (((posY - 16 + 64) % 64) <= vel))

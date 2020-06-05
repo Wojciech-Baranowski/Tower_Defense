@@ -1,5 +1,6 @@
 package Entities;
 
+import engine.Button;
 import engine.Image;
 
 public abstract class Entity
@@ -30,5 +31,4 @@ public abstract class Entity
     public double getPosY() {
         return posY;
     }
-
 }

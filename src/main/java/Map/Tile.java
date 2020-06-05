@@ -3,15 +3,29 @@ package Map;
 import Game.Level;
 import engine.*;
 
-public abstract class Tile extends Button
+public abstract class Tile
 {
     protected int id;
+    protected Image img;
+    protected double posX;
+    protected double posY;
+    protected int width;
+    protected int height;
     public Tile(String path, double posX, double posY, int width, int height, int id) {
-        super(path, path, posX, posY, width, height, 0);
+        this.posX = posX;
+        this.posY = posY;
+        this.width = width;
+        this.height = height;
+        if(path != "")
+        img = new Image(path, width, height, 0);
+        else
+            img = new Image("/res/blank.png", width, height, 0);
         this.id = id;
     }
     public Tile(Image image, double posX, double posY, int id) {
-        super(image, posX, posY);
+        img = image;
+        this.posX = posX;
+        this.posY = posY;
         this.id = id;
     }
     public static void tileInitializer(Tile[] tiles, int i, int id)
@@ -65,4 +79,16 @@ public abstract class Tile extends Button
     }
     public abstract void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level);
     public abstract void render(ProgramContainer pc, Renderer r);
+
+    public Image getImg() {
+        return img;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
 }

@@ -27,7 +27,6 @@ public class TowerPlace extends Tile
                     if(FIRE.getP()[i * 32 + j] != 0xFFFF00FF)
                     {
                         img.getP()[i * 64 + j] = FIRE.getP()[i * 32 + j];
-                        img2.getP()[i * 64 + j] = FIRE.getP()[i * 32 + j];
                     }
                 }
             }
@@ -41,7 +40,6 @@ public class TowerPlace extends Tile
                     if(AIR.getP()[i * 32 + j - 32] != 0xFFFF00FF)
                     {
                         img.getP()[i * 64 + j] = AIR.getP()[i * 32 + j - 32];
-                        img2.getP()[i * 64 + j] = AIR.getP()[i * 32 + j - 32];
                     }
                 }
             }
@@ -55,7 +53,6 @@ public class TowerPlace extends Tile
                     if(WATER.getP()[(i - 32) * 32 + j] != 0xFFFF00FF)
                     {
                         img.getP()[i * 64 + j] = WATER.getP()[(i - 32) * 32 + j];
-                        img2.getP()[i * 64 + j] = WATER.getP()[(i - 32) * 32 + j];
                     }
                 }
             }
@@ -69,7 +66,6 @@ public class TowerPlace extends Tile
                     if(EARTH.getP()[(i - 32) * 32 + j - 32] != 0xFFFF00FF)
                     {
                         img.getP()[i * 64 + j] = EARTH.getP()[(i - 32) * 32 + j - 32];
-                        img2.getP()[i * 64 + j] = EARTH.getP()[(i - 32) * 32 + j - 32];
                     }
                 }
             }
@@ -77,11 +73,11 @@ public class TowerPlace extends Tile
     }
     @Override
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level) {
-        this.holdClick(pc);
+        /*this.holdClick(pc);
         if(this.isJustClicked())
         {
             BuildMenu.open(posX, posY, id, typePermission);
-        }
+        }*/
     }
 
     @Override
