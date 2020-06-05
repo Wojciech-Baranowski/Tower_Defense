@@ -59,15 +59,15 @@ public class World
         r.drawStaticImage(pc, background, 0, 0);
         for(int i = 0; i < 144; i++)
         {
-            r.drawImage(pc, tiles[i].getImg(), tiles[i].getPosX(), tiles[i].getPosY());
+            r.drawImage(pc, tiles[i].getImg(), (int)tiles[i].getPosX(), (int)tiles[i].getPosY());
         }
+        BuildMenu.render(pc, r, prices);
         level.render(pc, r);
+        gui.render(pc, r, stats, level, passedTime);
         for(int i = 0; i < 144; i++)
         {
             tiles[i].render(pc, r);
         }
-        gui.render(pc, r, stats, level, passedTime);
-        BuildMenu.render(pc, r, prices);
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }

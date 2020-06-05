@@ -80,12 +80,12 @@ public class Level
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
                 if(waves[j].getEnemies()[i].isAlive())
-                r.drawImage(pc, waves[j].getEnemies()[i].getImg(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY());
+                r.drawImage(pc, waves[j].getEnemies()[i].getImg(), (int)waves[j].getEnemies()[i].getPosX(), (int)waves[j].getEnemies()[i].getPosY());
             }
             for(int i = 0; i < waves[j].getEnemies().length; i++)
             {
                 if(waves[j].getEnemies()[i].isAlive())
-                r.drawImage(pc, waves[j].getEnemies()[i].getHealthBar(), waves[j].getEnemies()[i].getPosX(), waves[j].getEnemies()[i].getPosY() - 6);
+                r.drawImage(pc, waves[j].getEnemies()[i].getHealthBar(), (int)waves[j].getEnemies()[i].getPosX(), (int)waves[j].getEnemies()[i].getPosY() - 6);
             }
         }
     }

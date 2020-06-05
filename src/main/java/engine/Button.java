@@ -1,5 +1,7 @@
 package engine;
 
+import Map.Towers.FireTower;
+
 import java.awt.event.MouseEvent;
 
 public class Button extends Field
@@ -7,19 +9,29 @@ public class Button extends Field
     protected Image img2;
     protected boolean isClicked;
     protected  boolean justClicked;
-
-    public Button(String path, int posX, int posY, int width, int height, int frame) {
+    public Button(String path, double posX, double posY, int width, int height, int frame) {
         super(path, posX, posY, width, height, frame);
         img2 = new Image("/res/blank.png", width, height, frame);
         isClicked = false;
         justClicked = false;
     }
-
-    public Button(String path, String path2, int posX, int posY, int width, int height, int frame) {
+    public Button(String path, String path2, double posX, double posY, int width, int height, int frame) {
 
         super(path, posX, posY, width, height, frame);
-        img2 = new Image(path2, width, height, frame);
+        if(path == "")
+            img = new Image("/res/blank.png", width, height, frame);
+        else
+        img2 = new Image(path, width, height, frame);
         isClicked = false;
+        isClicked = false;
+    }
+    public Button(Image image, double posX, double posY)
+    {
+        super(image, posX, posY);
+        this.posX = posX;
+        this.posY = posY;
+        img = image;
+        img2 = image;
     }
 
     protected boolean isOnButton(ProgramContainer pc) {

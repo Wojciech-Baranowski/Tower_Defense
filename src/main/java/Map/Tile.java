@@ -1,20 +1,16 @@
 package Map;
 
 import Game.Level;
-import Map.Towers.FireTower;
-import engine.Field;
-import engine.Image;
-import engine.ProgramContainer;
-import engine.Renderer;
+import engine.*;
 
-public abstract class Tile extends Field
+public abstract class Tile extends Button
 {
     protected int id;
-    public Tile(String path, int posX, int posY, int width, int height, int id) {
-        super(path, posX, posY, width, height, 0);
+    public Tile(String path, double posX, double posY, int width, int height, int id) {
+        super(path, path, posX, posY, width, height, 0);
         this.id = id;
     }
-    public Tile(Image image, int posX, int posY, int id) {
+    public Tile(Image image, double posX, double posY, int id) {
         super(image, posX, posY);
         this.id = id;
     }

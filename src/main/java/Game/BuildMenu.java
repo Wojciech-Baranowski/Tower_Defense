@@ -1,8 +1,6 @@
 package Game;
 
 import Map.Tile;
-//import Map.Towers.AirTower;
-//import Map.Towers.EarthTower;
 import Map.TowerPlace;
 import Map.Towers.AirTower;
 import Map.Towers.EarthTower;
@@ -23,7 +21,7 @@ public class BuildMenu extends Field
     private static final Field AIRm = new Field("/res/towers/summoningTileAir.png", -1000, -1000, 32, 32, 0);
     private static final Field WATERm = new Field("/res/towers/summoningTileWater.png", -1000, -1000, 32, 32, 0);
     private static final Field EARTHm = new Field("/res/towers/summoningTileEarth.png", -1000, -1000, 32, 32, 0);
-    public  BuildMenu(String path, int posX, int posY, int width, int height, int frame) {
+    public  BuildMenu(String path, double posX, double posY, int width, int height, int frame) {
         super(path, posX, posY, width, height, frame);
         id = -1;
     }
@@ -44,7 +42,7 @@ public class BuildMenu extends Field
             close();
             Stats.fire -= Prices.basicPrices[0];
             tileId[id] = 21;
-            tiles[id] = new FireTower((id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            tiles[id] = new FireTower("FireTower",(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
         if((AIR.isJustClicked()) && (Stats.air >= Prices.basicPrices[1]))
@@ -52,14 +50,14 @@ public class BuildMenu extends Field
             close();
             Stats.air -= Prices.basicPrices[1];
             tileId[id] = 22;
-            tiles[id] = new AirTower(tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirFireDelayBoost());
+            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirFireDelayBoost());
         }
         if((WATER.isJustClicked()) && (Stats.water >= Prices.basicPrices[2]))
         {
             close();
             Stats.water -= Prices.basicPrices[2];
             tileId[id] = 23;
-            tiles[id] = new WaterTower((id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.waterRange, Stats.waterFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            tiles[id] = new WaterTower("WaterTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.waterRange, Stats.waterFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
         if((EARTH.isJustClicked()) && (Stats.earth >= Prices.basicPrices[3]))
@@ -67,28 +65,28 @@ public class BuildMenu extends Field
             close();
             Stats.earth -= Prices.basicPrices[3];
             tileId[id] = 24;
-            tiles[id] = new EarthTower((id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.earthRange, Stats.earthFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            tiles[id] = new EarthTower("EarthTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.earthRange, Stats.earthFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
     }
     public static void render(ProgramContainer pc, Renderer r, Prices prices)
     {
-        r.drawStaticImage(pc, menu.getImg(), menu.getPosX(), menu.getPosY());
-        r.drawStaticImage(pc, closer.getImg(), closer.getPosX(), closer.getPosY());
-        r.drawStaticImage(pc, FIRE.getImg(), FIRE.getPosX(), FIRE.getPosY());
-        r.drawStaticImage(pc, AIR.getImg(), AIR.getPosX(), AIR.getPosY());
-        r.drawStaticImage(pc, WATER.getImg(), WATER.getPosX(), WATER.getPosY());
-        r.drawStaticImage(pc, EARTH.getImg(), EARTH.getPosX(), EARTH.getPosY());
-        r.drawStaticImage(pc, FIREm.getImg(), FIREm.getPosX(), FIREm.getPosY());
-        r.drawStaticImage(pc, AIRm.getImg(), AIRm.getPosX(), AIRm.getPosY());
-        r.drawStaticImage(pc, WATERm.getImg(), WATERm.getPosX(), WATERm.getPosY());
-        r.drawStaticImage(pc, EARTHm.getImg(), EARTHm.getPosX(), EARTHm.getPosY());
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[0], FIRE.getPosX() + 12, FIRE.getPosY() + 32, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[1], AIR.getPosX() + 12, AIR.getPosY() + 32, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[2], WATER.getPosX() + 12, WATER.getPosY() + 32, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[3], EARTH.getPosX() + 12, EARTH.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticImage(pc, menu.getImg(), (int)menu.getPosX(), (int)menu.getPosY());
+        r.drawStaticImage(pc, closer.getImg(), (int)closer.getPosX(), (int)closer.getPosY());
+        r.drawStaticImage(pc, FIRE.getImg(), (int)FIRE.getPosX(), (int)FIRE.getPosY());
+        r.drawStaticImage(pc, AIR.getImg(), (int)AIR.getPosX(), (int)AIR.getPosY());
+        r.drawStaticImage(pc, WATER.getImg(), (int)WATER.getPosX(), (int)WATER.getPosY());
+        r.drawStaticImage(pc, EARTH.getImg(), (int)EARTH.getPosX(), (int)EARTH.getPosY());
+        r.drawStaticImage(pc, FIREm.getImg(), (int)FIREm.getPosX(), (int)FIREm.getPosY());
+        r.drawStaticImage(pc, AIRm.getImg(), (int)AIRm.getPosX(), (int)AIRm.getPosY());
+        r.drawStaticImage(pc, WATERm.getImg(), (int)WATERm.getPosX(), (int)WATERm.getPosY());
+        r.drawStaticImage(pc, EARTHm.getImg(), (int)EARTHm.getPosX(), (int)EARTHm.getPosY());
+        r.drawStaticText(pc, "" + prices.getBasicPrices()[0], (int)FIRE.getPosX() + 12, (int)FIRE.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + prices.getBasicPrices()[1], (int)AIR.getPosX() + 12, (int)AIR.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + prices.getBasicPrices()[2], (int)WATER.getPosX() + 12, (int)WATER.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + prices.getBasicPrices()[3], (int)EARTH.getPosX() + 12, (int)EARTH.getPosY() + 32, 0xFF000000, 3);
     }
-    public static void open(int posX, int posY, int iD, boolean[] typePermission)
+    public static void open(double posX, double posY, int iD, boolean[] typePermission)
     {
         id = iD;
         int x = 0;

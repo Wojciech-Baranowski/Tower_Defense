@@ -5,8 +5,9 @@ import engine.Image;
 
 public class CrystalBall extends Enemy
 {
-    public CrystalBall(int posX, int posY, int startDirection)
+    private static final Image CRYSTALBALL = new Image("/res/entities/crystalBall.png", 16, 16, 0);
+    public CrystalBall(double posX, double posY, int startDirection)
     {
-        super(new Image("/res/entities/crystalBall.png", 16, 16, 0), posX, posY, 1, 100, 2, startDirection);
+        super(CRYSTALBALL, posX, posY, 1, 100, 2, startDirection);
     }
 }

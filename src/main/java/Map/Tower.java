@@ -7,7 +7,6 @@ import Entities.Particles.Bullets.FireArrow;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Level;
 import Game.Stats;
-import Game.Wave;
 import engine.Image;
 import engine.Pair;
 import engine.ProgramContainer;
@@ -17,6 +16,7 @@ import java.util.*;
 
 public abstract class Tower extends Tile
 {
+    String name;
     protected int upgradeLvl;
     protected double fireTimeStamp;
     protected Queue<Bullet> bullets;
@@ -24,9 +24,10 @@ public abstract class Tower extends Tile
     protected int range;
     protected double fireDelay;
     protected boolean[] typePermission;
-    public Tower(Image image, int posX, int posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission)
+    public Tower(String name, Image image, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission)
     {
         super(image, posX, posY, id);
+        this.name = name;
         this.upgradeLvl = upgradeLvl;
         this.fireTimeStamp = 0;
         this.towerId = towerId;
@@ -39,6 +40,7 @@ public abstract class Tower extends Tile
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
     {
         fire(level, tiles, passedTime);
+        holdClick(pc);
         int s = bullets.size();
         for(int i = 0; i < s; i++)
         {
@@ -56,7 +58,7 @@ public abstract class Tower extends Tile
         for(int i = 0; i < s; i++)
         {
             Bullet b = bullets.poll();
-            r.drawImage(pc, b.getImg(), b.getPosX(), b.getPosY());
+            r.drawImage(pc, b.getImg(), (int)b.getPosX(), (int)b.getPosY());
             bullets.add(b);
         }
         indRender(pc, r);
@@ -72,7 +74,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), posX + 32, posY + 4, Stats.fireBulletVelocity, Stats.fireDmg, enemyId.second, enemyId.first));
+                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, Stats.fireDmg, enemyId.second, enemyId.first));
                 }
             }
             if(towerId == 3)
@@ -80,7 +82,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), posX + 32, posY + 4, Stats.waterBulletVelocity, Stats.waterDmg, enemyId.second, enemyId.first));
+                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), (int)posX + 32, (int)posY + 4, Stats.waterBulletVelocity, Stats.waterDmg, enemyId.second, enemyId.first));
                 }
             }
             if(towerId == 4)
@@ -88,7 +90,7 @@ public abstract class Tower extends Tile
                 Pair enemyId = targetChoose(level, tiles);
                 if(enemyId.first >= 0)
                 {
-                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), posX + 32, posY + 4, Stats.earthBulletVelocity, Stats.earthDmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
+                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), (int)posX + 32, (int)posY + 4, Stats.earthBulletVelocity, Stats.earthDmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
                 }
             }
         }
@@ -111,8 +113,8 @@ public abstract class Tower extends Tile
                     }
                     else
                     {
-                        int ddd = (level.getWaves()[i].getEnemies()[j].getPosY() / 64) * 16 + (level.getWaves()[i].getEnemies()[j].getPosX() / 64);
-                        int eee = (level.getWaves()[p.first].getEnemies()[p.second].getPosY() / 64) * 16 + (level.getWaves()[p.first].getEnemies()[p.second].getPosX() / 64);
+                        int ddd = ((int)(level.getWaves()[i].getEnemies()[j].getPosY() / 64) * 16 + (int)(level.getWaves()[i].getEnemies()[j].getPosX() / 64));
+                        int eee = ((int)(level.getWaves()[p.first].getEnemies()[p.second].getPosY() / 64) * 16 + (int)(level.getWaves()[p.first].getEnemies()[p.second].getPosX() / 64));
                         if(((Road)(tiles[ddd])).getPositionInOrder() < ((Road)(tiles[eee])).getPositionInOrder())
                         {
                             p.first = i;
@@ -126,7 +128,7 @@ public abstract class Tower extends Tile
     }
     private boolean isInRange(Enemy enemy)
     {
-        if((int)Math.sqrt(Math.pow((enemy.getPosX() - posX), 2) + Math.pow((enemy.getPosY() - posY), 2)) <= range)
+        if((int)Math.sqrt(Math.pow((enemy.getPosX() - posX), 2) + (int)Math.pow((enemy.getPosY() - posY), 2)) <= range)
         return true;
         return false;
     }

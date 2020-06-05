@@ -5,10 +5,10 @@ import engine.Image;
 public abstract class Entity
 {
     protected Image img;
-    protected int posX;
-    protected int posY;
-    protected float vel;
-    public Entity(Image img, int posX, int posY, float vel)
+    protected double posX;
+    protected double posY;
+    protected double vel;
+    public Entity(Image img, double posX, double posY, double vel)
     {
         this.img = img;
         this.posX = posX;
@@ -17,17 +17,17 @@ public abstract class Entity
     }
     protected int currentGirdId()
     {
-        return((posX / 64) + 16 * (posY / 64));
+        return(((int)posX / 64) + 16 * ((int)posY / 64));
     }
     public Image getImg() {
         return img;
     }
 
-    public int getPosX() {
+    public double getPosX() {
         return posX;
     }
 
-    public int getPosY() {
+    public double getPosY() {
         return posY;
     }
 

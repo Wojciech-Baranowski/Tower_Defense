@@ -12,7 +12,7 @@ public abstract class Enemy extends Entity
     protected int onMap = 0;
     protected Image healthBar;
     protected boolean alive;
-    public Enemy(Image img, int posX, int posY, float vel, int maxHp, int cost, int startDirection) {
+    public Enemy(Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection) {
         super(img, posX, posY, vel);
         this.vel = vel;
         this.maxHp = maxHp;
@@ -26,20 +26,49 @@ public abstract class Enemy extends Entity
     }
     public void move(int[] tileId)
     {
-        if(((direction == 1) || (direction == 3)) && (posY % 32 <= vel) && (posY % 64 > vel))
+
+        if(img.getH() == 32)
         {
-            direction = directionChoose(tileId);
-            if((direction == 2) || (direction == 4))
+            if(((direction == 1) || (direction == 3)) && (((posY - 16 + 64) % 64) <= vel))
             {
-                posY += System.nanoTime() % 16 - 8;
+                direction = directionChoose(tileId);
+                if((direction == 2) || (direction == 4))
+                {
+                    posY += System.nanoTime() % 8;
+                }
             }
         }
-        else if(((direction == 2) || (direction == 4)) && (posX % 32 <= vel) && (posX % 64 > vel))
+        if(img.getH() == 16)
         {
-            direction = directionChoose(tileId);
-            if((direction == 1) || (direction == 3))
+            if(((direction == 1) || (direction == 3)) && (((posY - 32 + 64) % 64) <= vel))
             {
-                posX += System.nanoTime() % 16 - 8;
+                direction = directionChoose(tileId);
+                if((direction == 2) || (direction == 4))
+                {
+                    posY += System.nanoTime() % 8 - 8;
+                }
+            }
+        }
+        if(img.getW() == 32)
+        {
+            if(((direction == 2) || (direction == 4)) && (((posX - 16 + 64) % 64) <= vel))
+            {
+                direction = directionChoose(tileId);
+                 if((direction == 1) || direction == 3)
+                 {
+                     posX += System.nanoTime() % 8;
+                 }
+            }
+        }
+        if(img.getW() == 16)
+        {
+            if(((direction == 2) || (direction == 4)) && (((posX - 32 + 64) % 64) <= vel))
+            {
+                direction = directionChoose(tileId);
+                if((direction == 1) || (direction == 3))
+                {
+                    posX += System.nanoTime() % 8 - 8;
+                }
             }
         }
         if(isOnMap())

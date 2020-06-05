@@ -16,9 +16,9 @@ public class AirTower extends Tower
     private static final Image BOOSTMARK = new Image("/res/towers/boostMark.png",64, 64, 0);
     private double fireDelayBoost;
     private Vector<Field> boostMark;
-    public AirTower(Tile[] tiles, int posX, int posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission, double fireDelayBoost)
+    public AirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int range, double fireDelay, boolean[] typePermission, double fireDelayBoost)
     {
-        super(AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, range, fireDelay, typePermission);
+        super(name, AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, range, fireDelay, typePermission);
         this.fireDelayBoost = fireDelayBoost;
         boostMark = new Vector<>();
         boost(tiles);
@@ -34,7 +34,7 @@ public class AirTower extends Tower
     {
         for(int i = 0; i < boostMark.size(); i++)
         {
-            r.drawImage(pc, boostMark.get(i).getImg(), boostMark.get(i).getPosX(), boostMark.get(i).getPosY());
+            r.drawImage(pc, boostMark.get(i).getImg(), (int)boostMark.get(i).getPosX(), (int)boostMark.get(i).getPosY());
         }
     }
 

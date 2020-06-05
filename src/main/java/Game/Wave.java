@@ -2,19 +2,20 @@ package Game;
 
 import Entities.Enemies.CrystalBall;
 import Entities.Enemies.CrystalShard;
+import Entities.Enemies.Dobbo;
 import Entities.Enemy;
 import Map.Road;
 
 public class Wave
 {
     private Enemy[] enemies;
-    private int posX;
-    private int posY;
+    private double posX;
+    private double posY;
     private double timeStamp;
     private int unitDistance;
     private Road startPoint;
     private boolean isRunning;
-    public Wave(String info, int posX, int posY, int unitDistance, Road startPoint)
+    public Wave(String info, double posX, double posY, int unitDistance, Road startPoint)
     {
         this.posX = posX;
         this.posY = posY;
@@ -71,7 +72,7 @@ public class Wave
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection());
+                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 8 + 16, posY + (int)(System.nanoTime()) % 8 + 16, startPoint.getWaveDirection());
                     }
                 }
                 if(n == 2)
@@ -80,6 +81,14 @@ public class Wave
                     {
                         makeUnitSpace();
                         enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection());
+                    }
+                }
+                if(n == 3)
+                {
+                    for(int k = 0; k < m; k++)
+                    {
+                        makeUnitSpace();
+                        enemies[j++] = new Dobbo(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection());
                     }
                 }
                 n = 0;
@@ -104,11 +113,11 @@ public class Wave
         return enemies;
     }
 
-    public int getPosX() {
+    public double getPosX() {
         return posX;
     }
 
-    public int getPosY() {
+    public double getPosY() {
         return posY;
     }
 

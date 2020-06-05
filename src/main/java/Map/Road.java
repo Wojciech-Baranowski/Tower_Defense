@@ -9,7 +9,7 @@ public class Road extends Tile
     private int direction;
     private int waveDirection;
     private int positionInOrder;
-    public Road(String path, int posX, int posY, int width, int height, int id, int direction, int waveDirection) {
+    public Road(String path, double posX, double posY, int width, int height, int id, int direction, int waveDirection) {
         super(path, posX, posY, width, height, id);
         this.direction = direction;
         this.waveDirection = waveDirection;
