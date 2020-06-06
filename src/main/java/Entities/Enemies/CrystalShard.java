@@ -10,7 +10,7 @@ public class CrystalShard extends Enemy
     private static final Image CRYSTALSHARD = new Image("/res/entities/crystalShard.png", 16, 16, 0);
     public CrystalShard(double posX, double posY, int startDirection, int wave, int id)
     {
-        super("Crystal Shard", CRYSTALSHARD, posX, posY, 2, 50, 1, startDirection, wave, id);
+        super("Crystal Shard", CRYSTALSHARD, posX, posY, 2, 50, 1, startDirection, wave, id, 25);
     }
 
     @Override

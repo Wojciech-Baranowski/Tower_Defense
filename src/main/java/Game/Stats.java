@@ -49,6 +49,30 @@ public class Stats
         this.earthSplashRange = earthSplashRange;
         this.earthSplashDmgPercentage = earthSplashDmgPercentage;
     }
+
+    public static void splitReward(int reward)
+    {
+        for(int i = 0; i < reward; i++)
+        {
+            if((int)(Math.random() * 100) % 4 == 0)
+            {
+                fire++;
+            }
+            else if((int)(Math.random() * 100) % 4 == 1)
+            {
+                air++;
+            }
+            else if((int)(Math.random() * 100) % 4 == 2)
+            {
+                water++;
+            }
+            else if((int)(Math.random() * 100) % 4 == 3)
+            {
+                earth++;
+            }
+        }
+    }
+
     public int getHp() {
         return hp;
     }

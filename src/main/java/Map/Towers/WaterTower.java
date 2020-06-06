@@ -1,6 +1,6 @@
 package Map.Towers;
 
-import Game.Gui;
+import Game.gui.Gui;
 import Game.Level;
 import Map.Tile;
 import Map.Tower;
@@ -24,14 +24,5 @@ public class WaterTower extends Tower
     @Override
     public void indRender(ProgramContainer pc, Renderer r) {
 
-    }
-
-    @Override
-    public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
-    {
-        if(isClick(pc, posX, posY, width, height))
-        {
-            Gui.towerInfo(this);
-        }
     }
 }

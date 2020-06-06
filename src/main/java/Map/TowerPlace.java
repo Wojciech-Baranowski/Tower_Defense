@@ -1,6 +1,7 @@
 package Map;
 
-import Game.BuildMenu;
+import Game.gui.BasicUpgradeMenu;
+import Game.gui.BuildMenu;
 import Game.Level;
 import engine.*;
 
@@ -86,8 +87,9 @@ public class TowerPlace extends Tile implements Clickable
     @Override
     public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
     {
-        if(this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH()))
+        if((this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH())) && (!BuildMenu.menu.inBorder(pc, BuildMenu.menu.getPosX(), BuildMenu.menu.getPosY(), BuildMenu.menu.getImg().getW(), BuildMenu.menu.getImg().getH())) && (!BasicUpgradeMenu.menu.inBorder(pc, BasicUpgradeMenu.menu.getPosX(), BasicUpgradeMenu.menu.getPosY(), BasicUpgradeMenu.menu.getImg().getW(), BasicUpgradeMenu.menu.getImg().getH())))
         {
+            BasicUpgradeMenu.close();
             BuildMenu.open(posX, posY, id, typePermission);
         }
     }

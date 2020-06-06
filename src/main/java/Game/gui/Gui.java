@@ -1,14 +1,16 @@
-package Game;
+package Game.gui;
 
 import Entities.Enemy;
+import Game.Level;
+import Game.Stats;
 import Map.Tower;
 import Map.Towers.AirTower;
 import engine.*;
 
 public class Gui
 {
-    private static final Field background = new Field("/res/gui.png", 0, 0, 1024, 576, 0xFF641D54);;
-    private static Button nextWave = new Button("/res/guiButton.png", "/res/guiButtonClicked.png", 912, 200, 96, 48, 0xFF641D54);;
+    private static final Field background = new Field("/res/gui/gui.png", 0, 0, 1024, 576, 0xFF641D54);;
+    private static NextWaveButton nextWave = new NextWaveButton("/res/gui/guiButton.png", "/res/gui/guiButtonClicked.png", 912, 200, 96, 48, 0xFF641D54);;
     private static String name = "";
     private static int dmg = 0;
     private static double attackSpeed = 0;
@@ -22,20 +24,7 @@ public class Gui
     public static int currentEnemyId = -1;
     public static void update(ProgramContainer pc, Level level, double passedTime)
     {
-        nextWave.onClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH());
-        if(nextWave.isClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH()))
-        {
-            if(level.getWaves()[0].isRunning() == false)
-            {
-                level.getWaves()[0].setRunning(true);
-                level.getWaves()[0].setTimeStamp(passedTime);
-                level.setCurrentWave(0);
-            }
-            else if(level.getCurrentWave() + 1 < level.getWavesAmount())
-            {
-                level.getWaveDelay()[level.getCurrentWave()] = 0;
-            }
-        }
+        nextWave.onClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH(), level, passedTime);
     }
     public static void render(ProgramContainer pc, Renderer r, Stats stats, Level level, double passedTime)
     {
@@ -69,9 +58,9 @@ public class Gui
         if(range != 0)
         r.drawStaticText(pc,"Range:   " + range, 784, 540, 0xFF000000, 3);
         if(attackSpeedBoost != 0)
-            r.drawStaticText(pc,"Attack Speed Boost:  +" + attackSpeedBoost + "%", 320, 540, 0xFF000000, 3);
+            r.drawStaticText(pc,"Attack Speed Boost:  +" + attackSpeedBoost + "%", 256, 540, 0xFF000000, 3);
         if(rangeBoost != 0)
-            r.drawStaticText(pc,"Range Boost:  +" + rangeBoost + "%", 784, 540, 0xFF000000, 3);
+            r.drawStaticText(pc,"Range Boost:  +" + rangeBoost + "%", 720, 540, 0xFF000000, 3);
         if(hp != 0)
             r.drawStaticText(pc,"Hp:   " + hp, 320, 540, 0xFF000000, 3);
         if(vel != 0)

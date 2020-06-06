@@ -1,5 +1,7 @@
-package Game;
+package Game.gui;
 
+import Game.Prices;
+import Game.Stats;
 import Map.Tile;
 import Map.TowerPlace;
 import Map.Towers.AirTower;
@@ -8,11 +10,11 @@ import Map.Towers.FireTower;
 import Map.Towers.WaterTower;
 import engine.*;
 
-public class BuildMenu extends Field
+public class BuildMenu implements Clickable
 {
-    private static int id;
-    public static  BuildMenu menu = new  BuildMenu("/res/upgradeMenu.png", -1000, -1000, 128, 160, 0);
-    public static Button closer = new Button("/res/upgradeMenuCloser.png", -1000, -1000, 16, 16, 0);
+    private static int id = -1;
+    public static Button menu = new Button("/res/gui/buildMenu.png", -1000, -1000, 128, 160, 0);
+    public static Button closer = new Button("/res/gui/menuCloser.png", -1000, -1000, 16, 16, 0);
     private static final Button FIRE = new Button("/res/towers/summoningTileFire.png", -1000, -1000, 64, 64, 0);
     private static final Button AIR = new Button("/res/towers/summoningTileAir.png", -1000, -1000,64, 64, 0);
     private static final Button WATER = new Button("/res/towers/summoningTileWater.png", -1000, -1000,64, 64, 0);
@@ -21,10 +23,6 @@ public class BuildMenu extends Field
     private static final Field AIRm = new Field("/res/towers/summoningTileAir.png", -1000, -1000, 32, 32, 0);
     private static final Field WATERm = new Field("/res/towers/summoningTileWater.png", -1000, -1000, 32, 32, 0);
     private static final Field EARTHm = new Field("/res/towers/summoningTileEarth.png", -1000, -1000, 32, 32, 0);
-    public  BuildMenu(String path, double posX, double posY, int width, int height, int frame) {
-        super(path, posX, posY, width, height, frame);
-        id = -1;
-    }
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
         if(closer.isClick(pc, closer.getPosX(), closer.getPosY(), closer.getImg().getW(), closer.getImg().getH()))
@@ -179,7 +177,7 @@ public class BuildMenu extends Field
                 EARTHm.setPosY(-1000);
             }
             closer.setPosX(posX + x + 128);
-            closer.setPosY(posY + y - 16);
+            closer.setPosY(posY + y - 32);
     }
     public static void close()
     {
@@ -204,6 +202,11 @@ public class BuildMenu extends Field
         EARTH.setPosY(-1000);
         EARTHm.setPosX(-1000);
         EARTHm.setPosY(-1000);
+    }
+
+    @Override
+    public void onClick(ProgramContainer pc, double posX, double posY, int width, int height) {
+
     }
 }
 

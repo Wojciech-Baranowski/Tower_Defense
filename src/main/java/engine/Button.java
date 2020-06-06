@@ -4,8 +4,8 @@ import java.awt.event.MouseEvent;
 
 public class Button extends Field implements Clickable
 {
-    private Image img2;
-    private boolean isSecondImage;
+    protected Image img2;
+    protected boolean isSecondImage;
     public Button(String path, double posX, double posY, int width, int height, int frame)
     {
         super(path, posX, posY, width, height, frame);
@@ -21,7 +21,7 @@ public class Button extends Field implements Clickable
         else
         img2 = new Image(path2, width, height, frame);
     }
-    private void imageSwap()
+    protected void imageSwap()
     {
         Image i;
         i = img;

@@ -1,9 +1,9 @@
 {
 	"hp": 20,
-	"fire": 1000,
-	"air": 150,
-	"water": 220,
-	"earth": 180,
+	"fire": 100,
+	"air": 100,
+	"water": 100,
+	"earth": 100,
 	"fireDmg": 25,
 	"waterDmg": 50,
 	"earthDmg": 100,

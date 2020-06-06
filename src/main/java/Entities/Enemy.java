@@ -1,6 +1,6 @@
 package Entities;
 
-import Game.Gui;
+import Game.gui.Gui;
 import Game.Level;
 import Game.Stats;
 import engine.Clickable;
@@ -19,9 +19,10 @@ public abstract class Enemy extends Entity implements Clickable
     protected int onMap = 0;
     protected int wave;
     protected int id;
+    protected int reward;
     protected Image healthBar;
     protected boolean alive;
-    public Enemy(String name, Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id) {
+    public Enemy(String name, Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id, int reward) {
         super(img, posX, posY, vel);
         this.name = name;
         this.vel = vel;
@@ -31,6 +32,7 @@ public abstract class Enemy extends Entity implements Clickable
         this.direction = startDirection;
         this.wave = wave;
         this.id = id;
+        this.reward = reward;
         this.alive = true;
         this.hp = maxHp;
         healthBar = new Image("/res/entities/healthBarFull.png", 16, 2, 0);
@@ -142,11 +144,12 @@ public abstract class Enemy extends Entity implements Clickable
     public void healthUpdate(int dmg)
     {
         hp -= dmg;
-        if(hp <= 0)
+        if((hp <= 0) && (alive == true))
         {
+            Stats.splitReward(reward);
             alive = false;
         }
-        else
+        else if(hp > 0)
         {
             for(int i = 15; i >= (16 * ((float)(hp) / (float)(maxHp))) - 1; i--)
             {

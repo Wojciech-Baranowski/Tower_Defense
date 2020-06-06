@@ -1,5 +1,4 @@
 package Map;
-
 import Entities.Enemy;
 import Entities.Particles.Bullet;
 import Entities.Particles.Bullets.EarthBomb;
@@ -7,8 +6,11 @@ import Entities.Particles.Bullets.FireArrow;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Level;
 import Game.Stats;
+import Game.gui.BasicUpgradeMenu;
+import Game.gui.BuildMenu;
+import Game.gui.Gui;
+import Map.Towers.AirTower;
 import engine.*;
-
 import java.util.*;
 
 public abstract class Tower extends Tile implements Clickable
@@ -34,6 +36,7 @@ public abstract class Tower extends Tile implements Clickable
         this.fireDelay = fireDelay;
         this.typePermission = typePermission;
         bullets = new LinkedList<Bullet>();
+        System.out.println(towerId);
     }
 
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
@@ -63,6 +66,22 @@ public abstract class Tower extends Tile implements Clickable
         indRender(pc, r);
     }
     public abstract void indRender(ProgramContainer pc, Renderer r);
+    @Override
+    public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
+    {
+        if(isClick(pc, posX, posY, width, height))
+        {
+            if((!BuildMenu.menu.inBorder(pc, BuildMenu.menu.getPosX(), BuildMenu.menu.getPosY(), BuildMenu.menu.getImg().getW(), BuildMenu.menu.getImg().getH())) && (!BasicUpgradeMenu.menu.inBorder(pc, BasicUpgradeMenu.menu.getPosX(), BasicUpgradeMenu.menu.getPosY(), BasicUpgradeMenu.menu.getImg().getW(), BasicUpgradeMenu.menu.getImg().getH())))
+            {
+                BuildMenu.close();
+                BasicUpgradeMenu.open(posX, posY, towerId, typePermission);
+                if(this.getClass() == AirTower.class)
+                    Gui.airTowerInfo((AirTower)(this));
+                else
+                    Gui.towerInfo(this);
+            }
+        }
+    }
     public void fire(Level level, Tile[] tiles, double passedTime)
     {
         if(passedTime - fireTimeStamp >= fireDelay)

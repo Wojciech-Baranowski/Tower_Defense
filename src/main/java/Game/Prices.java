@@ -2,7 +2,7 @@ package Game;
 
 public class Prices
 {
-    static int[] basicPrices;
+    public static int[] basicPrices;
 
     public Prices(int[] basicPrices)
     {

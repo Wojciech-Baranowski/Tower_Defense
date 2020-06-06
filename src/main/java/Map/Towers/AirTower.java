@@ -1,6 +1,6 @@
 package Map.Towers;
 
-import Game.Gui;
+import Game.gui.Gui;
 import Game.Level;
 import Map.Tile;
 import Map.Tower;
@@ -69,15 +69,6 @@ public class AirTower extends Tower
                     ((AirTower)(tiles[i])).getBoostMark().add(new Field(BOOSTMARK, posX, posY));
                 }
             }
-        }
-    }
-
-    @Override
-    public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
-    {
-        if(isClick(pc, posX, posY, width, height))
-        {
-            Gui.airTowerInfo(this);
         }
     }
 

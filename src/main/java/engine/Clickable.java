@@ -17,6 +17,7 @@ public interface Clickable
             if(Input.isHold == false)
             {
                 Input.justClicked = true;
+                Input.isHold = true;
                 return true;
             }
             else
