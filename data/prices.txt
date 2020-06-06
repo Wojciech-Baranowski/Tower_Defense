@@ -1,3 +1,4 @@
 {
 	"basicPrices":[80, 75, 90, 125],
+	"advancedPrices":[110, 100, 130, 170],
 }

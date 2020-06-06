@@ -4,10 +4,7 @@ import Game.Prices;
 import Game.Stats;
 import Map.Tile;
 import Map.TowerPlace;
-import Map.Towers.AirTower;
-import Map.Towers.EarthTower;
-import Map.Towers.FireTower;
-import Map.Towers.WaterTower;
+import Map.Towers.*;
 import engine.*;
 
 public class BuildMenu implements Clickable
@@ -36,13 +33,14 @@ public class BuildMenu implements Clickable
             tileId[id] = 21;
             tiles[id] = new FireTower("FireTower",(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.fireDmg, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+            AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
         if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.air >= Prices.basicPrices[1]))
         {
             close();
             Stats.air -= Prices.basicPrices[1];
             tileId[id] = 22;
-            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, 0, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirAttackSpeedBoost(), Stats.getAirRangeBoost());
+            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, 0, Stats.fireRange, 0, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirAttackSpeedBoost(), Stats.getAirRangeBoost());
         }
         if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.water >= Prices.basicPrices[2]))
         {
@@ -51,6 +49,7 @@ public class BuildMenu implements Clickable
             tileId[id] = 23;
             tiles[id] = new WaterTower("WaterTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.waterDmg, Stats.waterRange, Stats.waterFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+            AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
         if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.earth >= Prices.basicPrices[3]))
         {
@@ -59,9 +58,10 @@ public class BuildMenu implements Clickable
             tileId[id] = 24;
             tiles[id] = new EarthTower("EarthTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.earthDmg, Stats.earthRange, Stats.earthFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+            AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
     }
-    public static void render(ProgramContainer pc, Renderer r, Prices prices)
+    public static void render(ProgramContainer pc, Renderer r)
     {
         r.drawStaticImage(pc, menu.getImg(), (int)menu.getPosX(), (int)menu.getPosY());
         r.drawStaticImage(pc, closer.getImg(), (int)closer.getPosX(), (int)closer.getPosY());
@@ -73,10 +73,10 @@ public class BuildMenu implements Clickable
         r.drawStaticImage(pc, AIRm.getImg(), (int)AIRm.getPosX(), (int)AIRm.getPosY());
         r.drawStaticImage(pc, WATERm.getImg(), (int)WATERm.getPosX(), (int)WATERm.getPosY());
         r.drawStaticImage(pc, EARTHm.getImg(), (int)EARTHm.getPosX(), (int)EARTHm.getPosY());
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[0], (int)FIRE.getPosX() + 12, (int)FIRE.getPosY() + 32, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[1], (int)AIR.getPosX() + 12, (int)AIR.getPosY() + 32, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[2], (int)WATER.getPosX() + 12, (int)WATER.getPosY() + 32, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + prices.getBasicPrices()[3], (int)EARTH.getPosX() + 12, (int)EARTH.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + Prices.basicPrices[0], (int)FIRE.getPosX() + 12, (int)FIRE.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + Prices.basicPrices[1], (int)AIR.getPosX() + 12, (int)AIR.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + Prices.basicPrices[2], (int)WATER.getPosX() + 12, (int)WATER.getPosY() + 32, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + Prices.basicPrices[3], (int)EARTH.getPosX() + 12, (int)EARTH.getPosY() + 32, 0xFF000000, 3);
     }
     public static void open(double posX, double posY, int iD, boolean[] typePermission)
     {

@@ -63,14 +63,12 @@ public class World
         {
             r.drawImage(pc, tiles[i].getImg(), (int)tiles[i].getPosX(), (int)tiles[i].getPosY());
         }
-        BuildMenu.render(pc, r, prices);
-        BasicUpgradeMenu.render(pc, r, prices);
         level.render(pc, r);
-        Gui.render(pc, r, stats, level, passedTime);
         for(int i = 0; i < 144; i++)
         {
             tiles[i].render(pc, r);
         }
+        Gui.render(pc, r, stats, level, passedTime);
         if(isGrid == true)
             r.drawStaticImage(pc, measureGrid, 0, 0);
     }

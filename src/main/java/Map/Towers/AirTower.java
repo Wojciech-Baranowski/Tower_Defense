@@ -14,13 +14,21 @@ import java.util.Vector;
 public class AirTower extends Tower
 {
     private static final Image AIRTOWER = new Image("/res/towers/airTower.png",64, 64, 0);
-    private static final Image BOOSTMARK = new Image("/res/towers/boostMark.png",64, 64, 0);
-    private double attackSpeedBoost;
-    private double rangeBoost;
-    private Vector<Field> boostMark;
+    protected static final Image BOOSTMARK = new Image("/res/towers/boostMark.png",64, 64, 0);
+    protected double attackSpeedBoost;
+    protected double rangeBoost;
+    protected Vector<Field> boostMark;
     public AirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
     {
         super(name, AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        this.attackSpeedBoost = attackSpeedBoost;
+        this.rangeBoost = rangeBoost;
+        boostMark = new Vector<>();
+        boost(tiles);
+    }
+    public AirTower(Image img, String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
+    {
+        super(name, img, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
         this.attackSpeedBoost = attackSpeedBoost;
         this.rangeBoost = rangeBoost;
         boostMark = new Vector<>();
@@ -41,11 +49,16 @@ public class AirTower extends Tower
         }
     }
 
+    @Override
+    public void fire(Level level, Tile[] tiles, double passedTime) {
+
+    }
+
     private void boost(Tile[] tiles)
     {
         for(int i = 0; i < 144; i++)
         {
-            if((tiles[i].getClass() == FireTower.class) || (tiles[i].getClass() == WaterTower.class) || (tiles[i].getClass() == EarthTower.class))
+            if((tiles[i].getClass() == FireTower.class) || (tiles[i].getClass() == WaterTower.class) || (tiles[i].getClass() == EarthTower.class) || (tiles[i].getClass() == AdvancedFireTower.class) || (tiles[i].getClass() == AdvancedWaterTower.class) || (tiles[i].getClass() == AdvancedEarthTower.class))
             {
                 if(Math.pow((tiles[i].getPosX() - posX), 2) + Math.pow((tiles[i].getPosY() - posY), 2) <= Math.pow(range, 2))
                 {

@@ -3,10 +3,12 @@ package Game;
 public class Stats
 {
     public static int hp;
+
     public static int fire;
     public static int air;
     public static int water;
     public static int earth;
+
     public static int fireDmg;
     public static int waterDmg;
     public static int earthDmg;
@@ -24,13 +26,33 @@ public class Stats
     public static double airRangeBoost;
     public static int earthSplashRange;
     public static double earthSplashDmgPercentage;
-    public Stats(int hp, int fire, int water, int earth, int air, int fireDmg, int waterDmg, int earthDmg, int fireRange, int airRange, int waterRange, int earthRange, int fireBulletVelocity, int waterBulletVelocity, int earthBulletVelocity, double fireFireDelay, double waterFireDelay, double earthFireDelay, double airAttackSpeedBoost, double airRangeBoost, int earthSplashRange, double earthSplashDmgPercentage)
+
+    public static int advancedFireDmg;
+    public static int advancedWaterDmg;
+    public static int advancedEarthDmg;
+    public static int advancedFireRange;
+    public static int advancedAirRange;
+    public static int advancedWaterRange;
+    public static int advancedEarthRange;
+    public static int advancedFireBulletVelocity;
+    public static int advancedWaterBulletVelocity;
+    public static int advancedEarthBulletVelocity;
+    public static double advancedFireFireDelay;
+    public static double advancedWaterFireDelay;
+    public static double advancedEarthFireDelay;
+    public static double advancedAirAttackSpeedBoost;
+    public static double advancedAirRangeBoost;
+    public static int advancedEarthSplashRange;
+    public static double advancedEarthSplashDmgPercentage;
+    public Stats(int hp, int fire, int water, int earth, int air, int fireDmg, int waterDmg, int earthDmg, int fireRange, int airRange, int waterRange, int earthRange, int fireBulletVelocity, int waterBulletVelocity, int earthBulletVelocity, double fireFireDelay, double waterFireDelay, double earthFireDelay, double airAttackSpeedBoost, double airRangeBoost, int earthSplashRange, double earthSplashDmgPercentage, int advancedFireDmg, int advancedWaterDmg, int advancedEarthDmg, int advancedFireRange, int advancedAirRange, int advancedWaterRange, int advancedEarthRange, int advancedFireBulletVelocity, int advancedWaterBulletVelocity, int advancedEarthBulletVelocity, double advancedFireFireDelay, double advancedWaterFireDelay, double advancedEarthFireDelay, double advancedAirAttackSpeedBoost, double advancedAirRangeBoost, int advancedEarthSplashRange, double advancedEarthSplashDmgPercentage)
     {
         this.hp = hp;
+
         this.fire = fire;
         this.water = water;
         this.air = air;
         this.earth = earth;
+
         this.fireDmg = fireDmg;
         this.waterDmg = waterDmg;
         this.earthDmg = earthDmg;
@@ -48,6 +70,24 @@ public class Stats
         this.airRangeBoost = airRangeBoost;
         this.earthSplashRange = earthSplashRange;
         this.earthSplashDmgPercentage = earthSplashDmgPercentage;
+
+        this.advancedFireDmg = advancedFireDmg;
+        this.advancedWaterDmg = advancedWaterDmg;
+        this.advancedEarthDmg = advancedEarthDmg;
+        this.advancedFireRange = advancedFireRange;
+        this.advancedAirRange = advancedAirRange;
+        this.advancedWaterRange = advancedWaterRange;
+        this.advancedEarthRange = advancedEarthRange;
+        this.advancedFireBulletVelocity = advancedFireBulletVelocity;
+        this.advancedWaterBulletVelocity = advancedWaterBulletVelocity;
+        this.advancedEarthBulletVelocity = advancedEarthBulletVelocity;
+        this.advancedFireFireDelay = advancedFireFireDelay;
+        this.advancedWaterFireDelay = advancedWaterFireDelay;
+        this.advancedEarthFireDelay = advancedEarthFireDelay;
+        this.advancedAirAttackSpeedBoost = advancedAirAttackSpeedBoost;
+        this.advancedAirRangeBoost = advancedAirRangeBoost;
+        this.advancedEarthSplashRange = advancedEarthSplashRange;
+        this.advancedEarthSplashDmgPercentage = advancedEarthSplashDmgPercentage;
     }
 
     public static void splitReward(int reward)
@@ -159,5 +199,73 @@ public class Stats
 
     public static double getAirRangeBoost() {
         return airRangeBoost;
+    }
+
+    public static int getAdvancedFireDmg() {
+        return advancedFireDmg;
+    }
+
+    public static int getAdvancedWaterDmg() {
+        return advancedWaterDmg;
+    }
+
+    public static int getAdvancedEarthDmg() {
+        return advancedEarthDmg;
+    }
+
+    public static int getAdvancedFireRange() {
+        return advancedFireRange;
+    }
+
+    public static int getAdvancedAirRange() {
+        return advancedAirRange;
+    }
+
+    public static int getAdvancedWaterRange() {
+        return advancedWaterRange;
+    }
+
+    public static int getAdvancedEarthRange() {
+        return advancedEarthRange;
+    }
+
+    public static int getAdvancedFireBulletVelocity() {
+        return advancedFireBulletVelocity;
+    }
+
+    public static int getAdvancedWaterBulletVelocity() {
+        return advancedWaterBulletVelocity;
+    }
+
+    public static int getAdvancedEarthBulletVelocity() {
+        return advancedEarthBulletVelocity;
+    }
+
+    public static double getAdvancedFireFireDelay() {
+        return advancedFireFireDelay;
+    }
+
+    public static double getAdvancedWaterFireDelay() {
+        return advancedWaterFireDelay;
+    }
+
+    public static double getAdvancedEarthFireDelay() {
+        return advancedEarthFireDelay;
+    }
+
+    public static double getAdvancedAirAttackSpeedBoost() {
+        return advancedAirAttackSpeedBoost;
+    }
+
+    public static double getAdvancedAirRangeBoost() {
+        return advancedAirRangeBoost;
+    }
+
+    public static int getAdvancedEarthSplashRange() {
+        return advancedEarthSplashRange;
+    }
+
+    public static double getAdvancedEarthSplashDmgPercentage() {
+        return advancedEarthSplashDmgPercentage;
     }
 }

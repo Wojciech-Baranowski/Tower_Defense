@@ -49,22 +49,24 @@ public class Gui
 
             }
         }
+        BuildMenu.render(pc, r);
+        BasicUpgradeMenu.render(pc, r);
         if(name != "")
         r.drawStaticText(pc, name, 16, 540, 0xFF000000, 3);
         if(dmg != 0)
         r.drawStaticText(pc,"Damage:   " + dmg, 320, 540, 0xFF000000, 3);
         if(attackSpeed != 0)
-        r.drawStaticText(pc,"Attack Speed:   " + attackSpeed, 512, 540, 0xFF000000, 3);
+        r.drawStaticText(pc,"Attack Speed:   " + ((double)((int)(attackSpeed * 100)) / 100), 512, 540, 0xFF000000, 3);
         if(range != 0)
         r.drawStaticText(pc,"Range:   " + range, 784, 540, 0xFF000000, 3);
         if(attackSpeedBoost != 0)
-            r.drawStaticText(pc,"Attack Speed Boost:  +" + attackSpeedBoost + "%", 256, 540, 0xFF000000, 3);
+            r.drawStaticText(pc,"Attack Speed Boost:  +" + ((double)((int)(attackSpeedBoost * 100)) / 100) + "%", 256, 540, 0xFF000000, 3);
         if(rangeBoost != 0)
-            r.drawStaticText(pc,"Range Boost:  +" + rangeBoost + "%", 720, 540, 0xFF000000, 3);
+            r.drawStaticText(pc,"Range Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 720, 540, 0xFF000000, 3);
         if(hp != 0)
             r.drawStaticText(pc,"Hp:   " + hp, 320, 540, 0xFF000000, 3);
         if(vel != 0)
-            r.drawStaticText(pc,"Velocity:   " + vel, 512, 540, 0xFF000000, 3);
+            r.drawStaticText(pc,"Velocity:   " + ((double)((int)(vel * 100)) / 100), 512, 540, 0xFF000000, 3);
         if(cost != 0)
             r.drawStaticText(pc,"Cost:   " + cost, 784, 540, 0xFF000000, 3);
     }

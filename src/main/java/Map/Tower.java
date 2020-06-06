@@ -36,7 +36,6 @@ public abstract class Tower extends Tile implements Clickable
         this.fireDelay = fireDelay;
         this.typePermission = typePermission;
         bullets = new LinkedList<Bullet>();
-        System.out.println(towerId);
     }
 
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
@@ -73,8 +72,11 @@ public abstract class Tower extends Tile implements Clickable
         {
             if((!BuildMenu.menu.inBorder(pc, BuildMenu.menu.getPosX(), BuildMenu.menu.getPosY(), BuildMenu.menu.getImg().getW(), BuildMenu.menu.getImg().getH())) && (!BasicUpgradeMenu.menu.inBorder(pc, BasicUpgradeMenu.menu.getPosX(), BasicUpgradeMenu.menu.getPosY(), BasicUpgradeMenu.menu.getImg().getW(), BasicUpgradeMenu.menu.getImg().getH())))
             {
-                BuildMenu.close();
-                BasicUpgradeMenu.open(posX, posY, towerId, typePermission);
+                if(this.upgradeLvl == 1)
+                {
+                    BuildMenu.close();
+                    BasicUpgradeMenu.open(posX, posY, id, towerId, typePermission);
+                }
                 if(this.getClass() == AirTower.class)
                     Gui.airTowerInfo((AirTower)(this));
                 else
@@ -82,38 +84,8 @@ public abstract class Tower extends Tile implements Clickable
             }
         }
     }
-    public void fire(Level level, Tile[] tiles, double passedTime)
-    {
-        if(passedTime - fireTimeStamp >= fireDelay)
-        {
-            fireTimeStamp = passedTime;
-            if(towerId == 1)
-            {
-                Pair enemyId = targetChoose(level, tiles);
-                if(enemyId.first >= 0)
-                {
-                    bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, dmg, enemyId.second, enemyId.first));
-                }
-            }
-            if(towerId == 3)
-            {
-                Pair enemyId = targetChoose(level, tiles);
-                if(enemyId.first >= 0)
-                {
-                    bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), (int)posX + 32, (int)posY + 4, Stats.waterBulletVelocity, dmg, enemyId.second, enemyId.first));
-                }
-            }
-            if(towerId == 4)
-            {
-                Pair enemyId = targetChoose(level, tiles);
-                if(enemyId.first >= 0)
-                {
-                    bullets.add(new EarthBomb(new Image("/res/entities/bullets/earthBomb.png", 8, 8, 0), (int)posX + 32, (int)posY + 4, Stats.earthBulletVelocity, dmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
-                }
-            }
-        }
-    }
-    private engine.Pair targetChoose(Level level, Tile[] tiles)
+    public abstract void fire(Level level, Tile[] tiles, double passedTime);
+    protected engine.Pair targetChoose(Level level, Tile[] tiles)
     {
         Pair p = new Pair(-1, -1);
         for(int i = 0; i < level.getWavesAmount(); i++)
@@ -122,7 +94,7 @@ public abstract class Tower extends Tile implements Clickable
                 break;
             for(int j = 0; j < level.getWaves()[i].getEnemies().length; j++)
             {
-                if((level.getWaves()[i].getEnemies()[j].isAlive()) && (level.getWaves()[i].getEnemies()[j].getOnMap() > 0) && (isInRange(level.getWaves()[i].getEnemies()[j])))
+                if((level.getWaves()[i].getEnemies()[j].isAlive()) && (level.getWaves()[i].getEnemies()[j].getOnMap() == 1) && (isInRange(level.getWaves()[i].getEnemies()[j])))
                 {
                     if(p.first == -1)
                     {
@@ -144,7 +116,7 @@ public abstract class Tower extends Tile implements Clickable
         }
         return p;
     }
-    private boolean isInRange(Enemy enemy)
+    protected boolean isInRange(Enemy enemy)
     {
         if((int)Math.sqrt(Math.pow((enemy.getPosX() - posX), 2) + (int)Math.pow((enemy.getPosY() - posY), 2)) <= range)
         return true;
@@ -173,5 +145,9 @@ public abstract class Tower extends Tile implements Clickable
 
     public int getDmg() {
         return dmg;
+    }
+
+    public boolean[] getTypePermission() {
+        return typePermission;
     }
 }
