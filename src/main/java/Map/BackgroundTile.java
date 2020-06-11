@@ -17,7 +17,8 @@ public class BackgroundTile extends Tile
     }
 
     @Override
-    public void render(ProgramContainer pc, Renderer r) {
-
+    public void render(ProgramContainer pc, Renderer r)
+    {
+        r.drawImage(pc, img, (int)posX, (int)posY);
     }
 }

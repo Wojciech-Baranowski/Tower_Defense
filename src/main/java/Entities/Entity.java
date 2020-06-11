@@ -1,7 +1,6 @@
 package Entities;
 
 import Game.Level;
-import engine.Button;
 import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;

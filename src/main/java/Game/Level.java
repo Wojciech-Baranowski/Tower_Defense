@@ -1,10 +1,8 @@
 package Game;
 
-
 import Map.Road;
 import Map.Tile;
-import Map.TowerPlace;
-import Map.Towers.FireTower;
+import Map.Towers.AdvancedFireTower;
 import engine.ProgramContainer;
 import engine.Renderer;
 
@@ -46,7 +44,7 @@ public class Level
                 waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 + 100, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]], i);
         }
     }
-    public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Stats stats)
+    public void update(ProgramContainer pc, Tile[] tiles, double passedTime)
     {
         for(int i = 0; i < 144; i++)
         {
@@ -66,8 +64,12 @@ public class Level
                 break;
         }
     }
-    public void render(ProgramContainer pc, Renderer r)
+    public void render(ProgramContainer pc, Renderer r, Tile[] tiles)
     {
+        for(int i = 0; i < 144; i++)
+        {
+            tiles[i].render(pc, r);
+        }
         for(int j = 0; j < wavesAmount; j++)
         {
             for(int i = 0; i < waves[j].getEnemies().length; i++)
@@ -171,10 +173,6 @@ public class Level
         return tileId;
     }
 
-    public String[] getWaveInfo() {
-        return waveInfo;
-    }
-
     public int[] getWaveDelay() {
         return waveDelay;
     }
@@ -183,11 +181,4 @@ public class Level
         this.currentWave = currentWave;
     }
 
-    public void setWaveDelay(int[] waveDelay) {
-        this.waveDelay = waveDelay;
-    }
-
-    public int[] getWavePosition() {
-        return wavePosition;
-    }
 }

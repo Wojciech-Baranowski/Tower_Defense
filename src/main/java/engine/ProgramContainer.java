@@ -1,9 +1,5 @@
 package engine;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-
 public class ProgramContainer implements Runnable
 {
     private Thread thread;
@@ -45,8 +41,8 @@ public class ProgramContainer implements Runnable
     public void run()
     {
         running = true;
-        boolean render = false;
-        double firstTime = 0;
+        boolean render;
+        double firstTime;
         time = System.nanoTime() / 1000000000.0;
         double lastTime = System.nanoTime() / 1000000000.0;
         double unprocessedTime = 0;
@@ -100,13 +96,6 @@ public class ProgramContainer implements Runnable
         dispose();
     }
 
-    public void forceRender()
-    {
-        renderer.clear();
-        program.render(this, renderer);
-        window.update();
-    }
-
     private void dispose()
     {
 
@@ -144,12 +133,5 @@ public class ProgramContainer implements Runnable
         return world;
     }
 
-    public int getFps() {
-        return fps;
-    }
-
-    public double getTime() {
-        return passedTime;
-    }
 
 }

@@ -73,14 +73,14 @@ public abstract class Enemy extends Entity implements Clickable
     public abstract void indrender(ProgramContainer pc, Renderer r);
     public void move(int[] tileId)
     {
-        if(img.getH() == 32)
+        if(img.getW() == 16)
         {
-            if(((direction == 1) || (direction == 3)) && (((posY - 16 + 64) % 64) <= vel))
+            if(((direction == 2) || (direction == 4)) && (((posX - 32 + 64) % 64) <= vel))
             {
                 direction = directionChoose(tileId);
-                if((direction == 2) || (direction == 4))
+                if((direction == 1) || (direction == 3))
                 {
-                    posY += System.nanoTime() % 8;
+                    posX += System.nanoTime() % 8 - 8;
                 }
             }
         }
@@ -106,14 +106,14 @@ public abstract class Enemy extends Entity implements Clickable
                  }
             }
         }
-        if(img.getW() == 16)
+        if(img.getH() == 32)
         {
-            if(((direction == 2) || (direction == 4)) && (((posX - 32 + 64) % 64) <= vel))
+            if(((direction == 1) || (direction == 3)) && (((posY - 16 + 64) % 64) <= vel))
             {
                 direction = directionChoose(tileId);
-                if((direction == 1) || (direction == 3))
+                if((direction == 2) || (direction == 4))
                 {
-                    posX += System.nanoTime() % 8 - 8;
+                    posY += System.nanoTime() % 8;
                 }
             }
         }
@@ -191,16 +191,8 @@ public abstract class Enemy extends Entity implements Clickable
         return cost;
     }
 
-    public Image getHealthBar() {
-        return healthBar;
-    }
-
     public int getHp() {
         return hp;
-    }
-
-    public int getMaxHp() {
-        return maxHp;
     }
 
     public void setHp(int hp) {
@@ -210,6 +202,7 @@ public abstract class Enemy extends Entity implements Clickable
     public boolean isAlive() {
         return alive;
     }
+
     public void setAlive(boolean alive) {
         this.alive = alive;
     }

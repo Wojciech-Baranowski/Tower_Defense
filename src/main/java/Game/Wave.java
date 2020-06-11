@@ -5,8 +5,6 @@ import Entities.Enemies.CrystalShard;
 import Entities.Enemies.Dobbo;
 import Entities.Enemy;
 import Map.Road;
-import engine.ProgramContainer;
-import engine.Renderer;
 
 public class Wave
 {

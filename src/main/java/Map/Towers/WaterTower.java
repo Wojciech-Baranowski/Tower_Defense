@@ -1,10 +1,7 @@
 package Map.Towers;
 
-import Entities.Particles.Bullets.EarthBomb;
-import Entities.Particles.Bullets.FireArrow;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Stats;
-import Game.gui.Gui;
 import Game.Level;
 import Map.Tile;
 import Map.Tower;

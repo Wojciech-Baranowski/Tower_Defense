@@ -94,12 +94,4 @@ public abstract class Bullet extends Entity
     public boolean isDestination() {
         return destination;
     }
-
-    public int getTargetId() {
-        return targetId;
-    }
-
-    public int getTargetWaveId() {
-        return targetWaveId;
-    }
 }

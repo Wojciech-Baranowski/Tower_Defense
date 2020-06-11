@@ -1,7 +1,7 @@
 package Map.Towers;
 
-import Game.gui.Gui;
 import Game.Level;
+import Game.Stats;
 import Map.Tile;
 import Map.Tower;
 import engine.Field;
@@ -53,8 +53,7 @@ public class AirTower extends Tower
     public void fire(Level level, Tile[] tiles, double passedTime) {
 
     }
-
-    private void boost(Tile[] tiles)
+    protected void boost(Tile[] tiles)
     {
         for(int i = 0; i < 144; i++)
         {
@@ -62,8 +61,8 @@ public class AirTower extends Tower
             {
                 if(Math.pow((tiles[i].getPosX() - posX), 2) + Math.pow((tiles[i].getPosY() - posY), 2) <= Math.pow(range, 2))
                 {
-                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() / (1 + attackSpeedBoost));
-                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() * (1 + rangeBoost)));
+                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() / (1 + Stats.airAttackSpeedBoost));
+                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() * (1 + Stats.airRangeBoost)));
                     boostMark.add(new Field(BOOSTMARK, tiles[i].getPosX(), tiles[i].getPosY()));
                 }
             }

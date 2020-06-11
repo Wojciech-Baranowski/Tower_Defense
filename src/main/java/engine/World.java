@@ -14,10 +14,6 @@ public class World
     private double passedTime = 0;
 
     private boolean paused;
-    private boolean isGrid;
-
-    private Image measureGrid;
-    private Image backgroundGrid;
     private Image background;
 
     private Level level;
@@ -27,8 +23,6 @@ public class World
     public final static String zer0 = "Mateusz, sam jestes leb xD";
     public World(ProgramContainer pc)
     {
-        measureGrid = new Image("/res/measureGrid.png", 1024, 576, 0);
-        backgroundGrid = new Image("/res/backgroundGrid.png", 1024, 576, 0);
         background = new Image("/res/background.png", 1024, 576, 1);
         this.paused = true;
         tiles = new Tile[144];
@@ -41,36 +35,22 @@ public class World
     public void update(ProgramContainer pc, double currentTime)
     {
         pause(pc);
-        showGrid(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
         Gui.update(pc, level, passedTime);
         BuildMenu.update(pc, tiles, passedTime, level.getTileId());
         BasicUpgradeMenu.update(pc, tiles, passedTime, level.getTileId());
-        if(paused == true)
+        if((paused == true) && (stats.getHp() > 0))
         {
-            if(stats.getHp() <= 0)
-                return;
-            level.update(pc, tiles, passedTime, stats);
+            level.update(pc, tiles, passedTime);
         }
         Input.isHolding(pc);
     }
     public void render(ProgramContainer pc, Renderer r)
     {
-        //r.drawStaticImage(pc, backgroundGrid, 0, 0);
         r.drawStaticImage(pc, background, 0, 0);
-        for(int i = 0; i < 144; i++)
-        {
-            r.drawImage(pc, tiles[i].getImg(), (int)tiles[i].getPosX(), (int)tiles[i].getPosY());
-        }
-        level.render(pc, r);
-        for(int i = 0; i < 144; i++)
-        {
-            tiles[i].render(pc, r);
-        }
+        level.render(pc, r, tiles);
         Gui.render(pc, r, stats, level, passedTime);
-        if(isGrid == true)
-            r.drawStaticImage(pc, measureGrid, 0, 0);
     }
     public void pause(ProgramContainer pc)
     {
@@ -82,21 +62,6 @@ public class World
         {
             paused = true;
         }
-    }
-    public void showGrid(ProgramContainer pc)
-    {
-        if((isGrid == true) && (pc.getInput().isKeyDown(KeyEvent.VK_G)))
-        {
-            isGrid = false;
-        }
-        else if((isGrid == false) && (pc.getInput().isKeyDown(KeyEvent.VK_G)))
-        {
-            isGrid = true;
-        }
-    }
-
-    public boolean isPaused() {
-        return paused;
     }
 }
 

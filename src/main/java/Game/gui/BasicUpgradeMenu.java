@@ -2,7 +2,6 @@ package Game.gui;
 import Game.Prices;
 import Game.Stats;
 import Map.Tile;
-import Map.TowerPlace;
 import Map.Towers.*;
 import engine.*;
 

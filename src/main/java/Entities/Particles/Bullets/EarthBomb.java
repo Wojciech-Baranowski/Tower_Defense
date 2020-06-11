@@ -6,13 +6,13 @@ import engine.Image;
 
 public class EarthBomb extends Bullet
 {
-    private boolean splaphed;
+    private boolean splashed;
     private int splashRange;
     private double splashPercentage;
     public EarthBomb(Image img, int posX, int posY, float vel, int dmg, int targetId, int targetWaveId, int splashRange, double splashPercentage)
     {
         super(img, posX, posY, vel, dmg, targetId, targetWaveId);
-        this.splaphed = false;
+        this.splashed = false;
         this.splashRange = splashRange;
         this.splashPercentage = splashPercentage;
     }
@@ -23,9 +23,9 @@ public class EarthBomb extends Bullet
     }
     public void splash(Level level)
     {
-        if((destination == true) && (splaphed == false))
+        if((destination == true) && (splashed == false))
         {
-            splaphed = true;
+            splashed = true;
             for(int i = 0; i < level.getWavesAmount(); i++)
             {
                 if(level.getWaves()[i].isRunning())

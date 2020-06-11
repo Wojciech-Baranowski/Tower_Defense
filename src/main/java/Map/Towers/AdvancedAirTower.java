@@ -1,5 +1,4 @@
 package Map.Towers;
-
 import Game.Stats;
 import Map.Tile;
 import Map.Tower;
@@ -11,10 +10,8 @@ public class AdvancedAirTower extends AirTower
     private static final Image ADVANCEDAIRTOWER = new Image("/res/towers/advancedAirTower.png",64, 64, 0);
     public AdvancedAirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost) {
         super(ADVANCEDAIRTOWER, name, tiles, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission, attackSpeedBoost, rangeBoost);
-        boost(tiles);
     }
-    //TODO fix this boosting
-    private void boost(Tile[] tiles)
+    protected void boost(Tile[] tiles)
     {
         for(int i = 0; i < 144; i++)
         {
@@ -22,8 +19,8 @@ public class AdvancedAirTower extends AirTower
             {
                 if(Math.pow((tiles[i].getPosX() - posX), 2) + Math.pow((tiles[i].getPosY() - posY), 2) <= Math.pow(range, 2))
                 {
-                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() / (1 + attackSpeedBoost));
-                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() * (1 + rangeBoost)));
+                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() * (1 + Stats.airAttackSpeedBoost) / (1 + Stats.advancedAirAttackSpeedBoost));
+                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() / (1 + Stats.airRangeBoost) * (1 + Stats.advancedAirRangeBoost)));
                     boostMark.add(new Field(BOOSTMARK, tiles[i].getPosX(), tiles[i].getPosY()));
                 }
             }

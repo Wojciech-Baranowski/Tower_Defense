@@ -1,14 +1,11 @@
 package Map;
 import Entities.Enemy;
 import Entities.Particles.Bullet;
-import Entities.Particles.Bullets.EarthBomb;
-import Entities.Particles.Bullets.FireArrow;
-import Entities.Particles.Bullets.WaterBullet;
 import Game.Level;
-import Game.Stats;
 import Game.gui.BasicUpgradeMenu;
 import Game.gui.BuildMenu;
 import Game.gui.Gui;
+import Map.Towers.AdvancedAirTower;
 import Map.Towers.AirTower;
 import engine.*;
 import java.util.*;
@@ -55,6 +52,7 @@ public abstract class Tower extends Tile implements Clickable
     public abstract void indUpdate(ProgramContainer pc, Tile[] tiles, double passedTime, Level level);
     public void render(ProgramContainer pc, Renderer r)
     {
+        r.drawImage(pc, img, (int)posX, (int)posY);
         int s = bullets.size();
         for(int i = 0; i < s; i++)
         {
@@ -79,6 +77,8 @@ public abstract class Tower extends Tile implements Clickable
                 }
                 if(this.getClass() == AirTower.class)
                     Gui.airTowerInfo((AirTower)(this));
+                else if(this.getClass() == AdvancedAirTower.class)
+                    Gui.airTowerInfo((AdvancedAirTower)(this));
                 else
                     Gui.towerInfo(this);
             }

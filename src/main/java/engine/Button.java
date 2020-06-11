@@ -1,7 +1,5 @@
 package engine;
 
-import java.awt.event.MouseEvent;
-
 public class Button extends Field implements Clickable
 {
     protected Image img2;
@@ -43,9 +41,4 @@ public class Button extends Field implements Clickable
             isSecondImage = false;
         }
     }
-
-    public Image getImg2() {
-        return img2;
-    }
-
 }
