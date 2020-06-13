@@ -46,6 +46,10 @@ public class Field
         return img;
     }
 
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
     public void setPosX(double posX) {
         this.posX = posX;
     }

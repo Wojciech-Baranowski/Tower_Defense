@@ -62,5 +62,4 @@ public class Image
     public int getFrame() {
         return frame;
     }
-
 }
