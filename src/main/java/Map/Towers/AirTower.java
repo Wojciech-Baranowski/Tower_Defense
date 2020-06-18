@@ -1,5 +1,6 @@
 package Map.Towers;
 
+import Game.Assets;
 import Game.Level;
 import Game.Stats;
 import Map.Tile;
@@ -13,14 +14,13 @@ import java.util.Vector;
 
 public class AirTower extends Tower
 {
-    private static final Image AIRTOWER = new Image("/res/towers/airTower.png",64, 64, 0);
-    protected static final Image BOOSTMARK = new Image("/res/towers/boostMark.png",64, 64, 0);
+
     protected double attackSpeedBoost;
     protected double rangeBoost;
     protected Vector<Field> boostMark;
     public AirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
     {
-        super(name, AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, Assets.AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
         this.attackSpeedBoost = attackSpeedBoost;
         this.rangeBoost = rangeBoost;
         boostMark = new Vector<>();
@@ -63,7 +63,7 @@ public class AirTower extends Tower
                 {
                     ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() / (1 + Stats.airAttackSpeedBoost));
                     ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() * (1 + Stats.airRangeBoost)));
-                    boostMark.add(new Field(BOOSTMARK, tiles[i].getPosX(), tiles[i].getPosY()));
+                    boostMark.add(new Field(Assets.BOOSTMARK, tiles[i].getPosX(), tiles[i].getPosY()));
                 }
             }
         }
@@ -78,7 +78,7 @@ public class AirTower extends Tower
                 {
                     ((Tower)(tiles[id])).setFireDelay(((Tower)(tiles[id])).getFireDelay() / (1 + ((AirTower)(tiles[i])).getAttackSpeedBoost()));
                     ((Tower)(tiles[id])).setRange((int)(((Tower)(tiles[id])).getRange() * (1 + ((AirTower)(tiles[i])).getRangeBoost())));
-                    ((AirTower)(tiles[i])).getBoostMark().add(new Field(BOOSTMARK, posX, posY));
+                    ((AirTower)(tiles[i])).getBoostMark().add(new Field(Assets.BOOSTMARK, posX, posY));
                 }
             }
         }

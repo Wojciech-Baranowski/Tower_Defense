@@ -1,5 +1,7 @@
 package engine;
 
+import Game.Assets;
+
 public class Field
 {
     protected double posX;
@@ -13,7 +15,8 @@ public class Field
         this.posY = posY;
         this.width = width;
         this.height = height;
-        img = new Image("/res/defaultField.png", width, height, frame);
+        img = Assets.DEFAULTFIELD;
+        img.rescale(width, height);
     }
     public Field(Image image, double posX, double posY)
     {
@@ -30,7 +33,7 @@ public class Field
         this.width = width;
         this.height = height;
         if(path == "")
-            img = new Image("/res/blank.png", width, height, frame);
+            img = Assets.BLANK;
         else
         img = new Image(path, width, height, frame);
     }

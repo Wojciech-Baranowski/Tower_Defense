@@ -1,6 +1,7 @@
 package Map.Towers;
 
 import Entities.Particles.Bullets.FireArrow;
+import Game.Assets;
 import Game.Stats;
 import Game.Level;
 import Map.Tile;
@@ -12,10 +13,9 @@ import engine.Renderer;
 
 public class FireTower extends Tower
 {
-    private static final Image FIRETOWER = new Image("/res/towers/fireTower.png",64, 64, 0);
     public FireTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
     {
-        super(name, FIRETOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, Assets.FIRETOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
     }
     public FireTower(Image img, String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
     {
@@ -41,7 +41,7 @@ public class FireTower extends Tower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new FireArrow(new Image("/res/entities/bullets/fireArrow.png", 8, 2, 0), (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, dmg, enemyId.second, enemyId.first));
+                bullets.add(new FireArrow(Assets.FIREARROW, (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, dmg, enemyId.second, enemyId.first));
             }
         }
     }

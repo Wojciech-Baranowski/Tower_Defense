@@ -1,5 +1,7 @@
 package engine;
 
+import Game.Assets;
+
 import java.awt.image.DataBufferInt;
 
 public class Renderer
@@ -10,12 +12,12 @@ public class Renderer
     Renderer(ProgramContainer pc)
     {
         font = new Font[6];
-        font[0] = Font.F25;
-        font[1] = Font.F20;
-        font[2] = Font.F15;
-        font[3] = Font.FB25;
-        font[4] = Font.FB20;
-        font[5] = Font.FB15;
+        font[0] = Assets.F25;
+        font[1] = Assets.F20;
+        font[2] = Assets.F15;
+        font[3] = Assets.FB25;
+        font[4] = Assets.FB20;
+        font[5] = Assets.FB15;
         pW = pc.getWidth();
         pH = pc.getHeight();
         p = ((DataBufferInt)pc.getWindow().getImage().getRaster().getDataBuffer()).getData();

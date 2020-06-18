@@ -1,5 +1,6 @@
 package Map;
 
+import Game.Assets;
 import Game.Level;
 import engine.*;
 
@@ -19,7 +20,7 @@ public abstract class Tile
         if(path != "")
         img = new Image(path, width, height, 0);
         else
-            img = new Image("/res/blank.png", width, height, 0);
+            img = Assets.BLANK;
         this.id = id;
     }
     public Tile(Image image, double posX, double posY, int id) {
@@ -41,7 +42,7 @@ public abstract class Tile
                 dir[id % 10 - 1] = true;
                 id /= 10;
             }
-            String p = "/res/road/";
+            String p = "/road/";
             for(int j = 1; j <= 4; j++)
             {
                 if(dir[j - 1] == true)
@@ -73,7 +74,7 @@ public abstract class Tile
                     b[3] = true;
                 else
                     b[3] = false;
-                tiles[i] = new TowerPlace("/res/towers/summoningTile.png", (i % 16) * 64, (i / 16) * 64, 64, 64, i, b);
+                tiles[i] = new TowerPlace(Assets.SUMMONINGTILE, (i % 16) * 64, (i / 16) * 64, i, b);
             }
         }
     }

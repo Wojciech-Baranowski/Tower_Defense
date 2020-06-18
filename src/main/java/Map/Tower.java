@@ -68,7 +68,7 @@ public abstract class Tower extends Tile implements Clickable
     {
         if(isClick(pc, posX, posY, width, height))
         {
-            if((!BuildMenu.menu.inBorder(pc, BuildMenu.menu.getPosX(), BuildMenu.menu.getPosY(), BuildMenu.menu.getImg().getW(), BuildMenu.menu.getImg().getH())) && (!BasicUpgradeMenu.menu.inBorder(pc, BasicUpgradeMenu.menu.getPosX(), BasicUpgradeMenu.menu.getPosY(), BasicUpgradeMenu.menu.getImg().getW(), BasicUpgradeMenu.menu.getImg().getH())))
+            if((!BuildMenu.MENU.inBorder(pc, BuildMenu.MENU.getPosX(), BuildMenu.MENU.getPosY(), BuildMenu.MENU.getImg().getW(), BuildMenu.MENU.getImg().getH())) && (!BasicUpgradeMenu.MENU.inBorder(pc, BasicUpgradeMenu.MENU.getPosX(), BasicUpgradeMenu.MENU.getPosY(), BasicUpgradeMenu.MENU.getImg().getW(), BasicUpgradeMenu.MENU.getImg().getH())))
             {
                 if(this.upgradeLvl == 1)
                 {

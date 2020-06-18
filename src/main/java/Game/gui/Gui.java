@@ -1,6 +1,7 @@
 package Game.gui;
 
 import Entities.Enemy;
+import Game.Assets;
 import Game.Level;
 import Game.Stats;
 import Map.Tower;
@@ -9,8 +10,8 @@ import engine.*;
 
 public class Gui
 {
-    private static final Field background = new Field("/res/gui/gui.png", 0, 0, 1024, 576, 0xFF641D54);;
-    private static NextWaveButton nextWave = new NextWaveButton("/res/gui/guiButton.png", "/res/gui/guiButtonClicked.png", 912, 200, 96, 48, 0xFF641D54);;
+    private static final Field background = new Field(Assets.GUI, 0, 0);
+    private static NextWaveButton nextWave = new NextWaveButton(Assets.GUIBUTTON, Assets.GUIBUTTONCLICKED, 912, 200);
     private static String name = "";
     private static int dmg = 0;
     private static double attackSpeed = 0;

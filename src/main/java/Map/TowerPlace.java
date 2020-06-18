@@ -1,5 +1,6 @@
 package Map;
 
+import Game.Assets;
 import Game.gui.BasicUpgradeMenu;
 import Game.gui.BuildMenu;
 import Game.Level;
@@ -7,14 +8,10 @@ import engine.*;
 
 public class TowerPlace extends Tile implements Clickable
 {
-    private static final Image FIRE = new Image("/res/towers/summoningTileFire.png", 32, 32, 0);
-    private static final Image AIR = new Image("/res/towers/summoningTileAir.png", 32, 32, 0);
-    private static final Image WATER = new Image("/res/towers/summoningTileWater.png", 32, 32, 0);
-    private static final Image EARTH = new Image("/res/towers/summoningTileEarth.png", 32, 32, 0);
     boolean[] typePermission;
-    public TowerPlace(String path, double posX, double posY, int width, int height, int id, boolean[] typePermission)
+    public TowerPlace(Image img, double posX, double posY, int id, boolean[] typePermission)
     {
-        super(path, posX, posY, width, height, id);
+        super(img, posX, posY, id);
         this.typePermission = typePermission;
         if(typePermission[0] == true)
         {
@@ -22,9 +19,9 @@ public class TowerPlace extends Tile implements Clickable
             {
                 for(int j = 0; j < 32; j++)
                 {
-                    if(FIRE.getP()[i * 32 + j] != 0xFFFF00FF)
+                    if(Assets.FIREM.getP()[i * 32 + j] != 0xFFFF00FF)
                     {
-                        img.getP()[i * 64 + j] = FIRE.getP()[i * 32 + j];
+                        img.getP()[i * 64 + j] = Assets.FIREM.getP()[i * 32 + j];
                     }
                 }
             }
@@ -35,9 +32,9 @@ public class TowerPlace extends Tile implements Clickable
             {
                 for(int j = 32; j < 64; j++)
                 {
-                    if(AIR.getP()[i * 32 + j - 32] != 0xFFFF00FF)
+                    if(Assets.AIRM.getP()[i * 32 + j - 32] != 0xFFFF00FF)
                     {
-                        img.getP()[i * 64 + j] = AIR.getP()[i * 32 + j - 32];
+                        img.getP()[i * 64 + j] = Assets.AIRM.getP()[i * 32 + j - 32];
                     }
                 }
             }
@@ -48,9 +45,9 @@ public class TowerPlace extends Tile implements Clickable
             {
                 for(int j = 0; j < 32; j++)
                 {
-                    if(WATER.getP()[(i - 32) * 32 + j] != 0xFFFF00FF)
+                    if(Assets.WATERM.getP()[(i - 32) * 32 + j] != 0xFFFF00FF)
                     {
-                        img.getP()[i * 64 + j] = WATER.getP()[(i - 32) * 32 + j];
+                        img.getP()[i * 64 + j] = Assets.WATERM.getP()[(i - 32) * 32 + j];
                     }
                 }
             }
@@ -61,9 +58,9 @@ public class TowerPlace extends Tile implements Clickable
             {
                 for(int j = 32; j < 64; j++)
                 {
-                    if(EARTH.getP()[(i - 32) * 32 + j - 32] != 0xFFFF00FF)
+                    if(Assets.EARTHM.getP()[(i - 32) * 32 + j - 32] != 0xFFFF00FF)
                     {
-                        img.getP()[i * 64 + j] = EARTH.getP()[(i - 32) * 32 + j - 32];
+                        img.getP()[i * 64 + j] = Assets.EARTHM.getP()[(i - 32) * 32 + j - 32];
                     }
                 }
             }
@@ -88,7 +85,7 @@ public class TowerPlace extends Tile implements Clickable
     @Override
     public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
     {
-        if((this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH())) && (!BuildMenu.menu.inBorder(pc, BuildMenu.menu.getPosX(), BuildMenu.menu.getPosY(), BuildMenu.menu.getImg().getW(), BuildMenu.menu.getImg().getH())) && (!BasicUpgradeMenu.menu.inBorder(pc, BasicUpgradeMenu.menu.getPosX(), BasicUpgradeMenu.menu.getPosY(), BasicUpgradeMenu.menu.getImg().getW(), BasicUpgradeMenu.menu.getImg().getH())))
+        if((this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH())) && (!BuildMenu.MENU.inBorder(pc, BuildMenu.MENU.getPosX(), BuildMenu.MENU.getPosY(), BuildMenu.MENU.getImg().getW(), BuildMenu.MENU.getImg().getH())) && (!BasicUpgradeMenu.MENU.inBorder(pc, BasicUpgradeMenu.MENU.getPosX(), BasicUpgradeMenu.MENU.getPosY(), BasicUpgradeMenu.MENU.getImg().getW(), BasicUpgradeMenu.MENU.getImg().getH())))
         {
             BasicUpgradeMenu.close();
             BuildMenu.open(posX, posY, id, typePermission);

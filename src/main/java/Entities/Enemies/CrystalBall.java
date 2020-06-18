@@ -1,16 +1,17 @@
 package Entities.Enemies;
 
 import Entities.Enemy;
+import Game.Assets;
 import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;
 
 public class CrystalBall extends Enemy
 {
-    private static final Image CRYSTALBALL = new Image("/res/entities/crystalBall.png", 16, 16, 0);
+
     public CrystalBall(double posX, double posY, int startDirection, int wave, int id)
     {
-        super("Crystal Ball", CRYSTALBALL, posX, posY, 1, 100, 2, startDirection, wave, id, 50);
+        super("Crystal Ball", Assets.CRYSTALBALL, posX, posY, 1, 100, 2, startDirection, wave, id, 50);
     }
 
     @Override

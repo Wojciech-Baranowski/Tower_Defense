@@ -1,5 +1,6 @@
 package Entities;
 
+import Game.Assets;
 import Game.gui.Gui;
 import Game.Level;
 import Game.Stats;
@@ -35,7 +36,7 @@ public abstract class Enemy extends Entity implements Clickable
         this.reward = reward;
         this.alive = true;
         this.hp = maxHp;
-        healthBar = new Image("/res/entities/healthBarFull.png", 16, 2, 0);
+        healthBar = Assets.HEALTHBARFULL;
         healthUpdate(0);
     }
     public void update(ProgramContainer pc, double passedTime, Level level)

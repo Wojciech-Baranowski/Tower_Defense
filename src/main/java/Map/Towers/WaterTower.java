@@ -1,6 +1,7 @@
 package Map.Towers;
 
 import Entities.Particles.Bullets.WaterBullet;
+import Game.Assets;
 import Game.Stats;
 import Game.Level;
 import Map.Tile;
@@ -12,10 +13,9 @@ import engine.Renderer;
 
 public class WaterTower extends Tower
 {
-    private static final Image WATERTOWER = new Image("/res/towers/waterTower.png",64, 64, 0);
     public WaterTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
     {
-        super(name, WATERTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, Assets.WATERTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
     }
     public WaterTower(Image img, String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
     {
@@ -41,7 +41,7 @@ public class WaterTower extends Tower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new WaterBullet(new Image("/res/entities/bullets/waterBullet.png", 4, 8, 0), (int)posX + 32, (int)posY + 4, Stats.advancedWaterBulletVelocity, dmg, enemyId.second, enemyId.first));
+                bullets.add(new WaterBullet(Assets.WATERBULLET, (int)posX + 32, (int)posY + 4, Stats.advancedWaterBulletVelocity, dmg, enemyId.second, enemyId.first));
             }
         }
     }

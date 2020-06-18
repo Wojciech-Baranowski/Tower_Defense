@@ -1,14 +1,15 @@
 package Game.gui;
 import Game.Level;
 import engine.Button;
+import engine.Image;
 import engine.Input;
 import engine.ProgramContainer;
 
 public class NextWaveButton extends Button
 {
 
-    public NextWaveButton(String path, String path2, double posX, double posY, int width, int height, int frame) {
-        super(path, path2, posX, posY, width, height, frame);
+    public NextWaveButton(Image image1, Image image2, double posX, double posY) {
+        super(image1, image2, posX, posY);
     }
     public void onClick(ProgramContainer pc, double posX, double posY, int width, int height, Level level, double passedTime)
     {
