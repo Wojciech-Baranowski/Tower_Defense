@@ -13,16 +13,24 @@ public class BasicUpgradeMenu
     public static final Button MENU = new Button(Assets.UPGRADEMENU, -1000, -1000);
     public static final Button CLOSER = new Button(Assets.CLOSER, -1000, -1000);
     public static final Button UPGRADEBUTTON = new Button(Assets.UPGRADEBUTTON, -1000, -1000);
-    private static final Button FIRE = new Button(Assets.FIRE, -1000, -1000);
-    private static final Button AIR = new Button(Assets.AIR, -1000, -1000);
-    private static final Button WATER = new Button(Assets.WATER, -1000, -1000);
-    private static final Button EARTH = new Button(Assets.EARTH, -1000, -1000);
-    private static final Field FIREM = new Field(Assets.FIREM, -1000, -1000);
-    private static final Field AIRM = new Field(Assets.AIRM, -1000, -1000);
-    private static final Field WATERM = new Field(Assets.WATERM, -1000, -1000);
-    private static final Field EARTHM = new Field(Assets.EARTHM, -1000, -1000);
+    private static final Button FIRE = new Button(Assets.FIRE48, -1000, -1000);
+    private static final Button AIR = new Button(Assets.AIR48, -1000, -1000);
+    private static final Button WATER = new Button(Assets.WATER48, -1000, -1000);
+    private static final Button EARTH = new Button(Assets.EARTH48, -1000, -1000);
+    private static final Field FIREM = new Field(Assets.FIRE32, -1000, -1000);
+    private static final Field AIRM = new Field(Assets.AIR32, -1000, -1000);
+    private static final Field WATERM = new Field(Assets.WATER32, -1000, -1000);
+    private static final Field EARTHM = new Field(Assets.EARTH32, -1000, -1000);
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
+        AIR.setImg(Assets.AIRANIMA48.updateLoop(AIR.getImg(), World.tickCount));
+        EARTH.setImg(Assets.EARTHANIMA48.updateLoop(EARTH.getImg(), World.tickCount));
+        FIRE.setImg(Assets.FIREANIMA48.updateLoop(FIRE.getImg(), World.tickCount));
+        WATER.setImg(Assets.WATERANIMA48.updateLoop(WATER.getImg(), World.tickCount));
+        AIRM.setImg(Assets.AIRANIMA32.updateLoop(AIRM.getImg(), World.tickCount));
+        EARTHM.setImg(Assets.EARTHANIMA32.updateLoop(EARTHM.getImg(), World.tickCount));
+        FIREM.setImg(Assets.FIREANIMA32.updateLoop(FIREM.getImg(), World.tickCount));
+        WATERM.setImg(Assets.WATERANIMA32.updateLoop(WATERM.getImg(), World.tickCount));
         if(CLOSER.isClick(pc, CLOSER.getPosX(), CLOSER.getPosY(), CLOSER.getImg().getW(), CLOSER.getImg().getH()))
         {
             BasicUpgradeMenu.close();

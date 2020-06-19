@@ -12,7 +12,7 @@ public class Animation
         images = new Image[count];
         for(int i = 0; i < count; i++)
         {
-            images[i] = Assets.BLANK;
+            images[i] = new Image(width, height, 0);
             for(int j = 0; j < height; j++)
             {
                 for(int k = 0; k < width; k++)
@@ -34,6 +34,21 @@ public class Animation
         if((tickCount % frameGap == 0) && (tickCount > 0))
         {
             for(int i = 1; i < images.length - 1; i++)
+            {
+                if(image == images[i])
+                {
+                    return images[i + 1];
+                }
+            }
+            return images[0];
+        }
+        return image;
+    }
+    public Image updateLoop(Image image, long tickCount)
+    {
+        if((tickCount % frameGap == 0) && (tickCount > 0))
+        {
+            for(int i = 0; i < images.length - 1; i++)
             {
                 if(image == images[i])
                 {

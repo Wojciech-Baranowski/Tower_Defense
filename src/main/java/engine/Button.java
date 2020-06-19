@@ -56,4 +56,5 @@ public class Button extends Field implements Clickable
             isSecondImage = false;
         }
     }
+
 }

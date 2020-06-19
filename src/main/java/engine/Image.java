@@ -31,6 +31,13 @@ public class Image
         rescale(width, height);
         image.flush();
     }
+    public Image(int width, int height, int frame)
+    {
+        this.frame = frame;
+        w = width;
+        h = height;
+        p = new int[width * height];
+    }
 
     public void rescale(int nWidth, int nHeight)
     {

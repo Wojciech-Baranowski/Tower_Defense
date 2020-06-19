@@ -12,7 +12,7 @@ public class World
 {
     private double deltaTime;
     private double passedTime = 0;
-    private static long tickCount = 0;
+    public static long tickCount = 0;
     private boolean paused;
     private Image background;
 
