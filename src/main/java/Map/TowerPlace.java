@@ -1,6 +1,7 @@
 package Map;
 
 import Game.Assets;
+import Game.gui.AdvancedUpgradeMenu;
 import Game.gui.BasicUpgradeMenu;
 import Game.gui.BuildMenu;
 import Game.Level;
@@ -80,9 +81,10 @@ public class TowerPlace extends Tile implements Clickable
     @Override
     public void onClick(ProgramContainer pc, double posX, double posY, int width, int height)
     {
-        if((this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH())) && (!BuildMenu.MENU.inBorder(pc, BuildMenu.MENU.getPosX(), BuildMenu.MENU.getPosY(), BuildMenu.MENU.getImg().getW(), BuildMenu.MENU.getImg().getH())) && (!BasicUpgradeMenu.MENU.inBorder(pc, BasicUpgradeMenu.MENU.getPosX(), BasicUpgradeMenu.MENU.getPosY(), BasicUpgradeMenu.MENU.getImg().getW(), BasicUpgradeMenu.MENU.getImg().getH())))
+        if((this.isClick(pc, this.posX, this.posY, this.img.getW(), this.img.getH())) && (!BuildMenu.MENU.inBorder(pc, BuildMenu.MENU.getPosX(), BuildMenu.MENU.getPosY(), BuildMenu.MENU.getImg().getW(), BuildMenu.MENU.getImg().getH())) && (!BasicUpgradeMenu.MENU.inBorder(pc, BasicUpgradeMenu.MENU.getPosX(), BasicUpgradeMenu.MENU.getPosY(), BasicUpgradeMenu.MENU.getImg().getW(), BasicUpgradeMenu.MENU.getImg().getH())) && (!AdvancedUpgradeMenu.MENU.inBorder(pc, AdvancedUpgradeMenu.MENU.getPosX(), AdvancedUpgradeMenu.MENU.getPosY(), AdvancedUpgradeMenu.MENU.getImg().getW(), AdvancedUpgradeMenu.MENU.getImg().getH())))
         {
             BasicUpgradeMenu.close();
+            AdvancedUpgradeMenu.close();
             BuildMenu.open(posX, posY, id, typePermission);
         }
     }

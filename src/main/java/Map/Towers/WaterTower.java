@@ -41,7 +41,7 @@ public class WaterTower extends Tower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new WaterBullet(Assets.WATERBULLET, (int)posX + 32, (int)posY + 4, Stats.advancedWaterBulletVelocity, dmg, enemyId.second, enemyId.first));
+                bullets.add(new WaterBullet(Assets.WATERBULLET, (int)posX + 32, (int)posY + 4, Stats.advancedWaterBulletVelocity, Stats.waterDmg, enemyId.second, enemyId.first));
             }
         }
     }

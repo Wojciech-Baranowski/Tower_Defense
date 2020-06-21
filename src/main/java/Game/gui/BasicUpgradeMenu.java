@@ -10,9 +10,9 @@ public class BasicUpgradeMenu
 {
     private static int id = -1;
     private static int towerId = -1;
-    public static final Button MENU = new Button(Assets.UPGRADEMENU, -1000, -1000);
+    public static final Button MENU = new Button(Assets.BASICUPGRADEMENU, -1000, -1000);
     public static final Button CLOSER = new Button(Assets.CLOSER, -1000, -1000);
-    public static final Button UPGRADEBUTTON = new Button(Assets.UPGRADEBUTTON, -1000, -1000);
+    public static final Button UPGRADEBUTTON = new Button(Assets.UPGRADEBUTTON64, -1000, -1000);
     private static final Button FIRE = new Button(Assets.FIRE48, -1000, -1000);
     private static final Button AIR = new Button(Assets.AIR48, -1000, -1000);
     private static final Button WATER = new Button(Assets.WATER48, -1000, -1000);
@@ -33,7 +33,7 @@ public class BasicUpgradeMenu
         WATERM.setImg(Assets.WATERANIMA32.updateLoop(WATERM.getImg(), World.tickCount));
         if(CLOSER.isClick(pc, CLOSER.getPosX(), CLOSER.getPosY(), CLOSER.getImg().getW(), CLOSER.getImg().getH()))
         {
-            BasicUpgradeMenu.close();
+            close();
         }
         if(UPGRADEBUTTON.isClick(pc, UPGRADEBUTTON.getPosX(), UPGRADEBUTTON.getPosY(), UPGRADEBUTTON.getImg().getW(), UPGRADEBUTTON.getImg().getH()))
         {
@@ -56,7 +56,7 @@ public class BasicUpgradeMenu
             else if((towerId == 3) && (Stats.earth >= Prices.advancedPrices[2]))
             {
                 close();
-                Stats.water -= Prices.basicPrices[2];
+                Stats.water -= Prices.advancedPrices[2];
                 tileId[id] = 213;
                 tiles[id] = new AdvancedWaterTower("AdvancedWaterTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 13, Stats.advancedWaterDmg, Stats.advancedWaterRange, Stats.advancedWaterFireDelay, ((WaterTower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
@@ -65,7 +65,7 @@ public class BasicUpgradeMenu
             else if((towerId == 4) && (Stats.earth >= Prices.advancedPrices[3]))
             {
                 close();
-                Stats.earth -= Prices.basicPrices[3];
+                Stats.earth -= Prices.advancedPrices[3];
                 tileId[id] = 214;
                 tiles[id] = new AdvancedEarthTower("AdvancedEarthTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 14, Stats.advancedEarthDmg, Stats.advancedEarthRange, Stats.advancedEarthFireDelay, ((EarthTower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);

@@ -5,14 +5,13 @@ import Game.Assets;
 import Game.Level;
 import Game.Stats;
 import Map.Tile;
-import engine.Image;
 import engine.Pair;
 
-public class AdvancedFireTower extends FireTower
+public class MasterFireTower extends AdvancedFireTower
 {
 
-    public AdvancedFireTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission) {
-        super(Assets.ADVANCEDFIRETOWER, name, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+    public MasterFireTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission) {
+        super(name, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
     }
     @Override
     public void fire(Level level, Tile[] tiles, double passedTime)

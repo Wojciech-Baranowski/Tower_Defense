@@ -1,6 +1,7 @@
 package engine;
 
 import Game.*;
+import Game.gui.AdvancedUpgradeMenu;
 import Game.gui.BasicUpgradeMenu;
 import Game.gui.BuildMenu;
 import Game.gui.Gui;
@@ -37,9 +38,7 @@ public class World
         pause(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
-        Gui.update(pc, level, passedTime);
-        BuildMenu.update(pc, tiles, passedTime, level.getTileId());
-        BasicUpgradeMenu.update(pc, tiles, passedTime, level.getTileId());
+        Gui.update(pc, level, passedTime, tiles);
         if((paused == true) && (stats.getHp() > 0))
         {
             level.update(pc, tiles, passedTime);

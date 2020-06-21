@@ -41,7 +41,7 @@ public class FireTower extends Tower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new FireArrow(Assets.FIREARROW, (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, dmg, enemyId.second, enemyId.first));
+                bullets.add(new FireArrow(Assets.FIREARROW, (int)posX + 32, (int)posY + 4, Stats.fireBulletVelocity, Stats.fireDmg, enemyId.second, enemyId.first));
             }
         }
     }

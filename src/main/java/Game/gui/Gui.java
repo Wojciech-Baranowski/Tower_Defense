@@ -4,6 +4,7 @@ import Entities.Enemy;
 import Game.Assets;
 import Game.Level;
 import Game.Stats;
+import Map.Tile;
 import Map.Tower;
 import Map.Towers.AirTower;
 import engine.*;
@@ -23,9 +24,12 @@ public class Gui
     private static int cost = 0;
     public static int currentWaveId = -1;
     public static int currentEnemyId = -1;
-    public static void update(ProgramContainer pc, Level level, double passedTime)
+    public static void update(ProgramContainer pc, Level level, double passedTime, Tile[] tiles)
     {
         nextWave.onClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH(), level, passedTime);
+        BuildMenu.update(pc, tiles, passedTime, level.getTileId());
+        BasicUpgradeMenu.update(pc, tiles, passedTime, level.getTileId());
+        AdvancedUpgradeMenu.update(pc, tiles, passedTime, level.getTileId());
     }
     public static void render(ProgramContainer pc, Renderer r, Stats stats, Level level, double passedTime)
     {
@@ -52,6 +56,7 @@ public class Gui
         }
         BuildMenu.render(pc, r);
         BasicUpgradeMenu.render(pc, r);
+        AdvancedUpgradeMenu.render(pc, r);
         if(name != "")
         r.drawStaticText(pc, name, 16, 540, 0xFF000000, 3);
         if(dmg != 0)

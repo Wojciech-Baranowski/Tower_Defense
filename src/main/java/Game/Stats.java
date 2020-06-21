@@ -2,6 +2,7 @@ package Game;
 
 public class Stats
 {
+    //TODO: make those in arrays, add masters, finish towers, finish advanced upgrade menu
     public static int hp;
 
     public static int fire;

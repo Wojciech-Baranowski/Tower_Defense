@@ -2,6 +2,7 @@ package Map;
 import Entities.Enemy;
 import Entities.Particles.Bullet;
 import Game.Level;
+import Game.gui.AdvancedUpgradeMenu;
 import Game.gui.BasicUpgradeMenu;
 import Game.gui.BuildMenu;
 import Game.gui.Gui;
@@ -73,7 +74,14 @@ public abstract class Tower extends Tile implements Clickable
                 if(this.upgradeLvl == 1)
                 {
                     BuildMenu.close();
+                    AdvancedUpgradeMenu.close();
                     BasicUpgradeMenu.open(posX, posY, id, towerId, typePermission);
+                }
+                else if(this.upgradeLvl == 2)
+                {
+                    BuildMenu.close();
+                    BasicUpgradeMenu.close();
+                    AdvancedUpgradeMenu.open(posX, posY, id, towerId, typePermission);
                 }
                 if(this.getClass() == AirTower.class)
                     Gui.airTowerInfo((AirTower)(this));
