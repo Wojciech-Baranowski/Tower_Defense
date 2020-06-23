@@ -2,7 +2,6 @@ package Game;
 
 public class Stats
 {
-    //TODO: add masters, finish towers, finish advanced upgrade menu
     public static int hp;
     public static int[] resources;
     public static int[] damage;
