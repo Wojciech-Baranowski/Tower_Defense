@@ -53,6 +53,16 @@ public class Assets
     public static final Image ADVANCEDFIRETOWER = new Image("/towers/advancedFireTower.png",64, 64, 0);
     public static final Image ADVANCEDWATERTOWER = new Image("/towers/advancedWaterTower.png",64, 64, 0);
 
+    public static final Image MASTERAIRTOWER = new Image("/towers/masterAirTower.png",64, 64, 0);
+    public static final Image MASTEREARTHTOWER = new Image("/towers/masterEarthTower.png",64, 64, 0);
+    public static final Image MASTERFIRETOWER = new Image("/towers/masterFireTower.png",64, 64, 0);
+    public static final Image MASTERWATERTOWER = new Image("/towers/masterWaterTower.png",64, 64, 0);
+
+    public static final Image LIGHTINGTOWER = new Image("/towers/lightingTower.png",64, 64, 0);
+    public static final Image MAGMATOWER = new Image("/towers/magmaTower.png",64, 64, 0);
+    public static final Image ICETOWER = new Image("/towers/iceTower.png",64, 64, 0);
+    public static final Image LEAFTOWER = new Image("/towers/leafTower.png",64, 64, 0);
+
     public static final Image EARTHBOMB = new Image("/entities/bullets/earthBomb.png", 8, 8, 0);
     public static final Image FIREARROW = new Image("/entities/bullets/fireArrow.png", 8, 2, 0);
     public static final Image WATERBULLET = new Image("/entities/bullets/waterBullet.png", 4, 8, 0);

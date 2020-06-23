@@ -1,9 +1,6 @@
 package engine;
 
 import Game.*;
-import Game.gui.AdvancedUpgradeMenu;
-import Game.gui.BasicUpgradeMenu;
-import Game.gui.BuildMenu;
 import Game.gui.Gui;
 import Map.Tile;
 
@@ -50,7 +47,7 @@ public class World
     {
         r.drawStaticImage(pc, background, 0, 0);
         level.render(pc, r, tiles);
-        Gui.render(pc, r, stats, level, passedTime);
+        Gui.render(pc, r, level, passedTime);
     }
     public void pause(ProgramContainer pc)
     {

@@ -40,7 +40,7 @@ public class EarthTower extends Tower
             fireTimeStamp = passedTime;
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0) {
-                bullets.add(new EarthBomb(Assets.EARTHBOMB, (int)posX + 32, (int)posY + 4, Stats.earthBulletVelocity, Stats.earthDmg, enemyId.second, enemyId.first, Stats.getEarthSplashRange(), Stats.getEarthSplashDmgPercentage()));
+                bullets.add(new EarthBomb(Assets.EARTHBOMB, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[3], Stats.damage[3], enemyId.second, enemyId.first, Stats.earthSplashRange[0], Stats.earthSplashDmgPercentage[0]));
             }
         }
     }

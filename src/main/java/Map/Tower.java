@@ -8,6 +8,7 @@ import Game.gui.BuildMenu;
 import Game.gui.Gui;
 import Map.Towers.AdvancedAirTower;
 import Map.Towers.AirTower;
+import Map.Towers.MasterAirTower;
 import engine.*;
 import java.util.*;
 
@@ -87,6 +88,8 @@ public abstract class Tower extends Tile implements Clickable
                     Gui.airTowerInfo((AirTower)(this));
                 else if(this.getClass() == AdvancedAirTower.class)
                     Gui.airTowerInfo((AdvancedAirTower)(this));
+                else if(this.getClass() == MasterAirTower.class)
+                    Gui.airTowerInfo((MasterAirTower)(this));
                 else
                     Gui.towerInfo(this);
             }

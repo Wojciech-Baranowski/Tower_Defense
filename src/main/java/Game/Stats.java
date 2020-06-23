@@ -2,93 +2,30 @@ package Game;
 
 public class Stats
 {
-    //TODO: make those in arrays, add masters, finish towers, finish advanced upgrade menu
+    //TODO: add masters, finish towers, finish advanced upgrade menu
     public static int hp;
+    public static int[] resources;
+    public static int[] damage;
+    public static int[] range;
+    public static int[] bulletVelocity;
+    public static double[] fireDelay;
+    public static double[] airAttackSpeedBoost;
+    public static double[] airRangeBoost;
+    public static int[] earthSplashRange;
+    public static double[] earthSplashDmgPercentage;
 
-    public static int fire;
-    public static int air;
-    public static int water;
-    public static int earth;
-
-    public static int fireDmg;
-    public static int waterDmg;
-    public static int earthDmg;
-    public static int fireRange;
-    public static int airRange;
-    public static int waterRange;
-    public static int earthRange;
-    public static int fireBulletVelocity;
-    public static int waterBulletVelocity;
-    public static int earthBulletVelocity;
-    public static double fireFireDelay;
-    public static double waterFireDelay;
-    public static double earthFireDelay;
-    public static double airAttackSpeedBoost;
-    public static double airRangeBoost;
-    public static int earthSplashRange;
-    public static double earthSplashDmgPercentage;
-
-    public static int advancedFireDmg;
-    public static int advancedWaterDmg;
-    public static int advancedEarthDmg;
-    public static int advancedFireRange;
-    public static int advancedAirRange;
-    public static int advancedWaterRange;
-    public static int advancedEarthRange;
-    public static int advancedFireBulletVelocity;
-    public static int advancedWaterBulletVelocity;
-    public static int advancedEarthBulletVelocity;
-    public static double advancedFireFireDelay;
-    public static double advancedWaterFireDelay;
-    public static double advancedEarthFireDelay;
-    public static double advancedAirAttackSpeedBoost;
-    public static double advancedAirRangeBoost;
-    public static int advancedEarthSplashRange;
-    public static double advancedEarthSplashDmgPercentage;
-    public Stats(int hp, int fire, int water, int earth, int air, int fireDmg, int waterDmg, int earthDmg, int fireRange, int airRange, int waterRange, int earthRange, int fireBulletVelocity, int waterBulletVelocity, int earthBulletVelocity, double fireFireDelay, double waterFireDelay, double earthFireDelay, double airAttackSpeedBoost, double airRangeBoost, int earthSplashRange, double earthSplashDmgPercentage, int advancedFireDmg, int advancedWaterDmg, int advancedEarthDmg, int advancedFireRange, int advancedAirRange, int advancedWaterRange, int advancedEarthRange, int advancedFireBulletVelocity, int advancedWaterBulletVelocity, int advancedEarthBulletVelocity, double advancedFireFireDelay, double advancedWaterFireDelay, double advancedEarthFireDelay, double advancedAirAttackSpeedBoost, double advancedAirRangeBoost, int advancedEarthSplashRange, double advancedEarthSplashDmgPercentage)
+    public Stats(int hp, int[] resources, int[] damage, int[] range, int[] bulletVelocity, double[] fireDelay, double[] airAttackSpeedBoost, double[] airRangeBoost, int[] earthSplashRange, double[] earthSplashDmgPercentage)
     {
         this.hp = hp;
-
-        this.fire = fire;
-        this.water = water;
-        this.air = air;
-        this.earth = earth;
-
-        this.fireDmg = fireDmg;
-        this.waterDmg = waterDmg;
-        this.earthDmg = earthDmg;
-        this.fireRange = fireRange;
-        this.airRange = airRange;
-        this.waterRange = waterRange;
-        this.earthRange = earthRange;
-        this.fireBulletVelocity = fireBulletVelocity;
-        this.waterBulletVelocity = waterBulletVelocity;
-        this.earthBulletVelocity = earthBulletVelocity;
-        this.fireFireDelay = fireFireDelay;
-        this.waterFireDelay = waterFireDelay;
-        this.earthFireDelay = earthFireDelay;
+        this.resources = resources;
+        this.damage = damage;
+        this.range = range;
+        this.bulletVelocity = bulletVelocity;
+        this.fireDelay = fireDelay;
         this.airAttackSpeedBoost = airAttackSpeedBoost;
         this.airRangeBoost = airRangeBoost;
         this.earthSplashRange = earthSplashRange;
         this.earthSplashDmgPercentage = earthSplashDmgPercentage;
-
-        this.advancedFireDmg = advancedFireDmg;
-        this.advancedWaterDmg = advancedWaterDmg;
-        this.advancedEarthDmg = advancedEarthDmg;
-        this.advancedFireRange = advancedFireRange;
-        this.advancedAirRange = advancedAirRange;
-        this.advancedWaterRange = advancedWaterRange;
-        this.advancedEarthRange = advancedEarthRange;
-        this.advancedFireBulletVelocity = advancedFireBulletVelocity;
-        this.advancedWaterBulletVelocity = advancedWaterBulletVelocity;
-        this.advancedEarthBulletVelocity = advancedEarthBulletVelocity;
-        this.advancedFireFireDelay = advancedFireFireDelay;
-        this.advancedWaterFireDelay = advancedWaterFireDelay;
-        this.advancedEarthFireDelay = advancedEarthFireDelay;
-        this.advancedAirAttackSpeedBoost = advancedAirAttackSpeedBoost;
-        this.advancedAirRangeBoost = advancedAirRangeBoost;
-        this.advancedEarthSplashRange = advancedEarthSplashRange;
-        this.advancedEarthSplashDmgPercentage = advancedEarthSplashDmgPercentage;
     }
 
     public static void splitReward(int reward)
@@ -97,176 +34,60 @@ public class Stats
         {
             if((int)(Math.random() * 100) % 4 == 0)
             {
-                fire++;
+                resources[0]++;
             }
             else if((int)(Math.random() * 100) % 4 == 1)
             {
-                air++;
+                resources[1]++;
             }
             else if((int)(Math.random() * 100) % 4 == 2)
             {
-                water++;
+                resources[2]++;
             }
             else if((int)(Math.random() * 100) % 4 == 3)
             {
-                earth++;
+                resources[3]++;
             }
         }
     }
 
-    public int getHp() {
+    public static int getHp() {
         return hp;
     }
 
-    public int getFire() {
-        return fire;
+    public static int[] getResources() {
+        return resources;
     }
 
-    public int getWater() {
-        return water;
+    public static int[] getDamage() {
+        return damage;
     }
 
-    public int getAir() {
-        return air;
+    public static int[] getRange() {
+        return range;
     }
 
-    public int getEarth() {
-        return earth;
+    public static int[] getBulletVelocity() {
+        return bulletVelocity;
     }
 
-    public static int getFireDmg() {
-        return fireDmg;
+    public static double[] getFireDelay() {
+        return fireDelay;
     }
 
-    public static int getWaterDmg() {
-        return waterDmg;
-    }
-
-    public static int getEarthDmg() {
-        return earthDmg;
-    }
-
-    public static int getFireRange() {
-        return fireRange;
-    }
-
-    public static int getAirRange() {
-        return airRange;
-    }
-
-    public static int getWaterRange() {
-        return waterRange;
-    }
-
-    public static int getEarthRange() {
-        return earthRange;
-    }
-
-    public static int getEarthSplashRange() {
-        return earthSplashRange;
-    }
-
-    public static double getEarthSplashDmgPercentage() {
-        return earthSplashDmgPercentage;
-    }
-
-    public static int getFireBulletVelocity() {
-        return fireBulletVelocity;
-    }
-
-    public static int getWaterBulletVelocity() {
-        return waterBulletVelocity;
-    }
-
-    public static int getEarthBulletVelocity() {
-        return earthBulletVelocity;
-    }
-
-    public static double getFireFireDelay() {
-        return fireFireDelay;
-    }
-
-    public static double getWaterFireDelay() {
-        return waterFireDelay;
-    }
-
-    public static double getEarthFireDelay() {
-        return earthFireDelay;
-    }
-
-    public static double getAirAttackSpeedBoost() {
+    public static double[] getAirAttackSpeedBoost() {
         return airAttackSpeedBoost;
     }
 
-    public static double getAirRangeBoost() {
+    public static double[] getAirRangeBoost() {
         return airRangeBoost;
     }
 
-    public static int getAdvancedFireDmg() {
-        return advancedFireDmg;
+    public static int[] getEarthSplashRange() {
+        return earthSplashRange;
     }
 
-    public static int getAdvancedWaterDmg() {
-        return advancedWaterDmg;
-    }
-
-    public static int getAdvancedEarthDmg() {
-        return advancedEarthDmg;
-    }
-
-    public static int getAdvancedFireRange() {
-        return advancedFireRange;
-    }
-
-    public static int getAdvancedAirRange() {
-        return advancedAirRange;
-    }
-
-    public static int getAdvancedWaterRange() {
-        return advancedWaterRange;
-    }
-
-    public static int getAdvancedEarthRange() {
-        return advancedEarthRange;
-    }
-
-    public static int getAdvancedFireBulletVelocity() {
-        return advancedFireBulletVelocity;
-    }
-
-    public static int getAdvancedWaterBulletVelocity() {
-        return advancedWaterBulletVelocity;
-    }
-
-    public static int getAdvancedEarthBulletVelocity() {
-        return advancedEarthBulletVelocity;
-    }
-
-    public static double getAdvancedFireFireDelay() {
-        return advancedFireFireDelay;
-    }
-
-    public static double getAdvancedWaterFireDelay() {
-        return advancedWaterFireDelay;
-    }
-
-    public static double getAdvancedEarthFireDelay() {
-        return advancedEarthFireDelay;
-    }
-
-    public static double getAdvancedAirAttackSpeedBoost() {
-        return advancedAirAttackSpeedBoost;
-    }
-
-    public static double getAdvancedAirRangeBoost() {
-        return advancedAirRangeBoost;
-    }
-
-    public static int getAdvancedEarthSplashRange() {
-        return advancedEarthSplashRange;
-    }
-
-    public static double getAdvancedEarthSplashDmgPercentage() {
-        return advancedEarthSplashDmgPercentage;
+    public static double[] getEarthSplashDmgPercentage() {
+        return earthSplashDmgPercentage;
     }
 }

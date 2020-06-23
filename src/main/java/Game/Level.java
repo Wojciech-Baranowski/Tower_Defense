@@ -5,6 +5,7 @@ import Map.Tile;
 import Map.Towers.AdvancedAirTower;
 import Map.Towers.AdvancedFireTower;
 import Map.Towers.AirTower;
+import Map.Towers.MasterAirTower;
 import engine.Button;
 import engine.ProgramContainer;
 import engine.Renderer;
@@ -76,12 +77,12 @@ public class Level
         }
         for(int i = 0; i < 144; i++)
         {
-            if((tiles[i].getClass() != Road.class) && (tiles[i].getClass() != AirTower.class) && (tiles[i].getClass() != AdvancedAirTower.class))
+            if((tiles[i].getClass() != Road.class) && (tiles[i].getClass() != AirTower.class) && (tiles[i].getClass() != AdvancedAirTower.class) && (tiles[i].getClass() != AdvancedAirTower.class))
             tiles[i].render(pc, r);
         }
         for(int i = 0; i < 144; i++)
         {
-            if((tiles[i].getClass() == AirTower.class) || (tiles[i].getClass() == AdvancedAirTower.class))
+            if((tiles[i].getClass() == AirTower.class) || (tiles[i].getClass() == AdvancedAirTower.class) || (tiles[i].getClass() == MasterAirTower.class))
                 tiles[i].render(pc, r);
         }
         for(int j = 0; j < wavesAmount; j++)

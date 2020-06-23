@@ -35,39 +35,42 @@ public class BuildMenu implements Clickable
         {
             close();
         }
-        if((FIRE.isClick(pc, FIRE.getPosX(), FIRE.getPosY(), FIRE.getImg().getW(), FIRE.getImg().getH())) && (Stats.fire >= Prices.basicPrices[0]))
+        if((FIRE.isClick(pc, FIRE.getPosX(), FIRE.getPosY(), FIRE.getImg().getW(), FIRE.getImg().getH())) && (Stats.resources[0] >= Prices.basicPrices[0]))
         {
             close();
-            Stats.fire -= Prices.basicPrices[0];
+            Stats.resources[0] -= Prices.basicPrices[0];
             tileId[id] = 21;
-            tiles[id] = new FireTower("FireTower",(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.fireDmg, Stats.fireRange, Stats.fireFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            tiles[id] = new FireTower("FireTower",(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.damage[0], Stats.range[0], Stats.fireDelay[0], ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+            MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.air >= Prices.basicPrices[1]))
+        if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.resources[1] >= Prices.basicPrices[1]))
         {
             close();
-            Stats.air -= Prices.basicPrices[1];
+            Stats.resources[1] -= Prices.basicPrices[1];
             tileId[id] = 22;
-            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, 0, Stats.fireRange, 0, ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirAttackSpeedBoost(), Stats.getAirRangeBoost());
+            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.damage[1], Stats.range[1], Stats.fireDelay[1], ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirAttackSpeedBoost()[0], Stats.getAirRangeBoost()[0]);
         }
-        if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.water >= Prices.basicPrices[2]))
+        if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.resources[2] >= Prices.basicPrices[2]))
         {
             close();
-            Stats.water -= Prices.basicPrices[2];
+            Stats.resources[2] -= Prices.basicPrices[2];
             tileId[id] = 23;
-            tiles[id] = new WaterTower("WaterTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.waterDmg, Stats.waterRange, Stats.waterFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            tiles[id] = new WaterTower("WaterTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.damage[2], Stats.range[2], Stats.fireDelay[2], ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+            MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.earth >= Prices.basicPrices[3]))
+        if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.resources[3] >= Prices.basicPrices[3]))
         {
             close();
-            Stats.earth -= Prices.basicPrices[3];
+            Stats.resources[3] -= Prices.basicPrices[3];
             tileId[id] = 24;
-            tiles[id] = new EarthTower("EarthTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.earthDmg, Stats.earthRange, Stats.earthFireDelay, ((TowerPlace)(tiles[id])).getTypePermission());
+            tiles[id] = new EarthTower("EarthTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.damage[3], Stats.range[3], Stats.fireDelay[3], ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+            MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
     }
     public static void render(ProgramContainer pc, Renderer r)

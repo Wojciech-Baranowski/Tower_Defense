@@ -3,6 +3,7 @@ import Game.Assets;
 import Game.Prices;
 import Game.Stats;
 import Map.Tile;
+import Map.Tower;
 import Map.Towers.*;
 import engine.*;
 
@@ -37,39 +38,42 @@ public class BasicUpgradeMenu
         }
         if(UPGRADEBUTTON.isClick(pc, UPGRADEBUTTON.getPosX(), UPGRADEBUTTON.getPosY(), UPGRADEBUTTON.getImg().getW(), UPGRADEBUTTON.getImg().getH()))
         {
-            if((towerId == 1) && (Stats.fire >= Prices.advancedPrices[0]))
+            if((towerId == 1) && (Stats.resources[0] >= Prices.advancedPrices[0]))
             {
                 close();
-                Stats.fire -= Prices.advancedPrices[0];
+                Stats.resources[0] -= Prices.advancedPrices[0];
                 tileId[id] = 211;
-                tiles[id] = new AdvancedFireTower("AdvancedFireTower",(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 11, Stats.advancedFireDmg, Stats.advancedFireRange, Stats.advancedFireFireDelay, ((FireTower)(tiles[id])).getTypePermission());
+                tiles[id] = new AdvancedFireTower("AdvancedFireTower",(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 11, Stats.damage[4], Stats.range[4], Stats.fireDelay[4], ((Tower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+                MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             }
-            else if((towerId == 2) && (Stats.air >= Prices.advancedPrices[1]))
+            else if((towerId == 2) && (Stats.resources[1] >= Prices.advancedPrices[1]))
             {
                 close();
-                Stats.air -= Prices.advancedPrices[1];
+                Stats.resources[1] -= Prices.advancedPrices[1];
                 tileId[id] = 212;
-                tiles[id] = new AdvancedAirTower("AdvancedAirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 12, 0, Stats.advancedAirRange, 0, ((AirTower)(tiles[id])).getTypePermission(), Stats.getAdvancedAirAttackSpeedBoost(), Stats.getAdvancedAirRangeBoost());
+                tiles[id] = new AdvancedAirTower("AdvancedAirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 12, Stats.damage[5], Stats.range[5], Stats.fireDelay[5], ((Tower)(tiles[id])).getTypePermission(), Stats.airAttackSpeedBoost[1], Stats.airRangeBoost[1]);
             }
-            else if((towerId == 3) && (Stats.earth >= Prices.advancedPrices[2]))
+            else if((towerId == 3) && (Stats.resources[2] >= Prices.advancedPrices[2]))
             {
                 close();
-                Stats.water -= Prices.advancedPrices[2];
+                Stats.resources[2] -= Prices.advancedPrices[2];
                 tileId[id] = 213;
-                tiles[id] = new AdvancedWaterTower("AdvancedWaterTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 13, Stats.advancedWaterDmg, Stats.advancedWaterRange, Stats.advancedWaterFireDelay, ((WaterTower)(tiles[id])).getTypePermission());
+                tiles[id] = new AdvancedWaterTower("AdvancedWaterTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 13, Stats.damage[6], Stats.range[6], Stats.fireDelay[6], ((Tower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+                MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             }
-            else if((towerId == 4) && (Stats.earth >= Prices.advancedPrices[3]))
+            else if((towerId == 4) && (Stats.resources[3] >= Prices.advancedPrices[3]))
             {
                 close();
-                Stats.earth -= Prices.advancedPrices[3];
+                Stats.resources[3] -= Prices.advancedPrices[3];
                 tileId[id] = 214;
-                tiles[id] = new AdvancedEarthTower("AdvancedEarthTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 14, Stats.advancedEarthDmg, Stats.advancedEarthRange, Stats.advancedEarthFireDelay, ((EarthTower)(tiles[id])).getTypePermission());
+                tiles[id] = new AdvancedEarthTower("AdvancedEarthTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 14, Stats.damage[7], Stats.range[7], Stats.fireDelay[7], ((Tower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+                MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             }
         }
     }
