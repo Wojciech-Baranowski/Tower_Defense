@@ -36,7 +36,7 @@ public abstract class Enemy extends Entity implements Clickable
         this.reward = reward;
         this.alive = true;
         this.hp = maxHp;
-        healthBar = Assets.HEALTHBARFULL;
+        healthBar = new Image("/entities/healthBarFull.png", 16, 2, 0);
         healthUpdate(0);
     }
     public void update(ProgramContainer pc, double passedTime, Level level)

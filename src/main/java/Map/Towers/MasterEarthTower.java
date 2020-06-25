@@ -1,6 +1,6 @@
 package Map.Towers;
 
-import Entities.Particles.Bullets.EarthBomb;
+import Entities.Particles.Bullets.EarthBullet;
 import Game.Assets;
 import Game.Level;
 import Game.Stats;
@@ -20,7 +20,7 @@ public class MasterEarthTower extends AdvancedEarthTower
             fireTimeStamp = passedTime;
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0) {
-                bullets.add(new EarthBomb(Assets.EARTHBOMB, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[11], Stats.damage[11], enemyId.second, enemyId.first, Stats.earthSplashRange[2], Stats.earthSplashDmgPercentage[2]));
+                bullets.add(new EarthBullet(Assets.EARTHBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[11], Stats.damage[11], enemyId.second, enemyId.first, Stats.earthSplashRange[2], Stats.earthSplashDmgPercentage[2]));
             }
         }
     }

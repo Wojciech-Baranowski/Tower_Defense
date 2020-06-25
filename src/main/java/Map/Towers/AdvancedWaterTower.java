@@ -1,6 +1,6 @@
 package Map.Towers;
 
-import Entities.Particles.Bullets.FireArrow;
+import Entities.Particles.Bullets.FireBullet;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Assets;
 import Game.Level;

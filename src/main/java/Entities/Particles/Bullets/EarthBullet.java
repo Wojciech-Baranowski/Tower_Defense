@@ -4,12 +4,12 @@ import Entities.Particles.Bullet;
 import Game.Level;
 import engine.Image;
 
-public class EarthBomb extends Bullet
+public class EarthBullet extends Bullet
 {
     private boolean splashed;
     private int splashRange;
     private double splashPercentage;
-    public EarthBomb(Image img, int posX, int posY, float vel, int dmg, int targetId, int targetWaveId, int splashRange, double splashPercentage)
+    public EarthBullet(Image img, int posX, int posY, float vel, int dmg, int targetId, int targetWaveId, int splashRange, double splashPercentage)
     {
         super(img, posX, posY, vel, dmg, targetId, targetWaveId);
         this.splashed = false;

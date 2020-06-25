@@ -63,9 +63,10 @@ public class Assets
     public static final Image ICETOWER = new Image("/towers/iceTower.png",64, 64, 0);
     public static final Image LEAFTOWER = new Image("/towers/leafTower.png",64, 64, 0);
 
-    public static final Image EARTHBOMB = new Image("/entities/bullets/earthBomb.png", 8, 8, 0);
-    public static final Image FIREARROW = new Image("/entities/bullets/fireArrow.png", 8, 2, 0);
+    public static final Image EARTHBULLET = new Image("/entities/bullets/earthBullet.png", 8, 8, 0);
+    public static final Image FIREBULLET = new Image("/entities/bullets/fireBullet.png", 8, 2, 0);
     public static final Image WATERBULLET = new Image("/entities/bullets/waterBullet.png", 4, 8, 0);
+    public static final Image ICEBULLET = new Image("/entities/bullets/iceBullet.png", 5, 9, 0);
 
     public static final Font F25 = new Font("/fonts/font.png", 1184, 23);
     public static final Font F20 = new Font("/fonts/font2.png", 954, 18);
