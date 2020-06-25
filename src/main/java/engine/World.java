@@ -13,6 +13,7 @@ public class World
     public static long tickCount = 0;
     private boolean paused;
     private Image background;
+    private Field canvas;
 
     private Level level;
     private Tile[] tiles;
@@ -28,6 +29,7 @@ public class World
         prices = JSONReader.parseJSONPrices((FReader.read("data/prices.txt")));
         level = JSONReader.parseJSONLevel(FReader.read("levels/testLevel.txt"));
         level.levelInit(tiles);
+        canvas = new Field(new Image("/canvas.png", 1024, 576, 0), 0, 0);
     }
 
     public void update(ProgramContainer pc, double currentTime)
@@ -48,6 +50,7 @@ public class World
         r.drawStaticImage(pc, background, 0, 0);
         level.render(pc, r, tiles);
         Gui.render(pc, r, level, passedTime);
+        r.drawStaticImage(pc, canvas.getImg(), (int)canvas.getPosX(), (int)canvas.getPosY());
     }
     public void pause(ProgramContainer pc)
     {

@@ -6,9 +6,7 @@ import Map.Towers.AdvancedAirTower;
 import Map.Towers.AdvancedFireTower;
 import Map.Towers.AirTower;
 import Map.Towers.MasterAirTower;
-import engine.Button;
-import engine.ProgramContainer;
-import engine.Renderer;
+import engine.*;
 
 public class Level
 {
@@ -96,6 +94,7 @@ public class Level
                 waves[j].getEnemies()[i].healthBarRender(pc, r);
             }
         }
+
     }
     public void waveStartCheck(double passedTime)
     {
