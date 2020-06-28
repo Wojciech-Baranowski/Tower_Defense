@@ -13,7 +13,7 @@ public class World
     public static long tickCount = 0;
     private boolean paused;
     private Image background;
-    private Field canvas;
+    public static Field canvas;
 
     private Level level;
     private Tile[] tiles;

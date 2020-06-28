@@ -111,7 +111,7 @@ public class Gui
         if(enemy.getHp() > 0)
         {
             name = enemy.getName();
-            hp = enemy.getHp();
+            hp = (int)enemy.getHp();
             vel = enemy.getVel();
             cost = enemy.getCost();
             currentWaveId = wave;

@@ -12,7 +12,7 @@ import engine.Renderer;
 public abstract class Enemy extends Entity implements Clickable
 {
     String name;
-    protected int hp;
+    protected double hp;
     protected int maxHp;
     protected int cost;
     protected int direction;
@@ -192,7 +192,7 @@ public abstract class Enemy extends Entity implements Clickable
         return cost;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 

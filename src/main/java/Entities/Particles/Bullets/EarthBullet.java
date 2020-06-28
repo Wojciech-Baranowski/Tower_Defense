@@ -34,13 +34,7 @@ public class EarthBullet extends Bullet
                     {
                         if((Math.pow(level.getWaves()[i].getEnemies()[j].getPosX() - posX, 2) + Math.pow(level.getWaves()[i].getEnemies()[j].getPosY() - posY, 2) <= Math.pow(splashRange, 2)))
                         {
-                            level.getWaves()[i].getEnemies()[j].setHp(level.getWaves()[i].getEnemies()[j].getHp() - (int)((double)dmg * (splashPercentage)));
-                            if(level.getWaves()[i].getEnemies()[j].getHp() <= 0)
-                            {
-                                level.getWaves()[i].getEnemies()[j].setAlive(false);
-                                continue;
-                            }
-                            level.getWaves()[i].getEnemies()[j].healthUpdate(dmg);
+                            level.getWaves()[i].getEnemies()[j].healthUpdate((int)((double)dmg * (splashPercentage)));
                         }
                     }
                 }

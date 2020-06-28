@@ -129,7 +129,7 @@ public abstract class Tower extends Tile implements Clickable
     }
     protected boolean isInRange(Enemy enemy)
     {
-        if((int)Math.sqrt(Math.pow((enemy.getPosX() - posX), 2) + (int)Math.pow((enemy.getPosY() - posY), 2)) <= range)
+        if(Geometry.distance(enemy.getPosX(), enemy.getPosY(), posX, posY) <= range)
         return true;
         return false;
     }
