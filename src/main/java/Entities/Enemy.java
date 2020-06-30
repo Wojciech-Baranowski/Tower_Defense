@@ -142,8 +142,9 @@ public abstract class Enemy extends Entity implements Clickable
         }
 
     }
-    public void healthUpdate(int dmg)
+    public void healthUpdate(double dmg)
     {
+        System.out.println(dmg);
         hp -= dmg;
         if((hp <= 0) && (alive == true))
         {
@@ -152,7 +153,7 @@ public abstract class Enemy extends Entity implements Clickable
         }
         else if(hp > 0)
         {
-            for(int i = 15; i >= (16 * ((float)(hp) / (float)(maxHp))) - 1; i--)
+            for(int i = 15; i >= (int)((16 * ((float)(hp) / (float)(maxHp)))); i--)
             {
                 healthBar.getP()[i] = 0xFFFF0000;
                 healthBar.getP()[i + 16] = 0xFFFF0000;

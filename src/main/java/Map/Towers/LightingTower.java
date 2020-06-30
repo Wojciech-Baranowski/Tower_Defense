@@ -54,6 +54,6 @@ public class LightingTower extends Tower
     private void lightingBolt(Level level, int waveId, int enemyId, double x1, double y1, double x2, double y2, int color)
     {
         Geometry.line((int)x1, (int)y1, (int)x2, (int)y2, 3, color);
-        level.getWaves()[waveId].getEnemies()[enemyId].healthUpdate(Stats.damage[12] / 60);
+        level.getWaves()[waveId].getEnemies()[enemyId].healthUpdate((double)(Stats.damage[12]) / (double)(60));
     }
 }

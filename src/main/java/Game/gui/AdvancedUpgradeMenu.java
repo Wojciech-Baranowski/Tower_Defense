@@ -127,10 +127,7 @@ public class AdvancedUpgradeMenu
                 Stats.resources[0] -= Prices.masterPrices[6];
                 Stats.resources[3] -= Prices.masterPrices[7];
                 tileId[id] = 226;
-                tiles[id] = new MagmaTower("MagmaTower",(id % 16) * 64, (id / 16) * 64, id, 3, passedTime, 26, Stats.damage[13], Stats.range[13], Stats.fireDelay[13], ((Tower)(tiles[id])).getTypePermission());
-                AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
-                AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
-                MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
+                tiles[id] = new MagmaTower("MagmaTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 3, passedTime, 26, Stats.damage[13], Stats.range[13], Stats.fireDelay[13], ((Tower)(tiles[id])).getTypePermission());
             }
             else if(((towerId == 12) || (towerId == 13)) && (Stats.resources[1] >= Prices.masterPrices[8]) && (Stats.resources[2] >= Prices.masterPrices[9]))
             {

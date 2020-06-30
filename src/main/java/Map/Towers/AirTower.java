@@ -5,10 +5,7 @@ import Game.Level;
 import Game.Stats;
 import Map.Tile;
 import Map.Tower;
-import engine.Field;
-import engine.Image;
-import engine.ProgramContainer;
-import engine.Renderer;
+import engine.*;
 
 import java.util.Vector;
 
@@ -45,6 +42,7 @@ public class AirTower extends Tower
     {
         for(int i = 0; i < boostMark.size(); i++)
         {
+            if(pc.getWorld().getTiles()[((int)boostMark.get(i).getPosY() / 64) * 16 + ((int)boostMark.get(i).getPosX() / 64)].getClass() != MagmaTower.class)
             r.drawImage(pc, boostMark.get(i).getImg(), (int)boostMark.get(i).getPosX(), (int)boostMark.get(i).getPosY());
         }
     }
@@ -57,9 +55,9 @@ public class AirTower extends Tower
     {
         for(int i = 0; i < 144; i++)
         {
-            if((tiles[i].getClass() == FireTower.class) || (tiles[i].getClass() == WaterTower.class) || (tiles[i].getClass() == EarthTower.class) || (tiles[i].getClass() == AdvancedFireTower.class) || (tiles[i].getClass() == AdvancedWaterTower.class) || (tiles[i].getClass() == AdvancedEarthTower.class) || (tiles[i].getClass() == MasterFireTower.class) || (tiles[i].getClass() == MasterAirTower.class) || (tiles[i].getClass() == MasterWaterTower.class)  || (tiles[i].getClass() == MasterEarthTower.class) || (tiles[i].getClass() == LightingTower.class) || (tiles[i].getClass() == MagmaTower.class) || (tiles[i].getClass() == IceTower.class) || (tiles[i].getClass() == LeafTower.class))
+            if((tiles[i].getClass() == FireTower.class) || (tiles[i].getClass() == WaterTower.class) || (tiles[i].getClass() == EarthTower.class) || (tiles[i].getClass() == AdvancedFireTower.class) || (tiles[i].getClass() == AdvancedWaterTower.class) || (tiles[i].getClass() == AdvancedEarthTower.class) || (tiles[i].getClass() == MasterFireTower.class) || (tiles[i].getClass() == MasterAirTower.class) || (tiles[i].getClass() == MasterWaterTower.class)  || (tiles[i].getClass() == MasterEarthTower.class) || (tiles[i].getClass() == LightingTower.class) || (tiles[i].getClass() == IceTower.class) || (tiles[i].getClass() == LeafTower.class))
             {
-                if(Math.pow((tiles[i].getPosX() - posX), 2) + Math.pow((tiles[i].getPosY() - posY), 2) <= Math.pow(range, 2))
+                if(Geometry.distance(posX, posY, tiles[i].getPosX(), tiles[i].getPosY()) <= range)
                 {
                     ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() / (1 + Stats.airAttackSpeedBoost[0]));
                     ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() * (1 + Stats.airRangeBoost[0])));

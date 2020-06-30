@@ -42,6 +42,7 @@ public class Assets
 
     public static final Image SUMMONINGTILE = new Image("/towers/summoningTile.png", 64, 64, 0);
     public static final Image BOOSTMARK = new Image("/towers/boostMark.png",64, 64, 0);
+    public static final Image MAGMA = new Image("/towers/magma.png", 64, 64, 0);
 
     public static final Image AIRTOWER = new Image("/towers/airTower.png",64, 64, 0);
     public static final Image EARTHTOWER = new Image("/towers/earthTower.png",64, 64, 0);

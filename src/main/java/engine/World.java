@@ -63,5 +63,8 @@ public class World
             paused = true;
         }
     }
+    public Tile[] getTiles() {
+        return tiles;
+    }
 }
 
