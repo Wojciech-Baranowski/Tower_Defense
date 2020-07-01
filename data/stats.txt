@@ -10,4 +10,5 @@
 	"earthSplashRange": [50, 55, 60],
 	"earthSplashDmgPercentage": [0.15, 0.2, 0.25],
 	"iceHeadshotChance": 0.5,
+	"leafSlowPercentage": 0.2,
 }

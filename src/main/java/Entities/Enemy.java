@@ -21,9 +21,12 @@ public abstract class Enemy extends Entity implements Clickable
     protected int wave;
     protected int id;
     protected int reward;
+    protected double velocityPercentage;
     protected Image healthBar;
     protected boolean alive;
-    public Enemy(String name, Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id, int reward) {
+    protected double slowDuration;
+    public Enemy(String name, Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id, int reward)
+    {
         super(img, posX, posY, vel);
         this.name = name;
         this.vel = vel;
@@ -36,6 +39,8 @@ public abstract class Enemy extends Entity implements Clickable
         this.reward = reward;
         this.alive = true;
         this.hp = maxHp;
+        this.velocityPercentage = 1;
+        this.slowDuration = 0;
         healthBar = new Image("/entities/healthBarFull.png", 16, 2, 0);
         healthUpdate(0);
     }
@@ -45,6 +50,10 @@ public abstract class Enemy extends Entity implements Clickable
         {
             onClick(pc, posX, posY, img.getW(), img.getH());
             move(level.getTileId());
+            if(slowDuration <= 0)
+                velocityPercentage = 1;
+            else
+                slowDuration -= (1.0 / 60.0);
             if(hasPassed())
             {
                 Stats.hp -= cost;
@@ -121,13 +130,13 @@ public abstract class Enemy extends Entity implements Clickable
         if(isOnMap())
         {
             if(direction == 1)
-                posY -= vel;
+                posY -= vel * velocityPercentage;
             if(direction == 2)
-                posX += vel;
+                posX += vel * velocityPercentage;
             if(direction == 3)
-                posY += vel;
+                posY += vel * velocityPercentage;
             if(direction == 4)
-                posX -= vel;
+                posX -= vel * velocityPercentage;
         }
         else
         {
@@ -144,7 +153,6 @@ public abstract class Enemy extends Entity implements Clickable
     }
     public void healthUpdate(double dmg)
     {
-        System.out.println(dmg);
         hp -= dmg;
         if((hp <= 0) && (alive == true))
         {
@@ -217,4 +225,14 @@ public abstract class Enemy extends Entity implements Clickable
         return name;
     }
 
+    public double getVelocityPercentage() {
+        return velocityPercentage;
+    }
+    public void setVelocityPercentage(double velocityPercentage) {
+        this.velocityPercentage = velocityPercentage;
+    }
+
+    public void setSlowDuration(double slowDuration) {
+        this.slowDuration = slowDuration;
+    }
 }

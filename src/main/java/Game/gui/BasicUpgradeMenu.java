@@ -221,10 +221,10 @@ public class BasicUpgradeMenu
         r.drawStaticImage(pc, AIR.getImg(), (int)AIR.getPosX(), (int)AIR.getPosY());
         r.drawStaticImage(pc, WATER.getImg(), (int)WATER.getPosX(), (int)WATER.getPosY());
         r.drawStaticImage(pc, EARTH.getImg(), (int)EARTH.getPosX(), (int)EARTH.getPosY());
-        r.drawStaticText(pc, "" + Prices.advancedPrices[0], (int)FIRE.getPosX() + 28, (int)FIRE.getPosY() + 16, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + Prices.advancedPrices[1], (int)AIR.getPosX() + 28, (int)AIR.getPosY() + 16, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + Prices.advancedPrices[2], (int)WATER.getPosX() + 28, (int)WATER.getPosY() + 16, 0xFF000000, 3);
-        r.drawStaticText(pc, "" + Prices.advancedPrices[3], (int)EARTH.getPosX() + 28, (int)EARTH.getPosY() + 16, 0xFF000000, 3);
+        r.drawStaticText(pc, "" + Prices.advancedPrices[0], (int)FIRE.getPosX() + 28, (int)FIRE.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Prices.advancedPrices[1], (int)AIR.getPosX() + 28, (int)AIR.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Prices.advancedPrices[2], (int)WATER.getPosX() + 28, (int)WATER.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Prices.advancedPrices[3], (int)EARTH.getPosX() + 28, (int)EARTH.getPosY() + 16, 0xFF000000, 10);
         r.drawStaticImage(pc, FIREM.getImg(), (int)FIREM.getPosX(), (int)FIREM.getPosY());
         r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
         r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());

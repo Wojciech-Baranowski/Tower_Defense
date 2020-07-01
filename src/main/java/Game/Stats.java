@@ -13,8 +13,9 @@ public class Stats
     public static int[] earthSplashRange;
     public static double[] earthSplashDmgPercentage;
     public static double iceHeadshotChance;
+    public static double leafSlowPercentage;
 
-    public Stats(int hp, int[] resources, int[] damage, int[] range, int[] bulletVelocity, double[] fireDelay, double[] airAttackSpeedBoost, double[] airRangeBoost, int[] earthSplashRange, double[] earthSplashDmgPercentage, double iceHeadshotChance)
+    public Stats(int hp, int[] resources, int[] damage, int[] range, int[] bulletVelocity, double[] fireDelay, double[] airAttackSpeedBoost, double[] airRangeBoost, int[] earthSplashRange, double[] earthSplashDmgPercentage, double iceHeadshotChance, double leafSlowPercentage)
     {
         this.hp = hp;
         this.resources = resources;
@@ -27,6 +28,7 @@ public class Stats
         this.earthSplashRange = earthSplashRange;
         this.earthSplashDmgPercentage = earthSplashDmgPercentage;
         this.iceHeadshotChance = iceHeadshotChance;
+        this.leafSlowPercentage = leafSlowPercentage;
     }
 
     public static void splitReward(int reward)
@@ -94,5 +96,9 @@ public class Stats
 
     public static double getIceHeadshotChance() {
         return iceHeadshotChance;
+    }
+
+    public static double getLeafSlowPercentage() {
+        return leafSlowPercentage;
     }
 }

@@ -18,19 +18,26 @@ public class Assets
     public static final Image HEALTHBARFULL = new Image("/entities/healthBarFull.png", 16, 2, 0);
 
     public static final Image MENU = new Image("/gui/buildMenu.png", 128, 160, 0);
+    public static final Image CLOSER = new Image("/gui/menuCloser.png", 16, 16, 0);
+
     public static final Image BASICUPGRADEMENU = new Image("/gui/basicUpgradeMenu.png", 128, 128, 0);
     public static final Image ADVANCEDUPGRADEMENU = new Image("/gui/advancedUpgradeMenu.png", 224, 128, 0);
-    public static final Image CLOSER = new Image("/gui/menuCloser.png", 16, 16, 0);
+
     public static final Image UPGRADEBUTTON48 = new Image("/gui/upgradeMenuArrow.png", 48, 48, 0);
     public static final Image UPGRADEBUTTON64 = new Image("/gui/upgradeMenuArrow.png", 64, 64, 0);
+
+    public static final Image HP = new Image("/emblems/hp.png", 36, 36, 0);
+
     public static final Image FIRE64 = new Image("/emblems/fire.png",  64, 64, 0);
     public static final Image AIR64 = new Image("/emblems/air.png", 64, 64, 0);
     public static final Image WATER64 = new Image("/emblems/water.png", 64, 64, 0);
     public static final Image EARTH64 = new Image("/emblems/earth.png", 64, 64, 0);
+
     public static final Image FIRE48 = new Image("/emblems/fire.png",  48, 48, 0);
     public static final Image AIR48 = new Image("/emblems/air.png", 48, 48, 0);
     public static final Image WATER48 = new Image("/emblems/water.png", 48, 48, 0);
     public static final Image EARTH48 = new Image("/emblems/earth.png", 48, 48, 0);
+
     public static final Image FIRE32 = new Image("/emblems/fire.png", 32, 32, 0);
     public static final Image AIR32 = new Image("/emblems/air.png", 32, 32, 0);
     public static final Image WATER32 = new Image("/emblems/water.png", 32, 32, 0);
@@ -68,13 +75,9 @@ public class Assets
     public static final Image FIREBULLET = new Image("/entities/bullets/fireBullet.png", 8, 2, 0);
     public static final Image WATERBULLET = new Image("/entities/bullets/waterBullet.png", 4, 8, 0);
     public static final Image ICEBULLET = new Image("/entities/bullets/iceBullet.png", 5, 9, 0);
+    public static final Image LEAFBULLET = new Image("/entities/bullets/leafBullet.png", 8, 6, 0);
 
-    public static final Font F25 = new Font("/fonts/font.png", 1184, 23);
-    public static final Font F20 = new Font("/fonts/font2.png", 954, 18);
-    public static final Font F15 = new Font("/fonts/font3.png", 688, 13);
-    public static final Font FB25 = new Font("/fonts/fontB.png", 1500, 25);
-    public static final Font FB20 = new Font("/fonts/font2B.png", 1000, 17);
-    public static final Font FB15 = new Font("/fonts/font3B.png", 1000, 15);
+    public static final Font FONT = new Font("/fonts/fontB.png", 1500, 25);
 
     public static final Animation SUMMONINGTILEANIMA = new Animation("/towers/summoningTileAnimation.png", 6, 64, 64, 4);
 

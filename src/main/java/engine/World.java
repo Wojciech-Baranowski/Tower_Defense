@@ -51,6 +51,7 @@ public class World
         level.render(pc, r, tiles);
         Gui.render(pc, r, level, passedTime);
         r.drawStaticImage(pc, canvas.getImg(), (int)canvas.getPosX(), (int)canvas.getPosY());
+        r.drawStaticText(pc, "qwertyuiopasdfghjkl", 100, 100, 0xFF000000, 20);
     }
     public void pause(ProgramContainer pc)
     {

@@ -8,16 +8,10 @@ public class Renderer
 {
     private int pW, pH;
     private int[] p;
-    private Font[] font;
+    private Font font;
     Renderer(ProgramContainer pc)
     {
-        font = new Font[6];
-        font[0] = Assets.F25;
-        font[1] = Assets.F20;
-        font[2] = Assets.F15;
-        font[3] = Assets.FB25;
-        font[4] = Assets.FB20;
-        font[5] = Assets.FB15;
+        font = Assets.FONT;
         pW = pc.getWidth();
         pH = pc.getHeight();
         p = ((DataBufferInt)pc.getWindow().getImage().getRaster().getDataBuffer()).getData();
@@ -36,45 +30,44 @@ public class Renderer
         return;
         p[x + y * pW] = value;
     }
-    public void drawText(ProgramContainer pc, String text, int offX, int offY, int color, int type)
+    public void drawText(ProgramContainer pc, String text, int offX, int offY, int color, int size)
     {
         int offset = 0;
         for(int i = 0; i < text.length(); i++)
         {
             int unicode = text.codePointAt(i) - 32;
 
-            for(int y = 0; y < font[type].getFontImage().getH(); y++)
+            for(int y = 0; y < font.getLetters()[size / 2][unicode].getH(); y++)
             {
-                for(int x = 0; x < font[type].getWidths()[unicode]; x++)
+                for(int x = 0; x < font.getLetters()[size / 2][unicode].getW(); x++)
                 {
-                    if(font[type].getFontImage().getP()[(x + font[type].getOffsets()[unicode]) + y * font[type].getFontImage().getW()] == 0xFF000000)
+                    if(font.getLetters()[size / 2][unicode].getP()[x + y * font.getLetters()[size / 2][unicode].getW()] == 0xFF000000)
                     {
-                        setPixel(x + offX + offset + pc.getCamera().offX, y + offY + pc.getCamera().offY, color);
+                        setPixel(x + offX + offset + pc.getCamera().offX, y + offY, color + pc.getCamera().offY);
                     }
                 }
             }
-            offset += font[type].getWidths()[unicode];
+            offset += font.getLetters()[size / 2][unicode].getW();
         }
     }
-    public void drawStaticText(ProgramContainer pc, String text, int offX, int offY, int color, int type)
+    public void drawStaticText(ProgramContainer pc, String text, int offX, int offY, int color, int size)
     {
         int offset = 0;
-
         for(int i = 0; i < text.length(); i++)
         {
             int unicode = text.codePointAt(i) - 32;
 
-            for(int y = 0; y < font[type].getFontImage().getH(); y++)
+            for(int y = 0; y < font.getLetters()[size / 2][unicode].getH(); y++)
             {
-                for(int x = 0; x < font[type].getWidths()[unicode]; x++)
+                for(int x = 0; x < font.getLetters()[size / 2][unicode].getW(); x++)
                 {
-                    if(font[type].getFontImage().getP()[(x + font[type].getOffsets()[unicode]) + y * font[type].getFontImage().getW()] == 0xFF000000)
+                    if(font.getLetters()[size / 2][unicode].getP()[x + y * font.getLetters()[size / 2][unicode].getW()] == 0xFF000000)
                     {
                         setPixel(x + offX + offset, y + offY, color);
                     }
                 }
             }
-            offset += font[type].getWidths()[unicode];
+            offset += font.getLetters()[size / 2][unicode].getW();
         }
     }
     public void drawImage(ProgramContainer pc, Image image, int offX, int offY)

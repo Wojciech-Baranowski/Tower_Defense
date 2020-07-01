@@ -1,14 +1,18 @@
 package engine;
 
+import Game.Assets;
+
 public class Font
 {
     private Image fontImage;
+    private Image[][] letters;
     private int[] offsets;
     private int[] widths;
 
     public Font(String path, int width, int height)
     {
         fontImage = new Image(path, width, height, 0);
+        letters = new Image[50][96];
         offsets = new int[96];
         widths = new int[96];
 
@@ -23,6 +27,18 @@ public class Font
             if(fontImage.getP()[i] == 0xFFFFFF00)
             {
                 widths[unicode] = i - offsets[unicode] + 1;
+                for(int l = 0; l < 50; l++)
+                {
+                    letters[l][unicode] = new Image(widths[unicode], height, 0);
+                    for(int j = offsets[unicode]; j <= i; j++)
+                    {
+                        for(int k = 0; k < height; k++)
+                        {
+                            letters[l][unicode].getP()[j - offsets[unicode] + k * widths[unicode]] = fontImage.getP()[j + k * width];
+                        }
+                    }
+                    letters[l][unicode].rescale((int)((double)letters[l][unicode].getW() * ((double)(l * 2) / (double)letters[l][unicode].getH())), l * 2);
+                }
                 unicode++;
             }
         }
@@ -38,5 +54,9 @@ public class Font
 
     public int[] getWidths() {
         return widths;
+    }
+
+    public Image[][] getLetters() {
+        return letters;
     }
 }

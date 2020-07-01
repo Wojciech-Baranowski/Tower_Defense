@@ -26,8 +26,7 @@ public class Image
         }
         w = image.getWidth();
         h = image.getHeight();
-        r = image.getRGB(0, 0, w, h, null, 0, w);
-        p = new int[width * height];
+        p = image.getRGB(0, 0, w, h, null, 0, w);
         rescale(width, height);
         image.flush();
     }
@@ -41,6 +40,12 @@ public class Image
 
     public void rescale(int nWidth, int nHeight)
     {
+        int[] r = new int[p.length];
+        for(int i = 0; i < p.length; i++)
+        {
+            r[i] = p[i];
+        }
+        p = new int[nWidth * nHeight];
         double sw = ((double)(nWidth) / (double)(w));
         double sh = ((double)(nHeight) / (double)(h));
         for(int j = 0; j < nHeight; j++)
