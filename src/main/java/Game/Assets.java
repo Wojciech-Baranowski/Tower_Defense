@@ -9,7 +9,7 @@ public class Assets
     public static final Image BLANK = new Image("/blank.png", 1, 1, 0);
     public static final Image BLANK64 = new Image("/blank.png", 64, 64, 0);
     public static final Image DEFAULTFIELD = new Image("/defaultField.png", 1, 1, 0);
-    public static final Image BACKGROUND = new Image("/background.png", 1024, 576, 1);
+    public static final Image BACKGROUND = new Image("/background.png", 1024, 576, 0);
 
     public static final Image CRYSTALBALL = new Image("/entities/crystalBall.png", 16, 16, 0);
     public static final Image CRYSTALSHARD = new Image("/entities/crystalShard.png", 16, 16, 0);
@@ -26,7 +26,7 @@ public class Assets
     public static final Image UPGRADEBUTTON48 = new Image("/gui/upgradeMenuArrow.png", 48, 48, 0);
     public static final Image UPGRADEBUTTON64 = new Image("/gui/upgradeMenuArrow.png", 64, 64, 0);
 
-    public static final Image HP = new Image("/emblems/hp.png", 36, 36, 0);
+    public static final Image HP = new Image("/emblems/hp.png", 24, 24, 0);
 
     public static final Image FIRE64 = new Image("/emblems/fire.png",  64, 64, 0);
     public static final Image AIR64 = new Image("/emblems/air.png", 64, 64, 0);
@@ -43,9 +43,9 @@ public class Assets
     public static final Image WATER32 = new Image("/emblems/water.png", 32, 32, 0);
     public static final Image EARTH32 = new Image("/emblems/earth.png",  32, 32, 0);
 
-    public static final Image GUI = new Image("/gui/gui.png", 1024, 576, 0xFF641D54);
-    public static final Image GUIBUTTON = new Image("/gui/guiButton.png", 96, 48, 0xFF641D54);
-    public static final Image GUIBUTTONCLICKED = new Image("/gui/guiButtonClicked.png", 96, 48, 0xFF641D54);
+    public static final Image GUI = new Image("/gui/gui.png", 1024, 576, 0);
+    public static final Image GUIBUTTON = new Image("/gui/guiButton.png", 48, 48, 0);
+    public static final Image GUIBUTTONCLICKED = new Image("/gui/guiButtonClicked.png", 48, 48, 0);
 
     public static final Image SUMMONINGTILE = new Image("/towers/summoningTile.png", 64, 64, 0);
     public static final Image BOOSTMARK = new Image("/towers/boostMark.png",64, 64, 0);
@@ -77,7 +77,7 @@ public class Assets
     public static final Image ICEBULLET = new Image("/entities/bullets/iceBullet.png", 5, 9, 0);
     public static final Image LEAFBULLET = new Image("/entities/bullets/leafBullet.png", 8, 6, 0);
 
-    public static final Font FONT = new Font("/fonts/fontB.png", 1500, 25);
+    public static final Font FONT = new Font("/fonts/sansBold.png", 2310, 40);
 
     public static final Animation SUMMONINGTILEANIMA = new Animation("/towers/summoningTileAnimation.png", 6, 64, 64, 4);
 

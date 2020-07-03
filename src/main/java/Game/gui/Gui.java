@@ -12,10 +12,9 @@ import engine.*;
 public class Gui
 {
     private static final Field background = new Field(Assets.GUI, 0, 0);
-    private static NextWaveButton nextWave = new NextWaveButton(Assets.GUIBUTTON, Assets.GUIBUTTONCLICKED, 912, 200);
-    private static Field hpEmblem = new Field(Assets.HP, 900, 10);
-    //private static Field test = new Field(Assets.FONT.getLetters()[38], 100, 100);
-    private static Field[] resourcesEmblem = new Field[]{new Field(Assets.FIRE32, 900, 48), new Field(Assets.AIR32, 900, 80), new Field(Assets.WATER32, 900, 112), new Field(Assets.EARTH32, 900, 144)};
+    private static NextWaveButton nextWave = new NextWaveButton(Assets.GUIBUTTON, Assets.GUIBUTTONCLICKED, 976, 296);
+    private static Field hpEmblem = new Field(Assets.HP, 940, 100);
+    private static Field[] resourcesEmblem = new Field[]{new Field(Assets.FIRE32, 938, 134), new Field(Assets.AIR32, 938, 174), new Field(Assets.WATER32, 938, 214), new Field(Assets.EARTH32, 938, 254)};
     private static String name = "";
     private static int dmg = 0;
     private static double attackSpeed = 0;
@@ -29,6 +28,10 @@ public class Gui
     public static int currentEnemyId = -1;
     public static void update(ProgramContainer pc, Level level, double passedTime, Tile[] tiles)
     {
+        resourcesEmblem[0].setImg(Assets.FIREANIMA32.updateLoop(resourcesEmblem[0].getImg(), World.tickCount));
+        resourcesEmblem[1].setImg(Assets.AIRANIMA32.updateLoop(resourcesEmblem[1].getImg(), World.tickCount));
+        resourcesEmblem[2].setImg(Assets.WATERANIMA32.updateLoop(resourcesEmblem[2].getImg(), World.tickCount));
+        resourcesEmblem[3].setImg(Assets.EARTHANIMA32.updateLoop(resourcesEmblem[3].getImg(), World.tickCount));
         nextWave.onClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH(), level, passedTime);
         BuildMenu.update(pc, tiles, passedTime, level.getTileId());
         BasicUpgradeMenu.update(pc, tiles, passedTime, level.getTileId());
@@ -37,27 +40,26 @@ public class Gui
     public static void render(ProgramContainer pc, Renderer r, Level level, double passedTime)
     {
         r.drawStaticImage(pc, background.getImg(), (int)background.getPosX(), (int)background.getPosY());
-        r.drawStaticText(pc, "    " + Stats.getHp(), 912, 16, 0xFF000000, 20);
-        r.drawStaticText(pc, "   " + Stats.resources[0], 912, 48, 0xFF000000, 20);
-        r.drawStaticText(pc, "   " + Stats.resources[1], 912, 80, 0xFF000000, 20);
-        r.drawStaticText(pc, "   " + Stats.resources[2], 912, 112, 0xFF000000, 20);
-        r.drawStaticText(pc, "   " + Stats.resources[3], 912, 144, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.getHp(), 970, 98, 0xFFbcbcbc, 28);
+        r.drawStaticText(pc, "" + Stats.resources[0], 970, 140, 0xFFbcbcbc, 24);
+        r.drawStaticText(pc, "" + Stats.resources[1], 970, 180, 0xFFbcbcbc, 24);
+        r.drawStaticText(pc, "" + Stats.resources[2], 970, 220, 0xFFbcbcbc, 24);
+        r.drawStaticText(pc, "" + Stats.resources[3], 970, 260, 0xFFbcbcbc, 24);
         r.drawStaticImage(pc, hpEmblem.getImg(), (int)hpEmblem.getPosX(), (int)hpEmblem.getPosY());
         for(int i = 0; i < resourcesEmblem.length; i++)
             r.drawStaticImage(pc, resourcesEmblem[i].getImg(), (int)resourcesEmblem[i].getPosX(), (int)resourcesEmblem[i].getPosY());
-        r.drawStaticText(pc, "Wave: " + (level.getCurrentWave() + 1) + "/" + level.getWavesAmount(), 912, 176, 0xFF000000, 15);
+        r.drawStaticText(pc, "Wave: " + (level.getCurrentWave() + 1) + "/" + level.getWavesAmount(), 884, 20, 0xFFbcbcbc, 24);
         r.drawStaticImage(pc, nextWave.getImg(), (int)nextWave.getPosX(), (int)nextWave.getPosY());
-        //r.drawStaticImage(pc, test.getImg(), (int)test.getPosX(), (int)test.getPosY());
-        r.drawStaticText(pc, "Next wave in:", 914, 204, 0xFF000000, 10);
+        r.drawStaticText(pc, "Next wave in:", 884, 64, 0xFFbcbcbc, 16);
         if(level.getCurrentWave() >= 0)
         {
             if((level.getCurrentWave() + 1 < level.getWavesAmount()) && (level.getWaveDelay()[level.getCurrentWave()] - passedTime + level.getWaves()[level.getCurrentWave()].getTimeStamp() >= 0))
             {
-                r.drawStaticText(pc, "" + (double)((int)((level.getWaveDelay()[level.getCurrentWave()] - passedTime + level.getWaves()[level.getCurrentWave()].getTimeStamp()) * 10)) / (double)(10), 940, 224, 0xFF000000, 15);
+                r.drawStaticText(pc, "" + (double)((int)((level.getWaveDelay()[level.getCurrentWave()] - passedTime + level.getWaves()[level.getCurrentWave()].getTimeStamp()) * 10)) / (double)(10), 980, 62, 0xFFbcbcbc, 20);
             }
             else
             {
-                r.drawStaticText(pc, "OO", 940, 224, 0xFF000000, 15);
+                r.drawStaticText(pc, "OO", 980, 62, 0xFFbcbcbc, 20);
 
             }
         }
@@ -65,23 +67,23 @@ public class Gui
         BasicUpgradeMenu.render(pc, r);
         AdvancedUpgradeMenu.render(pc, r);
         if(name != "")
-        r.drawStaticText(pc, name, 16, 540, 0xFF000000, 10);
+        r.drawStaticText(pc, name, 16, 540, 0xFFbcbcbc, 24);
         if(dmg != 0)
-        r.drawStaticText(pc,"Damage:   " + dmg, 320, 540, 0xFF000000, 10);
+        r.drawStaticText(pc,"Damage:   " + dmg, 320, 540, 0xFFbcbcbc, 24);
         if(attackSpeed != 0)
-        r.drawStaticText(pc,"Attack Speed:   " + ((double)((int)(attackSpeed * 100)) / 100), 512, 540, 0xFF000000, 10);
+        r.drawStaticText(pc,"Attack Speed:   " + ((double)((int)(attackSpeed * 100)) / 100), 512, 540, 0xFFbcbcbc, 24);
         if(range != 0)
-        r.drawStaticText(pc,"Range:   " + range, 784, 540, 0xFF000000, 10);
+        r.drawStaticText(pc,"Range:   " + range, 784, 540, 0xFFbcbcbc, 24);
         if(attackSpeedBoost != 0)
-            r.drawStaticText(pc,"Attack Speed Boost:  +" + ((double)((int)(attackSpeedBoost * 100)) / 100) + "%", 256, 540, 0xFF000000, 10);
+            r.drawStaticText(pc,"Attack Speed Boost:  +" + ((double)((int)(attackSpeedBoost * 100)) / 100) + "%", 256, 540, 0xFFbcbcbc, 24);
         if(rangeBoost != 0)
-            r.drawStaticText(pc,"Range Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 720, 540, 0xFF000000, 10);
+            r.drawStaticText(pc,"Range Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 720, 540, 0xFFbcbcbc, 24);
         if(hp != 0)
-            r.drawStaticText(pc,"Hp:   " + hp, 320, 540, 0xFF000000, 10);
+            r.drawStaticText(pc,"Hp:   " + hp, 320, 540, 0xFFbcbcbc, 24);
         if(vel != 0)
-            r.drawStaticText(pc,"Velocity:   " + ((double)((int)(vel * 100)) / 100), 512, 540, 0xFF000000, 10);
+            r.drawStaticText(pc,"Velocity:   " + ((double)((int)(vel * 100)) / 100), 512, 540, 0xFFbcbcbc, 24);
         if(cost != 0)
-            r.drawStaticText(pc,"Cost:   " + cost, 784, 540, 0xFF000000, 10);
+            r.drawStaticText(pc,"Cost:   " + cost, 784, 540, 0xFFbcbcbc, 24);
     }
     private static void clear()
     {

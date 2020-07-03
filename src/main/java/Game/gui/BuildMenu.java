@@ -108,7 +108,7 @@ public class BuildMenu implements Clickable
         else if((posY >= 192) && (posY < 544) && (posX >= 832))
         {
             x = -140;
-            y = -32;
+            y = 0;
         }
         else if((posY >= 544) && (posX >= 832))
         {

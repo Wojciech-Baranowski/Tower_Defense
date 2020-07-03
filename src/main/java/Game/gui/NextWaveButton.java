@@ -13,6 +13,16 @@ public class NextWaveButton extends Button
     }
     public void onClick(ProgramContainer pc, double posX, double posY, int width, int height, Level level, double passedTime)
     {
+        if((inBorder(pc, posX, posY, width, height)) && (isSecondImage == false) && (level.getWavesAmount() != level.getCurrentWave() + 1))
+        {
+            imageSwap();
+            isSecondImage = true;
+        }
+        else if((inBorder(pc, posX, posY, width, height) == false) && (isSecondImage == true))
+        {
+            imageSwap();
+            isSecondImage = false;
+        }
         if(isClick(pc, posX, posY, width, height))
         {
             if(level.getWaves()[0].isRunning() == false)
@@ -25,13 +35,6 @@ public class NextWaveButton extends Button
             {
                 level.getWaveDelay()[level.getCurrentWave()] = 0;
             }
-            imageSwap();
-            isSecondImage = true;
-        }
-        else if((Input.isHold == false) && (isSecondImage == true))
-        {
-            imageSwap();
-            isSecondImage = false;
         }
     }
 }
