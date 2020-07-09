@@ -2,6 +2,7 @@ package Entities.Particles;
 
 import Entities.Enemy;
 import Entities.Entity;
+import Entities.Particles.Bullets.LeafBullet;
 import Game.Level;
 import engine.Image;
 import engine.ProgramContainer;

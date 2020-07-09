@@ -11,7 +11,7 @@ public class CrystalBall extends Enemy
 
     public CrystalBall(double posX, double posY, int startDirection, int wave, int id)
     {
-        super("Crystal Ball", Assets.CRYSTALBALL, posX, posY, 1, 100, 2, startDirection, wave, id, 50);
+        super("Crystal Ball", Assets.DEFAULTENEMY, posX, posY, 1, 100, 2, startDirection, wave, id, 50);
     }
 
     @Override

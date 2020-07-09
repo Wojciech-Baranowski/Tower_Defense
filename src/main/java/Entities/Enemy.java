@@ -4,14 +4,14 @@ import Game.Assets;
 import Game.gui.Gui;
 import Game.Level;
 import Game.Stats;
-import engine.Clickable;
-import engine.Image;
-import engine.ProgramContainer;
-import engine.Renderer;
+import Map.Road;
+import Map.Towers.MagmaTower;
+import engine.*;
 
 public abstract class Enemy extends Entity implements Clickable
 {
     String name;
+    protected EnemyImageSheet sheet;
     protected double hp;
     protected int maxHp;
     protected int cost;
@@ -25,10 +25,15 @@ public abstract class Enemy extends Entity implements Clickable
     protected Image healthBar;
     protected boolean alive;
     protected double slowDuration;
-    public Enemy(String name, Image img, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id, int reward)
+    protected double snareDuration;
+    protected double dotaDuration;
+    protected int currentDotaDamage;
+    protected boolean isOnMagma;
+    public Enemy(String name, EnemyImageSheet sheet, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id, int reward)
     {
-        super(img, posX, posY, vel);
+        super(sheet.getImg()[1][1], posX, posY, vel);
         this.name = name;
+        this.sheet = sheet;
         this.vel = vel;
         this.maxHp = maxHp;
         this.cost = cost;
@@ -41,6 +46,10 @@ public abstract class Enemy extends Entity implements Clickable
         this.hp = maxHp;
         this.velocityPercentage = 1;
         this.slowDuration = 0;
+        this.snareDuration = 0;
+        this.dotaDuration = 0;
+        this.currentDotaDamage = 0;
+        this.isOnMagma = false;
         healthBar = new Image("/entities/healthBarFull.png", 16, 2, 0);
         healthUpdate(0);
     }
@@ -49,14 +58,28 @@ public abstract class Enemy extends Entity implements Clickable
         if(isAlive())
         {
             onClick(pc, posX, posY, img.getW(), img.getH());
+            if(snareDuration <= 0)
             move(level.getTileId());
+            walkAnimate();
+            if(snareDuration > 0)
+                snareDuration -= (1.0 / 60.0);
             if(slowDuration <= 0)
                 velocityPercentage = 1;
             else
                 slowDuration -= (1.0 / 60.0);
+            if(dotaDuration > 0)
+            {
+                healthUpdate((double)(currentDotaDamage) / 60.0);
+                dotaDuration -= (1.0 / 60.0);
+            }
             if(hasPassed())
             {
                 Stats.hp -= cost;
+            }
+            if((isOnMagma == true) && (((Road)(pc.getWorld().getTiles()[(int)(posY / 64) * 16 + (int)(posX / 64)])).isMagma() == false))
+            {
+                isOnMagma = false;
+                MagmaTower.scorch(this);
             }
         }
     }
@@ -149,7 +172,6 @@ public abstract class Enemy extends Entity implements Clickable
             if(direction == 4)
                 posX -= 1.5;
         }
-
     }
     public void healthUpdate(double dmg)
     {
@@ -196,6 +218,25 @@ public abstract class Enemy extends Entity implements Clickable
         return tileId[currentGirdId()] % 10;
        return startDirection;
     }
+    private void walkAnimate()
+    {
+        if(direction == 1)
+        {
+            img = sheet.getAnima()[0].updateLoop(img, World.tickCount);
+        }
+        else if(direction == 2)
+        {
+            img = sheet.getAnima()[1].updateLoop(img, World.tickCount);
+        }
+        else if(direction == 3)
+        {
+            img = sheet.getAnima()[2].updateLoop(img, World.tickCount);
+        }
+        else if(direction == 4)
+        {
+            img = sheet.getAnima()[3].updateLoop(img, World.tickCount);
+        }
+    }
 
     public int getCost() {
         return cost;
@@ -234,5 +275,37 @@ public abstract class Enemy extends Entity implements Clickable
 
     public void setSlowDuration(double slowDuration) {
         this.slowDuration = slowDuration;
+    }
+
+    public double getSnareDuration() {
+        return snareDuration;
+    }
+
+    public void setSnareDuration(double snareDuration) {
+        this.snareDuration = snareDuration;
+    }
+
+    public double getDotaDuration() {
+        return dotaDuration;
+    }
+
+    public double getCurrentDotaDamage() {
+        return currentDotaDamage;
+    }
+
+    public void setDotaDuration(double dotaDuration) {
+        this.dotaDuration = dotaDuration;
+    }
+
+    public void setCurrentDotaDamage(int currentDotaDamage) {
+        this.currentDotaDamage = currentDotaDamage;
+    }
+
+    public boolean isOnMagma() {
+        return isOnMagma;
+    }
+
+    public void setOnMagma(boolean onMagma) {
+        isOnMagma = onMagma;
     }
 }

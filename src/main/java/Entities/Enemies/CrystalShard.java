@@ -11,7 +11,7 @@ public class CrystalShard extends Enemy
 
     public CrystalShard(double posX, double posY, int startDirection, int wave, int id)
     {
-        super("Crystal Shard", Assets.CRYSTALSHARD, posX, posY, 2, 50, 1, startDirection, wave, id, 25);
+        super("Crystal Shard", Assets.DEFAULTENEMY, posX, posY, 2, 50, 1, startDirection, wave, id, 25);
     }
 
     @Override

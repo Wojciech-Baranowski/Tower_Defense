@@ -10,7 +10,7 @@ public class Dobbo extends Enemy
 
     public Dobbo(double posX, double posY, int startDirection, int wave, int id)
     {
-        super("Dobbo", Assets.DOBBO, posX, posY, 0.75, 1000, 5, startDirection, wave, id, 200);
+        super("Dobbo", Assets.DEFAULTENEMY, posX, posY, 0.75, 1000, 5, startDirection, wave, id, 200);
     }
 
     @Override

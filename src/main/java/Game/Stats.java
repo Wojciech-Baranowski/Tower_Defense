@@ -12,10 +12,17 @@ public class Stats
     public static double[] airRangeBoost;
     public static int[] earthSplashRange;
     public static double[] earthSplashDmgPercentage;
+    public static int[] fireDotaDamage;
+    public static double[] fireDotaDuration;
+    public static int magmaDotaDamage;
+    public static double magmaDotaDuration;
     public static double iceHeadshotChance;
     public static double leafSlowPercentage;
+    public static double leafSlowDuration;
+    public static double leafSnareChance;
+    public static double leafSnareDuration;
 
-    public Stats(int hp, int[] resources, int[] damage, int[] range, int[] bulletVelocity, double[] fireDelay, double[] airAttackSpeedBoost, double[] airRangeBoost, int[] earthSplashRange, double[] earthSplashDmgPercentage, double iceHeadshotChance, double leafSlowPercentage)
+    public Stats(int hp, int[] resources, int[] damage, int[] range, int[] bulletVelocity, double[] fireDelay, double[] airAttackSpeedBoost, double[] airRangeBoost, int[] earthSplashRange, double[] earthSplashDmgPercentage, int[] fireDotaDamage, double[] fireDotaDuration, int magmaDotaDamage, double magmaDotaDuration, double iceHeadshotChance, double leafSlowPercentage, double leafSlowDuration, double leafSnareChance, double leafSnareDuration)
     {
         this.hp = hp;
         this.resources = resources;
@@ -27,8 +34,15 @@ public class Stats
         this.airRangeBoost = airRangeBoost;
         this.earthSplashRange = earthSplashRange;
         this.earthSplashDmgPercentage = earthSplashDmgPercentage;
+        this.fireDotaDamage = fireDotaDamage;
+        this.magmaDotaDamage = magmaDotaDamage;
         this.iceHeadshotChance = iceHeadshotChance;
         this.leafSlowPercentage = leafSlowPercentage;
+        this.leafSlowDuration = leafSlowDuration;
+        this.leafSnareChance = leafSnareChance;
+        this.leafSnareDuration = leafSnareDuration;
+        this.fireDotaDuration = fireDotaDuration;
+        this.magmaDotaDuration = magmaDotaDuration;
     }
 
     public static void splitReward(int reward)
@@ -100,5 +114,33 @@ public class Stats
 
     public static double getLeafSlowPercentage() {
         return leafSlowPercentage;
+    }
+
+    public static int[] getFireDotaDamage() {
+        return fireDotaDamage;
+    }
+
+    public static int getMagmaDotaDamage() {
+        return magmaDotaDamage;
+    }
+
+    public static double getLeafSnareChance() {
+        return leafSnareChance;
+    }
+
+    public static double getLeafSlowDuration() {
+        return leafSlowDuration;
+    }
+
+    public static double getLeafSnareDuration() {
+        return leafSnareDuration;
+    }
+
+    public static double[] getFireDotaDuration() {
+        return fireDotaDuration;
+    }
+
+    public static double getMagmaDotaDuration() {
+        return magmaDotaDuration;
     }
 }

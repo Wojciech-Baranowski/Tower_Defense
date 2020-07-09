@@ -9,6 +9,13 @@
 	"airRangeBoost": [0.2, 0.25, 0.35],
 	"earthSplashRange": [50, 55, 60],
 	"earthSplashDmgPercentage": [0.15, 0.2, 0.25],
+	"fireDotaDamage": [5, 10],
+	"fireDotaDuration": [3, 3.5];
+	"magmaDotaDamage" : 10,
+	"magmaDotaDuration" : 4,
 	"iceHeadshotChance": 0.5,
 	"leafSlowPercentage": 0.2,
+	"leafSlowDuration" : 2.0,
+	"leafSnareChance" : 0.2,
+	"leafSnareDuration" : 1.0,
 }

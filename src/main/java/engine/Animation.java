@@ -23,6 +23,22 @@ public class Animation
         }
         this.frameGap = frameGap;
     }
+    public Animation(Image[] img, double frameGap, int size, int count)
+    {
+        images = new Image[count];
+        for(int i = 0; i < count; i++)
+        {
+            images[i] = new Image(size, size, 0);
+            for(int j = 0; j < size; j++)
+            {
+                for(int k = 0; k < size; k++)
+                {
+                    images[i].getP()[j + size * k] = img[i].getP()[j + size * k];
+                }
+            }
+        }
+        this.frameGap = frameGap;
+    }
     public Image animate()
     {
         if(images.length > 1)

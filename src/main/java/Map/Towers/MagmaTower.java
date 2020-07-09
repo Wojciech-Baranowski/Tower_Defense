@@ -1,5 +1,6 @@
 package Map.Towers;
 
+import Entities.Enemy;
 import Game.Assets;
 import Game.Level;
 import Game.Stats;
@@ -31,7 +32,14 @@ public class MagmaTower extends Tower
     public void fire(Level level, Tile[] tiles, double passedTime) {
 
     }
-
+    public static void scorch(Enemy enemy)
+    {
+        if(enemy.getDotaDuration() < Stats.magmaDotaDuration)
+        {
+            enemy.setCurrentDotaDamage(Stats.magmaDotaDamage);
+            enemy.setDotaDuration(Stats.magmaDotaDuration);
+        }
+    }
     protected void magma(Tile[] tiles)
     {
         for(int i = 0; i < 144; i++)

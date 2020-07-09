@@ -1,5 +1,6 @@
 package Game;
 
+import Entities.EnemyImageSheet;
 import engine.Animation;
 import engine.Font;
 import engine.Image;
@@ -11,9 +12,8 @@ public class Assets
     public static final Image DEFAULTFIELD = new Image("/defaultField.png", 1, 1, 0);
     public static final Image BACKGROUND = new Image("/background.png", 1024, 576, 0);
 
-    public static final Image CRYSTALBALL = new Image("/entities/crystalBall.png", 16, 16, 0);
-    public static final Image CRYSTALSHARD = new Image("/entities/crystalShard.png", 16, 16, 0);
-    public static final Image DOBBO = new Image("/entities/dobbo.png", 32, 32, 0);
+    public static final EnemyImageSheet DEFAULTENEMY = new EnemyImageSheet("/entities/defaultEnemy.png", 32);
+    public static final Image TEST = new Image("/entities/defaultEnemy.png", 128, 128, 0);
 
     public static final Image HEALTHBARFULL = new Image("/entities/healthBarFull.png", 16, 2, 0);
 

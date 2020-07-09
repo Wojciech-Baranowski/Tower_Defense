@@ -44,6 +44,7 @@ public class Road extends Tile
                         if(((int)(level.getWaves()[i].getEnemies()[j].getPosX() / 64) == posX / 64) && ((int)(level.getWaves()[i].getEnemies()[j].getPosY() / 64) == posY / 64))
                         {
                             level.getWaves()[i].getEnemies()[j].healthUpdate((double)(Stats.damage[13]) / (double)(60));
+                            level.getWaves()[i].getEnemies()[j].setOnMagma(true);
                         }
                     }
                 }
@@ -75,5 +76,9 @@ public class Road extends Tile
 
     public void setMagma(boolean magma) {
         this.magma = magma;
+    }
+
+    public boolean isMagma() {
+        return magma;
     }
 }
