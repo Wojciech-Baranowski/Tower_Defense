@@ -10,26 +10,26 @@ import engine.*;
 public class BuildMenu implements Clickable
 {
     private static int id = -1;
-    public static final Button MENU = new Button(Assets.MENU, -1000, -1000);
+    public static final Button MENU = new Button(Assets.BUILDMENU, -1000, -1000);
     public static final Button CLOSER = new Button(Assets.CLOSER, -1000, -1000);
-    private static final Button FIRE = new Button(Assets.FIRE64, -1000, -1000);
-    private static final Button AIR = new Button(Assets.AIR64, -1000, -1000);
-    private static final Button WATER = new Button(Assets.WATER64, -1000, -1000);
-    private static final Button EARTH = new Button(Assets.EARTH64, -1000, -1000);
-    private static final Field FIREM = new Field(Assets.FIRE32, -1000, -1000);
-    private static final Field AIRM = new Field(Assets.AIR32, -1000, -1000);
-    private static final Field WATERM = new Field(Assets.WATER32, -1000, -1000);
-    private static final Field EARTHM = new Field(Assets.EARTH32, -1000, -1000);
+    private static final Button FIRE = new Button(Assets.FIRE32, -1000, -1000);
+    private static final Button AIR = new Button(Assets.AIR32, -1000, -1000);
+    private static final Button WATER = new Button(Assets.WATER32, -1000, -1000);
+    private static final Button EARTH = new Button(Assets.EARTH32, -1000, -1000);
+    private static final Field FIREM = new Field(Assets.FIRE24, -1000, -1000);
+    private static final Field AIRM = new Field(Assets.AIR24, -1000, -1000);
+    private static final Field WATERM = new Field(Assets.WATER24, -1000, -1000);
+    private static final Field EARTHM = new Field(Assets.EARTH24, -1000, -1000);
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
-        AIR.setImg(Assets.AIRANIMA64.updateLoop(AIR.getImg(), World.tickCount));
-        EARTH.setImg(Assets.EARTHANIMA64.updateLoop(EARTH.getImg(), World.tickCount));
-        FIRE.setImg(Assets.FIREANIMA64.updateLoop(FIRE.getImg(), World.tickCount));
-        WATER.setImg(Assets.WATERANIMA64.updateLoop(WATER.getImg(), World.tickCount));
-        AIRM.setImg(Assets.AIRANIMA32.updateLoop(AIRM.getImg(), World.tickCount));
-        EARTHM.setImg(Assets.EARTHANIMA32.updateLoop(EARTHM.getImg(), World.tickCount));
-        FIREM.setImg(Assets.FIREANIMA32.updateLoop(FIREM.getImg(), World.tickCount));
-        WATERM.setImg(Assets.WATERANIMA32.updateLoop(WATERM.getImg(), World.tickCount));
+        AIR.setImg(Assets.AIRANIMA32.updateLoop(AIR.getImg(), World.tickCount));
+        EARTH.setImg(Assets.EARTHANIMA32.updateLoop(EARTH.getImg(), World.tickCount));
+        FIRE.setImg(Assets.FIREANIMA32.updateLoop(FIRE.getImg(), World.tickCount));
+        WATER.setImg(Assets.WATERANIMA32.updateLoop(WATER.getImg(), World.tickCount));
+        AIRM.setImg(Assets.AIRANIMA24.updateLoop(AIRM.getImg(), World.tickCount));
+        EARTHM.setImg(Assets.EARTHANIMA24.updateLoop(EARTHM.getImg(), World.tickCount));
+        FIREM.setImg(Assets.FIREANIMA24.updateLoop(FIREM.getImg(), World.tickCount));
+        WATERM.setImg(Assets.WATERANIMA24.updateLoop(WATERM.getImg(), World.tickCount));
         if(CLOSER.isClick(pc, CLOSER.getPosX(), CLOSER.getPosY(), CLOSER.getImg().getW(), CLOSER.getImg().getH()))
         {
             close();
@@ -84,10 +84,10 @@ public class BuildMenu implements Clickable
         r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
         r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());
         r.drawStaticImage(pc, EARTHM.getImg(), (int)EARTHM.getPosX(), (int)EARTHM.getPosY());
-        r.drawStaticText(pc, "" + Stats.cost[0], (int)FIRE.getPosX() + 12, (int)FIRE.getPosY() + 32, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Stats.cost[1], (int)AIR.getPosX() + 12, (int)AIR.getPosY() + 32, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Stats.cost[2], (int)WATER.getPosX() + 12, (int)WATER.getPosY() + 32, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Stats.cost[3], (int)EARTH.getPosX() + 12, (int)EARTH.getPosY() + 32, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[0], (int)FIRE.getPosX(), (int)FIRE.getPosY() + 20, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[1], (int)AIR.getPosX(), (int)AIR.getPosY() + 20, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[2], (int)WATER.getPosX(), (int)WATER.getPosY() + 20, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[3], (int)EARTH.getPosX(), (int)EARTH.getPosY() + 20, 0xFF000000, 20);
     }
     public static void open(double posX, double posY, int iD, boolean[] typePermission)
     {
@@ -130,13 +130,13 @@ public class BuildMenu implements Clickable
             y = 32;
         }
             MENU.setPosX(posX + x);
-            MENU.setPosY(posY + y - 32);
+            MENU.setPosY(posY + y);
             if(typePermission[0] == true)
             {
-                FIRE.setPosX(posX + x);
+                FIRE.setPosX(posX + x + 48);
                 FIRE.setPosY(posY + y);
-                FIREM.setPosX(posX + x);
-                FIREM.setPosY(posY + y - 32);
+                FIREM.setPosX(posX + x + 3);
+                FIREM.setPosY(posY + y + 3);
             }
             else
             {
@@ -147,10 +147,10 @@ public class BuildMenu implements Clickable
             }
             if(typePermission[1] == true)
             {
-                AIR.setPosX(posX + x + 64);
-                AIR.setPosY(posY + y);
-                AIRM.setPosX(posX + x + 32);
-                AIRM.setPosY(posY + y - 32);
+                AIR.setPosX(posX + x + 4);
+                AIR.setPosY(posY + y + 44);
+                AIRM.setPosX(posX + x + 3);
+                AIRM.setPosY(posY + y + 101);
             }
             else
             {
@@ -161,10 +161,10 @@ public class BuildMenu implements Clickable
             }
             if(typePermission[2] == true)
             {
-                WATER.setPosX(posX + x);
-                WATER.setPosY(posY + y + 64);
-                WATERM.setPosX(posX + x + 64);
-                WATERM.setPosY(posY + y - 32);
+                WATER.setPosX(posX + x + 92);
+                WATER.setPosY(posY + y + 44);
+                WATERM.setPosX(posX + x + 98);
+                WATERM.setPosY(posY + y);
             }
             else
             {
@@ -175,10 +175,10 @@ public class BuildMenu implements Clickable
             }
             if(typePermission[3] == true)
             {
-                EARTH.setPosX(posX + x + 64);
-                EARTH.setPosY(posY + y + 64);
-                EARTHM.setPosX(posX + x + 96);
-                EARTHM.setPosY(posY + y - 32);
+                EARTH.setPosX(posX + x + 48);
+                EARTH.setPosY(posY + y + 88);
+                EARTHM.setPosX(posX + x + 103);
+                EARTHM.setPosY(posY + y + 96);
             }
             else
             {
@@ -187,8 +187,8 @@ public class BuildMenu implements Clickable
                 EARTHM.setPosX(-1000);
                 EARTHM.setPosY(-1000);
             }
-        CLOSER.setPosX(posX + x + 128);
-        CLOSER.setPosY(posY + y - 32);
+        CLOSER.setPosX(posX + x + 52);
+        CLOSER.setPosY(posY + y + 52);
     }
     public static void close()
     {

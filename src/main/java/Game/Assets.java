@@ -14,9 +14,8 @@ public class Assets
 
     public static final Image HEALTHBARFULL = new Image("/entities/healthBarFull.png", 16, 2, 0);
 
-    public static final Image MENU = new Image("/gui/buildMenu.png", 128, 160, 0);
-    public static final Image CLOSER = new Image("/gui/menuCloser.png", 16, 16, 0);
-
+    public static final Image CLOSER = new Image("/gui/menuCloser.png", 24, 24, 0);
+    public static final Image BUILDMENU = new Image("/gui/buildMenu.png", 128, 128, 0);
     public static final Image BASICUPGRADEMENU = new Image("/gui/basicUpgradeMenu.png", 128, 128, 0);
     public static final Image ADVANCEDUPGRADEMENU = new Image("/gui/advancedUpgradeMenu.png", 224, 128, 0);
 
@@ -25,17 +24,11 @@ public class Assets
 
     public static final Image HP = new Image("/emblems/hp.png", 24, 24, 0);
 
-    public static final Image FIRE64 = new Image("/emblems/fire.png",  64, 64, 0);
-    public static final Image AIR64 = new Image("/emblems/air.png", 64, 64, 0);
-    public static final Image WATER64 = new Image("/emblems/water.png", 64, 64, 0);
-    public static final Image EARTH64 = new Image("/emblems/earth.png", 64, 64, 0);
-    public static final Image ENERGY64 = new Image("/emblems/energy.png", 64, 64, 0);
-
-    public static final Image FIRE48 = new Image("/emblems/fire.png",  48, 48, 0);
-    public static final Image AIR48 = new Image("/emblems/air.png", 48, 48, 0);
-    public static final Image WATER48 = new Image("/emblems/water.png", 48, 48, 0);
-    public static final Image EARTH48 = new Image("/emblems/earth.png", 48, 48, 0);
-    public static final Image ENERGY48 = new Image("/emblems/energy.png", 48, 48, 0);
+    public static final Image FIRE24 = new Image("/emblems/fire.png", 24, 24, 0);
+    public static final Image AIR24 = new Image("/emblems/air.png", 24, 24, 0);
+    public static final Image WATER24 = new Image("/emblems/water.png", 24, 24, 0);
+    public static final Image EARTH24 = new Image("/emblems/earth.png",  24, 24, 0);
+    public static final Image ENERGY24 = new Image("/emblems/energy.png", 24, 24, 0);
 
     public static final Image FIRE32 = new Image("/emblems/fire.png", 32, 32, 0);
     public static final Image AIR32 = new Image("/emblems/air.png", 32, 32, 0);
@@ -43,7 +36,17 @@ public class Assets
     public static final Image EARTH32 = new Image("/emblems/earth.png",  32, 32, 0);
     public static final Image ENERGY32 = new Image("/emblems/energy.png", 32, 32, 0);
 
-    public static final Image ENERGY24 = new Image("/emblems/energy.png", 24, 24, 0);
+    public static final Image FIRE48 = new Image("/emblems/fire.png",  48, 48, 0);
+    public static final Image AIR48 = new Image("/emblems/air.png", 48, 48, 0);
+    public static final Image WATER48 = new Image("/emblems/water.png", 48, 48, 0);
+    public static final Image EARTH48 = new Image("/emblems/earth.png", 48, 48, 0);
+    public static final Image ENERGY48 = new Image("/emblems/energy.png", 48, 48, 0);
+
+    public static final Image FIRE64 = new Image("/emblems/fire.png",  64, 64, 0);
+    public static final Image AIR64 = new Image("/emblems/air.png", 64, 64, 0);
+    public static final Image WATER64 = new Image("/emblems/water.png", 64, 64, 0);
+    public static final Image EARTH64 = new Image("/emblems/earth.png", 64, 64, 0);
+    public static final Image ENERGY64 = new Image("/emblems/energy.png", 64, 64, 0);
 
     public static final Image GUI = new Image("/gui/gui.png", 1024, 576, 0);
     public static final Image GUIBUTTON = new Image("/gui/guiButton.png", 48, 48, 0);
@@ -83,6 +86,10 @@ public class Assets
 
     public static final Animation SUMMONINGTILEANIMA = new Animation("/towers/summoningTileAnimation.png", 6, 64, 64, 4);
 
+    public static final Animation AIRANIMA24 = new Animation("/emblems/airAnimation.png", 6, 24, 24, 6);
+    public static final Animation EARTHANIMA24 = new Animation("/emblems/earthAnimation.png", 6, 24, 24, 6);
+    public static final Animation FIREANIMA24 = new Animation("/emblems/fireAnimation.png", 6, 24, 24, 6);
+    public static final Animation WATERANIMA24 = new Animation("/emblems/waterAnimation.png", 6, 24, 24, 6);
     public static final Animation ENERGYANIMA24 = new Animation("/emblems/energyAnimation.png", 6, 24, 24, 6);
 
     public static final Animation AIRANIMA32 = new Animation("/emblems/airAnimation.png", 6, 32, 32, 6);
