@@ -178,7 +178,7 @@ public abstract class Enemy extends Entity implements Clickable
         hp -= dmg;
         if((hp <= 0) && (alive == true))
         {
-            Stats.splitReward(reward);
+            Stats.energy += reward;
             alive = false;
         }
         else if(hp > 0)

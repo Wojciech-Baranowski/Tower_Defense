@@ -34,10 +34,10 @@ public class MagmaTower extends Tower
     }
     public static void scorch(Enemy enemy)
     {
-        if(enemy.getDotaDuration() < Stats.magmaDotaDuration)
+        if(enemy.getDotaDuration() < Stats.dotaDuration[13])
         {
-            enemy.setCurrentDotaDamage(Stats.magmaDotaDamage);
-            enemy.setDotaDuration(Stats.magmaDotaDuration);
+            enemy.setCurrentDotaDamage(Stats.dotaDamage[13]);
+            enemy.setDotaDuration(Stats.dotaDuration[13]);
         }
     }
     protected void magma(Tile[] tiles)

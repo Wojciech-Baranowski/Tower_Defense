@@ -20,8 +20,8 @@ public class MasterAirTower extends AdvancedAirTower
             {
                 if(Geometry.distance(posX, posY, tiles[i].getPosX(), tiles[i].getPosY()) <= range)
                 {
-                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() * (1 + Stats.airAttackSpeedBoost[2]) / (1 + Stats.airAttackSpeedBoost[2]));
-                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() / (1 + Stats.airRangeBoost[2]) * (1 + Stats.airRangeBoost[2])));
+                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() * (1 + Stats.attackSpeedBoost[9]) / (1 + Stats.attackSpeedBoost[9]));
+                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() / (1 + Stats.rangeBoost[9]) * (1 + Stats.rangeBoost[9])));
                     boostMark.add(new Field(Assets.BOOSTMARK, tiles[i].getPosX(), tiles[i].getPosY()));
                 }
             }

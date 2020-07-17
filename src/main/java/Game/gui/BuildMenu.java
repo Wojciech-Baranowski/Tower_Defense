@@ -1,7 +1,6 @@
 package Game.gui;
 
 import Game.Assets;
-import Game.Prices;
 import Game.Stats;
 import Map.Tile;
 import Map.TowerPlace;
@@ -35,37 +34,37 @@ public class BuildMenu implements Clickable
         {
             close();
         }
-        if((FIRE.isClick(pc, FIRE.getPosX(), FIRE.getPosY(), FIRE.getImg().getW(), FIRE.getImg().getH())) && (Stats.resources[0] >= Prices.basicPrices[0]))
+        if((FIRE.isClick(pc, FIRE.getPosX(), FIRE.getPosY(), FIRE.getImg().getW(), FIRE.getImg().getH())) && (Stats.energy >= Stats.cost[0]))
         {
             close();
-            Stats.resources[0] -= Prices.basicPrices[0];
+            Stats.energy -= Stats.cost[0];
             tileId[id] = 21;
             tiles[id] = new FireTower("FireTower",(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 1, Stats.damage[0], Stats.range[0], Stats.fireDelay[0], ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.resources[1] >= Prices.basicPrices[1]))
+        if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.energy >= Stats.cost[1]))
         {
             close();
-            Stats.resources[1] -= Prices.basicPrices[1];
+            Stats.energy -= Stats.cost[1];
             tileId[id] = 22;
-            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.damage[1], Stats.range[1], Stats.fireDelay[1], ((TowerPlace)(tiles[id])).getTypePermission(), Stats.getAirAttackSpeedBoost()[0], Stats.getAirRangeBoost()[0]);
+            tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.damage[1], Stats.range[1], Stats.fireDelay[1], ((TowerPlace)(tiles[id])).getTypePermission(), Stats.attackSpeedBoost[1], Stats.rangeBoost[1]);
         }
-        if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.resources[2] >= Prices.basicPrices[2]))
+        if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.energy >= Stats.cost[2]))
         {
             close();
-            Stats.resources[2] -= Prices.basicPrices[2];
+            Stats.energy -= Stats.cost[2];
             tileId[id] = 23;
             tiles[id] = new WaterTower("WaterTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 3, Stats.damage[2], Stats.range[2], Stats.fireDelay[2], ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.resources[3] >= Prices.basicPrices[3]))
+        if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.energy >= Stats.cost[3]))
         {
             close();
-            Stats.resources[3] -= Prices.basicPrices[3];
+            Stats.energy -= Stats.cost[3];
             tileId[id] = 24;
             tiles[id] = new EarthTower("EarthTower", (id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 4, Stats.damage[3], Stats.range[3], Stats.fireDelay[3], ((TowerPlace)(tiles[id])).getTypePermission());
             AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
@@ -85,10 +84,10 @@ public class BuildMenu implements Clickable
         r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
         r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());
         r.drawStaticImage(pc, EARTHM.getImg(), (int)EARTHM.getPosX(), (int)EARTHM.getPosY());
-        r.drawStaticText(pc, "" + Prices.basicPrices[0], (int)FIRE.getPosX() + 12, (int)FIRE.getPosY() + 32, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Prices.basicPrices[1], (int)AIR.getPosX() + 12, (int)AIR.getPosY() + 32, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Prices.basicPrices[2], (int)WATER.getPosX() + 12, (int)WATER.getPosY() + 32, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Prices.basicPrices[3], (int)EARTH.getPosX() + 12, (int)EARTH.getPosY() + 32, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[0], (int)FIRE.getPosX() + 12, (int)FIRE.getPosY() + 32, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[1], (int)AIR.getPosX() + 12, (int)AIR.getPosY() + 32, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[2], (int)WATER.getPosX() + 12, (int)WATER.getPosY() + 32, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[3], (int)EARTH.getPosX() + 12, (int)EARTH.getPosY() + 32, 0xFF000000, 20);
     }
     public static void open(double posX, double posY, int iD, boolean[] typePermission)
     {

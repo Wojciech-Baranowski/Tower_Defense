@@ -24,7 +24,7 @@ public class AdvancedEarthTower extends EarthTower
             fireTimeStamp = passedTime;
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0) {
-                bullets.add(new EarthBullet(Assets.EARTHBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[7], Stats.damage[7], enemyId.second, enemyId.first, Stats.earthSplashRange[1], Stats.earthSplashDmgPercentage[1]));
+                bullets.add(new EarthBullet(Assets.EARTHBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[7], Stats.damage[7], enemyId.second, enemyId.first, Stats.splashRange[7], Stats.splashDamage[7]));
             }
         }
     }

@@ -1,6 +1,5 @@
 package Game.gui;
 import Game.Assets;
-import Game.Prices;
 import Game.Stats;
 import Map.Tile;
 import Map.Tower;
@@ -38,37 +37,37 @@ public class BasicUpgradeMenu
         }
         if(UPGRADEBUTTON.isClick(pc, UPGRADEBUTTON.getPosX(), UPGRADEBUTTON.getPosY(), UPGRADEBUTTON.getImg().getW(), UPGRADEBUTTON.getImg().getH()))
         {
-            if((towerId == 1) && (Stats.resources[0] >= Prices.advancedPrices[0]))
+            if((towerId == 1) && (Stats.energy >= Stats.cost[4]))
             {
                 close();
-                Stats.resources[0] -= Prices.advancedPrices[0];
+                Stats.energy -= Stats.cost[4];
                 tileId[id] = 211;
                 tiles[id] = new AdvancedFireTower("AdvancedFireTower",(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 11, Stats.damage[4], Stats.range[4], Stats.fireDelay[4], ((Tower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             }
-            else if((towerId == 2) && (Stats.resources[1] >= Prices.advancedPrices[1]))
+            else if((towerId == 2) && (Stats.energy >= Stats.cost[5]))
             {
                 close();
-                Stats.resources[1] -= Prices.advancedPrices[1];
+                Stats.energy -= Stats.cost[5];
                 tileId[id] = 212;
-                tiles[id] = new AdvancedAirTower("AdvancedAirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 12, Stats.damage[5], Stats.range[5], Stats.fireDelay[5], ((Tower)(tiles[id])).getTypePermission(), Stats.airAttackSpeedBoost[1], Stats.airRangeBoost[1]);
+                tiles[id] = new AdvancedAirTower("AdvancedAirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 12, Stats.damage[5], Stats.range[5], Stats.fireDelay[5], ((Tower)(tiles[id])).getTypePermission(), Stats.attackSpeedBoost[5], Stats.rangeBoost[1]);
             }
-            else if((towerId == 3) && (Stats.resources[2] >= Prices.advancedPrices[2]))
+            else if((towerId == 3) && (Stats.energy >= Stats.cost[6]))
             {
                 close();
-                Stats.resources[2] -= Prices.advancedPrices[2];
+                Stats.energy -= Stats.cost[6];
                 tileId[id] = 213;
                 tiles[id] = new AdvancedWaterTower("AdvancedWaterTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 13, Stats.damage[6], Stats.range[6], Stats.fireDelay[6], ((Tower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
                 MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             }
-            else if((towerId == 4) && (Stats.resources[3] >= Prices.advancedPrices[3]))
+            else if((towerId == 4) && (Stats.energy >= Stats.cost[7]))
             {
                 close();
-                Stats.resources[3] -= Prices.advancedPrices[3];
+                Stats.energy -= Stats.cost[7];
                 tileId[id] = 214;
                 tiles[id] = new AdvancedEarthTower("AdvancedEarthTower", (id % 16) * 64, (id / 16) * 64, id, 2, passedTime, 14, Stats.damage[7], Stats.range[7], Stats.fireDelay[7], ((Tower)(tiles[id])).getTypePermission());
                 AirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
@@ -221,10 +220,10 @@ public class BasicUpgradeMenu
         r.drawStaticImage(pc, AIR.getImg(), (int)AIR.getPosX(), (int)AIR.getPosY());
         r.drawStaticImage(pc, WATER.getImg(), (int)WATER.getPosX(), (int)WATER.getPosY());
         r.drawStaticImage(pc, EARTH.getImg(), (int)EARTH.getPosX(), (int)EARTH.getPosY());
-        r.drawStaticText(pc, "" + Prices.advancedPrices[0], (int)FIRE.getPosX() + 28, (int)FIRE.getPosY() + 16, 0xFF000000, 10);
-        r.drawStaticText(pc, "" + Prices.advancedPrices[1], (int)AIR.getPosX() + 28, (int)AIR.getPosY() + 16, 0xFF000000, 10);
-        r.drawStaticText(pc, "" + Prices.advancedPrices[2], (int)WATER.getPosX() + 28, (int)WATER.getPosY() + 16, 0xFF000000, 10);
-        r.drawStaticText(pc, "" + Prices.advancedPrices[3], (int)EARTH.getPosX() + 28, (int)EARTH.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Stats.cost[4], (int)FIRE.getPosX() + 28, (int)FIRE.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Stats.cost[5], (int)AIR.getPosX() + 28, (int)AIR.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Stats.cost[6], (int)WATER.getPosX() + 28, (int)WATER.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Stats.cost[7], (int)EARTH.getPosX() + 28, (int)EARTH.getPosY() + 16, 0xFF000000, 10);
         r.drawStaticImage(pc, FIREM.getImg(), (int)FIREM.getPosX(), (int)FIREM.getPosY());
         r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
         r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());

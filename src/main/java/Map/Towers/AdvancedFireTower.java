@@ -26,7 +26,7 @@ public class AdvancedFireTower extends FireTower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new FireBullet(Assets.FIREBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[4], Stats.damage[4], enemyId.second, enemyId.first));
+                bullets.add(new FireBullet(Assets.FIREBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[4], Stats.damage[4], enemyId.second, enemyId.first, Stats.dotaDuration[4], Stats.dotaDamage[4]));
             }
         }
     }

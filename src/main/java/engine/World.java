@@ -18,15 +18,13 @@ public class World
     private Level level;
     private Tile[] tiles;
     private Stats stats;
-    private Prices prices;
     public final static String zer0 = "Mateusz, sam jestes leb xD";
     public World(ProgramContainer pc)
     {
         background = Assets.BACKGROUND;
         this.paused = true;
         tiles = new Tile[144];
-        stats = JSONReader.parseJSOStats(FReader.read("data/stats.txt"));
-        prices = JSONReader.parseJSONPrices((FReader.read("data/prices.txt")));
+        stats = JSONReader.parseJSOStats(FReader.read("data/towers.txt"));
         level = JSONReader.parseJSONLevel(FReader.read("levels/testLevel.txt"));
         level.levelInit(tiles);
         canvas = new Field(new Image("/canvas.png", 1024, 576, 0), 0, 0);

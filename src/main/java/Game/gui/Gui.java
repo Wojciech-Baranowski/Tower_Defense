@@ -45,10 +45,7 @@ public class Gui
     {
         r.drawStaticImage(pc, background.getImg(), (int)background.getPosX(), (int)background.getPosY());
         r.drawStaticText(pc, "" + Stats.getHp(), 970, 98, 0xFFbcbcbc, 28);
-        r.drawStaticText(pc, "" + Stats.resources[0], 970, 140, 0xFFbcbcbc, 24);
-        r.drawStaticText(pc, "" + Stats.resources[1], 970, 180, 0xFFbcbcbc, 24);
-        r.drawStaticText(pc, "" + Stats.resources[2], 970, 220, 0xFFbcbcbc, 24);
-        r.drawStaticText(pc, "" + Stats.resources[3], 970, 260, 0xFFbcbcbc, 24);
+        r.drawStaticText(pc, "" + Stats.energy, 970, 140, 0xFFbcbcbc, 24);
         r.drawStaticImage(pc, hpEmblem.getImg(), (int)hpEmblem.getPosX(), (int)hpEmblem.getPosY());
         for(int i = 0; i < resourcesEmblem.length; i++)
             r.drawStaticImage(pc, resourcesEmblem[i].getImg(), (int)resourcesEmblem[i].getPosX(), (int)resourcesEmblem[i].getPosY());

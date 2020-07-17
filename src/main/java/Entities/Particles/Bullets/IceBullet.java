@@ -22,9 +22,9 @@ public class IceBullet extends Bullet
         if((destination == true) && (headShoted == false))
         {
             headShoted = true;
-            if(System.nanoTime() % 100 < Stats.iceHeadshotChance * 100)
+            if(System.nanoTime() % 100 < Stats.headshotChance[14] * 100)
             {
-                level.getWaves()[targetWaveId].getEnemies()[targetId].healthUpdate(9999999);
+                level.getWaves()[targetWaveId].getEnemies()[targetId].healthUpdate(Double.POSITIVE_INFINITY);
             }
         }
     }

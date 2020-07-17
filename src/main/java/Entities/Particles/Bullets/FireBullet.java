@@ -9,10 +9,14 @@ import engine.Image;
 public class FireBullet extends Bullet
 {
     private boolean flamed;
-    public FireBullet(Image img, int posX, int posY, float vel, int dmg, int targetId, int targetWaveId)
+    private double dotaDuration;
+    private int dotaDamage;
+    public FireBullet(Image img, int posX, int posY, float vel, int dmg, int targetId, int targetWaveId, double dotaDuration, int dotaDamage)
     {
         super(img, posX, posY, vel, dmg, targetId, targetWaveId);
-        flamed = false;
+        this.flamed = false;
+        this.dotaDuration = dotaDuration;
+        this.dotaDamage = dotaDamage;
     }
 
     @Override
@@ -26,10 +30,10 @@ public class FireBullet extends Bullet
     }
     private void flame(Enemy enemy)
     {
-        if(enemy.getDotaDuration() < Stats.fireDotaDuration[1])
+        if(enemy.getDotaDuration() < dotaDuration)
         {
-            enemy.setCurrentDotaDamage(Stats.fireDotaDamage[1]);
-            enemy.setDotaDuration(Stats.fireDotaDuration[1]);
+            enemy.setCurrentDotaDamage(dotaDamage);
+            enemy.setDotaDuration(dotaDuration);
         }
     }
 }

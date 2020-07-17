@@ -32,17 +32,17 @@ public class LeafBullet extends Bullet
     }
     private void slow(Enemy enemy)
     {
-        if(enemy.getVelocityPercentage() > (1.0 - Stats.leafSlowPercentage))
+        if(enemy.getVelocityPercentage() > (1.0 - Stats.slow[15]))
         {
-            enemy.setVelocityPercentage(1.0 - Stats.leafSlowPercentage);
-            enemy.setSlowDuration(Stats.leafSlowDuration);
+            enemy.setVelocityPercentage(1.0 - Stats.slow[15]);
+            enemy.setSlowDuration(Stats.slowDuration[15]);
         }
     }
     private void snare(Enemy enemy)
     {
-        if((enemy.getSnareDuration() < Stats.leafSnareDuration) && (Stats.leafSnareChance * 100 > System.nanoTime() % 100))
+        if((enemy.getSnareDuration() < Stats.snareDuration[15]) && (Stats.snareChance[15] * 100 > System.nanoTime() % 100))
         {
-            enemy.setSnareDuration(Stats.leafSnareDuration);
+            enemy.setSnareDuration(Stats.snareDuration[15]);
         }
     }
 }
