@@ -18,7 +18,7 @@ public class ProgramContainer implements Runnable
     private int width = 1024, height = 576;
     private double time = 0;
     private double passedTime = 0;
-    private float scale = 1.0f;
+    private float scale = 1.2f;
     private  String title = "title";
 
     public ProgramContainer(AbstractProgram program)

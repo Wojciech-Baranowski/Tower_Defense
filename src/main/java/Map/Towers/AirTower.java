@@ -55,7 +55,7 @@ public class AirTower extends Tower
     {
         for(int i = 0; i < 144; i++)
         {
-            if((tiles[i].getClass() == FireTower.class) || (tiles[i].getClass() == WaterTower.class) || (tiles[i].getClass() == EarthTower.class) || (tiles[i].getClass() == AdvancedFireTower.class) || (tiles[i].getClass() == AdvancedWaterTower.class) || (tiles[i].getClass() == AdvancedEarthTower.class) || (tiles[i].getClass() == MasterFireTower.class) || (tiles[i].getClass() == MasterAirTower.class) || (tiles[i].getClass() == MasterWaterTower.class)  || (tiles[i].getClass() == MasterEarthTower.class) || (tiles[i].getClass() == LightingTower.class) || (tiles[i].getClass() == IceTower.class) || (tiles[i].getClass() == LeafTower.class))
+            if((tiles[i].getClass().getSuperclass() == Tower.class) || (tiles[i].getClass().getSuperclass().getSuperclass() == Tower.class) || (tiles[i].getClass().getSuperclass().getSuperclass().getSuperclass() == Tower.class))
             {
                 if(Geometry.distance(posX, posY, tiles[i].getPosX(), tiles[i].getPosY()) <= range)
                 {

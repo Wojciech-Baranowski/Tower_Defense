@@ -50,7 +50,7 @@ public abstract class Enemy extends Entity implements Clickable
         this.dotaDuration = 0;
         this.currentDotaDamage = 0;
         this.isOnMagma = false;
-        healthBar = new Image("/entities/healthBarFull.png", 16, 2, 0);
+        this.healthBar = new Image("/entities/healthBarFull.png", 16, 2, 0);
         healthUpdate(0);
     }
     public void update(ProgramContainer pc, double passedTime, Level level)
@@ -100,13 +100,13 @@ public abstract class Enemy extends Entity implements Clickable
     public void healthBarRender(ProgramContainer pc, Renderer r)
     {
         if(isAlive())
-            r.drawImage(pc, healthBar, (int)posX, (int)posY - 6);
+            r.drawImage(pc, healthBar, (int)posX + (img.getW() - 16) / 2, (int)posY - 6);
     }
     public abstract void indUpdate(ProgramContainer pc, double passedTime);
     public abstract void indrender(ProgramContainer pc, Renderer r);
     public void move(int[] tileId)
     {
-        if(img.getW() == 16)
+        if(img.getW() < 32)
         {
             if(((direction == 2) || (direction == 4)) && (((posX - 32 + 64) % 64) <= vel))
             {
@@ -117,7 +117,7 @@ public abstract class Enemy extends Entity implements Clickable
                 }
             }
         }
-        if(img.getH() == 16)
+        if(img.getH() < 32)
         {
             if(((direction == 1) || (direction == 3)) && (((posY - 32 + 64) % 64) <= vel))
             {
@@ -128,7 +128,7 @@ public abstract class Enemy extends Entity implements Clickable
                 }
             }
         }
-        if(img.getW() == 32)
+        if(img.getW() >= 32)
         {
             if(((direction == 2) || (direction == 4)) && (((posX - 16 + 64) % 64) <= vel))
             {
@@ -139,7 +139,7 @@ public abstract class Enemy extends Entity implements Clickable
                  }
             }
         }
-        if(img.getH() == 32)
+        if(img.getH() >= 32)
         {
             if(((direction == 1) || (direction == 3)) && (((posY - 16 + 64) % 64) <= vel))
             {

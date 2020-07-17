@@ -1,17 +1,16 @@
 package Entities.Enemies;
 
 import Entities.Enemy;
+import Entities.EnemyImageSheet;
 import Game.Assets;
-import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;
 
-public class CrystalShard extends Enemy
+public class Peasant extends Enemy
 {
 
-    public CrystalShard(double posX, double posY, int startDirection, int wave, int id)
-    {
-        super("Crystal Shard", Assets.DEFAULTENEMY, posX, posY, 2, 50, 1, startDirection, wave, id, 25);
+    public Peasant(double posX, double posY, int startDirection, int wave, int id) {
+        super("Peasant", Assets.PEASANT, posX, posY, 2, 100, 1, startDirection, wave, id, 10);
     }
 
     @Override

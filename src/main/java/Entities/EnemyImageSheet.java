@@ -28,7 +28,7 @@ public class EnemyImageSheet
         }
         for(int i = 0; i < 4; i++)
         {
-            anima[i] = new Animation(img[i], 6, 32, 4);
+            anima[i] = new Animation(img[i], 6, size, 4);
         }
     }
 

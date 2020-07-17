@@ -1,8 +1,6 @@
 package Game;
 
-import Entities.Enemies.CrystalBall;
-import Entities.Enemies.CrystalShard;
-import Entities.Enemies.Dobbo;
+import Entities.Enemies.*;
 import Entities.Enemy;
 import Map.Road;
 
@@ -69,28 +67,21 @@ public class Wave
             }
             if(c[i] == '.')
             {
-                if(n == 1)
+                if(n > 0)
                 {
                     for(int k = 0; k < m; k++)
                     {
                         makeUnitSpace();
-                        enemies[j++] = new CrystalShard(posX + (int)(System.nanoTime()) % 8 + 16, posY + (int)(System.nanoTime()) % 8 + 16, startPoint.getWaveDirection(), id, j - 1);
-                    }
-                }
-                if(n == 2)
-                {
-                    for(int k = 0; k < m; k++)
-                    {
-                        makeUnitSpace();
-                        enemies[j++] = new CrystalBall(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection(), id, j - 1);
-                    }
-                }
-                if(n == 3)
-                {
-                    for(int k = 0; k < m; k++)
-                    {
-                        makeUnitSpace();
-                        enemies[j++] = new Dobbo(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
+                        if(n == 1)
+                            enemies[j++] = new Peasant(posX + (int)(System.nanoTime()) % 8 + 16, posY + (int)(System.nanoTime()) % 8 + 16, startPoint.getWaveDirection(), id, j - 1);
+                        if(n == 2)
+                            enemies[j++] = new Wolf(posX + (int)(System.nanoTime()) % 16 + 16, posY + (int)(System.nanoTime()) % 16 + 16, startPoint.getWaveDirection(), id, j - 1);
+                        if(n == 3)
+                            enemies[j++] = new Bandit(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
+                        if(n == 4)
+                            enemies[j++] = new Berserker(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
+                        if(n == 5)
+                            enemies[j++] = new Knight(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
                     }
                 }
                 n = 0;

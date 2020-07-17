@@ -1,16 +1,16 @@
 package Entities.Enemies;
+
 import Entities.Enemy;
+import Entities.EnemyImageSheet;
 import Game.Assets;
-import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;
 
-public class Dobbo extends Enemy
+public class Knight extends Enemy
 {
 
-    public Dobbo(double posX, double posY, int startDirection, int wave, int id)
-    {
-        super("Dobbo", Assets.DEFAULTENEMY, posX, posY, 0.75, 1000, 5, startDirection, wave, id, 200);
+    public Knight(double posX, double posY, int startDirection, int wave, int id) {
+        super("Knight", Assets.KNIGHT, posX, posY, 2, 100, 1, startDirection, wave, id, 10);
     }
 
     @Override

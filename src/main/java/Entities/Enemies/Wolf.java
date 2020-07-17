@@ -1,17 +1,16 @@
 package Entities.Enemies;
 
 import Entities.Enemy;
+import Entities.EnemyImageSheet;
 import Game.Assets;
-import engine.Image;
 import engine.ProgramContainer;
 import engine.Renderer;
 
-public class CrystalBall extends Enemy
+public class Wolf extends Enemy
 {
 
-    public CrystalBall(double posX, double posY, int startDirection, int wave, int id)
-    {
-        super("Crystal Ball", Assets.DEFAULTENEMY, posX, posY, 1, 100, 2, startDirection, wave, id, 50);
+    public Wolf(double posX, double posY, int startDirection, int wave, int id) {
+        super("Wolf", Assets.WOLF, posX, posY, 2, 100, 1, startDirection, wave, id, 10);
     }
 
     @Override

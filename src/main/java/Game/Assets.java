@@ -12,9 +12,6 @@ public class Assets
     public static final Image DEFAULTFIELD = new Image("/defaultField.png", 1, 1, 0);
     public static final Image BACKGROUND = new Image("/background.png", 1024, 576, 0);
 
-    public static final EnemyImageSheet DEFAULTENEMY = new EnemyImageSheet("/entities/defaultEnemy.png", 32);
-    public static final Image TEST = new Image("/entities/defaultEnemy.png", 128, 128, 0);
-
     public static final Image HEALTHBARFULL = new Image("/entities/healthBarFull.png", 16, 2, 0);
 
     public static final Image MENU = new Image("/gui/buildMenu.png", 128, 160, 0);
@@ -95,4 +92,10 @@ public class Assets
     public static final Animation EARTHANIMA64 = new Animation("/emblems/earthAnimation.png", 6, 64, 64, 6);
     public static final Animation FIREANIMA64 = new Animation("/emblems/fireAnimation.png", 6, 64, 64, 6);
     public static final Animation WATERANIMA64 = new Animation("/emblems/waterAnimation.png", 6, 64, 64, 6);
+
+    public static final EnemyImageSheet PEASANT = new EnemyImageSheet("/entities/enemies/peasant.png", 24);
+    public static final EnemyImageSheet WOLF = new EnemyImageSheet("/entities/enemies/wolf.png", 24);
+    public static final EnemyImageSheet BANDIT = new EnemyImageSheet("/entities/enemies/bandit.png", 24);
+    public static final EnemyImageSheet BERSERKER = new EnemyImageSheet("/entities/enemies/berserker.png", 36);
+    public static final EnemyImageSheet KNIGHT = new EnemyImageSheet("/entities/enemies/knight.png", 24);
 }
