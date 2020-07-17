@@ -79,9 +79,9 @@ public class Wave
                         if(n == 3)
                             enemies[j++] = new Bandit(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
                         if(n == 4)
-                            enemies[j++] = new Berserker(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
-                        if(n == 5)
                             enemies[j++] = new Knight(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
+                        if(n == 5)
+                            enemies[j++] = new Berserker(posX + (int)(System.nanoTime()) % 8 + 8, posY + (int)(System.nanoTime()) % 8 + 8, startPoint.getWaveDirection(), id, j - 1);
                     }
                 }
                 n = 0;

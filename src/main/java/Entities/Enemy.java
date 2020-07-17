@@ -13,6 +13,7 @@ public abstract class Enemy extends Entity implements Clickable
     String name;
     protected EnemyImageSheet sheet;
     protected double hp;
+    protected double armor;
     protected int maxHp;
     protected int cost;
     protected int direction;
@@ -29,13 +30,14 @@ public abstract class Enemy extends Entity implements Clickable
     protected double dotaDuration;
     protected int currentDotaDamage;
     protected boolean isOnMagma;
-    public Enemy(String name, EnemyImageSheet sheet, double posX, double posY, double vel, int maxHp, int cost, int startDirection, int wave, int id, int reward)
+    public Enemy(String name, EnemyImageSheet sheet, double posX, double posY, double vel, int maxHp, double armor, int cost, int startDirection, int wave, int id, int reward)
     {
         super(sheet.getImg()[1][1], posX, posY, vel);
         this.name = name;
         this.sheet = sheet;
         this.vel = vel;
         this.maxHp = maxHp;
+        this.armor = armor;
         this.cost = cost;
         this.startDirection = startDirection;
         this.direction = startDirection;

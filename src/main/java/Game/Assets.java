@@ -29,16 +29,21 @@ public class Assets
     public static final Image AIR64 = new Image("/emblems/air.png", 64, 64, 0);
     public static final Image WATER64 = new Image("/emblems/water.png", 64, 64, 0);
     public static final Image EARTH64 = new Image("/emblems/earth.png", 64, 64, 0);
+    public static final Image ENERGY64 = new Image("/emblems/energy.png", 64, 64, 0);
 
     public static final Image FIRE48 = new Image("/emblems/fire.png",  48, 48, 0);
     public static final Image AIR48 = new Image("/emblems/air.png", 48, 48, 0);
     public static final Image WATER48 = new Image("/emblems/water.png", 48, 48, 0);
     public static final Image EARTH48 = new Image("/emblems/earth.png", 48, 48, 0);
+    public static final Image ENERGY48 = new Image("/emblems/energy.png", 48, 48, 0);
 
     public static final Image FIRE32 = new Image("/emblems/fire.png", 32, 32, 0);
     public static final Image AIR32 = new Image("/emblems/air.png", 32, 32, 0);
     public static final Image WATER32 = new Image("/emblems/water.png", 32, 32, 0);
     public static final Image EARTH32 = new Image("/emblems/earth.png",  32, 32, 0);
+    public static final Image ENERGY32 = new Image("/emblems/energy.png", 32, 32, 0);
+
+    public static final Image ENERGY24 = new Image("/emblems/energy.png", 24, 24, 0);
 
     public static final Image GUI = new Image("/gui/gui.png", 1024, 576, 0);
     public static final Image GUIBUTTON = new Image("/gui/guiButton.png", 48, 48, 0);
@@ -78,20 +83,27 @@ public class Assets
 
     public static final Animation SUMMONINGTILEANIMA = new Animation("/towers/summoningTileAnimation.png", 6, 64, 64, 4);
 
+    public static final Animation ENERGYANIMA24 = new Animation("/emblems/energyAnimation.png", 6, 24, 24, 6);
+
     public static final Animation AIRANIMA32 = new Animation("/emblems/airAnimation.png", 6, 32, 32, 6);
     public static final Animation EARTHANIMA32 = new Animation("/emblems/earthAnimation.png", 6, 32, 32, 6);
     public static final Animation FIREANIMA32 = new Animation("/emblems/fireAnimation.png", 6, 32, 32, 6);
     public static final Animation WATERANIMA32 = new Animation("/emblems/waterAnimation.png", 6, 32, 32, 6);
+    public static final Animation ENERGYANIMA32 = new Animation("/emblems/energyAnimation.png", 6, 32, 32, 6);
+
 
     public static final Animation AIRANIMA48 = new Animation("/emblems/airAnimation.png", 6, 48, 48, 6);
     public static final Animation EARTHANIMA48 = new Animation("/emblems/earthAnimation.png", 6, 48, 48, 6);
     public static final Animation FIREANIMA48 = new Animation("/emblems/fireAnimation.png", 6, 48, 48, 6);
     public static final Animation WATERANIMA48 = new Animation("/emblems/waterAnimation.png", 6, 48, 48, 6);
+    public static final Animation ENERGYANIMA48 = new Animation("/emblems/energyAnimation.png", 6, 48, 48, 6);
+
 
     public static final Animation AIRANIMA64 = new Animation("/emblems/airAnimation.png", 6, 64, 64, 6);
     public static final Animation EARTHANIMA64 = new Animation("/emblems/earthAnimation.png", 6, 64, 64, 6);
     public static final Animation FIREANIMA64 = new Animation("/emblems/fireAnimation.png", 6, 64, 64, 6);
     public static final Animation WATERANIMA64 = new Animation("/emblems/waterAnimation.png", 6, 64, 64, 6);
+    public static final Animation ENERGYANIMA64 = new Animation("/emblems/energyAnimation.png", 6, 64, 64, 6);
 
     public static final EnemyImageSheet PEASANT = new EnemyImageSheet("/entities/enemies/peasant.png", 24);
     public static final EnemyImageSheet WOLF = new EnemyImageSheet("/entities/enemies/wolf.png", 24);

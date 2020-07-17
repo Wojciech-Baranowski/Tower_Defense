@@ -14,9 +14,9 @@ import engine.*;
 public class Gui
 {
     private static final Field background = new Field(Assets.GUI, 0, 0);
-    private static NextWaveButton nextWave = new NextWaveButton(Assets.GUIBUTTON, Assets.GUIBUTTONCLICKED, 976, 296);
+    private static NextWaveButton nextWave = new NextWaveButton(Assets.GUIBUTTON, Assets.GUIBUTTONCLICKED, 976, 176);
     private static Field hpEmblem = new Field(Assets.HP, 940, 100);
-    private static Field[] resourcesEmblem = new Field[]{new Field(Assets.FIRE32, 938, 134), new Field(Assets.AIR32, 938, 174), new Field(Assets.WATER32, 938, 214), new Field(Assets.EARTH32, 938, 254)};
+    private static Field energyEmblem = new Field(Assets.ENERGY24, 940, 140);
     private static String name = "";
     private static int dmg = 0;
     private static double attackSpeed = 0;
@@ -32,10 +32,7 @@ public class Gui
     public static int currentEnemyId = -1;
     public static void update(ProgramContainer pc, Level level, double passedTime, Tile[] tiles)
     {
-        resourcesEmblem[0].setImg(Assets.FIREANIMA32.updateLoop(resourcesEmblem[0].getImg(), World.tickCount));
-        resourcesEmblem[1].setImg(Assets.AIRANIMA32.updateLoop(resourcesEmblem[1].getImg(), World.tickCount));
-        resourcesEmblem[2].setImg(Assets.WATERANIMA32.updateLoop(resourcesEmblem[2].getImg(), World.tickCount));
-        resourcesEmblem[3].setImg(Assets.EARTHANIMA32.updateLoop(resourcesEmblem[3].getImg(), World.tickCount));
+        energyEmblem.setImg(Assets.ENERGYANIMA24.updateLoop(energyEmblem.getImg(), World.tickCount));
         nextWave.onClick(pc, nextWave.getPosX(), nextWave.getPosY(), nextWave.getImg().getW(), nextWave.getImg().getH(), level, passedTime);
         BuildMenu.update(pc, tiles, passedTime, level.getTileId());
         BasicUpgradeMenu.update(pc, tiles, passedTime, level.getTileId());
@@ -47,8 +44,7 @@ public class Gui
         r.drawStaticText(pc, "" + Stats.getHp(), 970, 98, 0xFFbcbcbc, 28);
         r.drawStaticText(pc, "" + Stats.energy, 970, 140, 0xFFbcbcbc, 24);
         r.drawStaticImage(pc, hpEmblem.getImg(), (int)hpEmblem.getPosX(), (int)hpEmblem.getPosY());
-        for(int i = 0; i < resourcesEmblem.length; i++)
-            r.drawStaticImage(pc, resourcesEmblem[i].getImg(), (int)resourcesEmblem[i].getPosX(), (int)resourcesEmblem[i].getPosY());
+        r.drawStaticImage(pc, energyEmblem.getImg(), (int)energyEmblem.getPosX(), (int)energyEmblem.getPosY());
         r.drawStaticText(pc, "Wave: " + (level.getCurrentWave() + 1) + "/" + level.getWavesAmount(), 884, 20, 0xFFbcbcbc, 24);
         r.drawStaticImage(pc, nextWave.getImg(), (int)nextWave.getPosX(), (int)nextWave.getPosY());
         r.drawStaticText(pc, "Next wave in:", 884, 64, 0xFFbcbcbc, 16);
@@ -78,9 +74,9 @@ public class Gui
         if(range != 0)
         r.drawStaticText(pc,"Range: " + range, 260, 548, 0xFFbcbcbc, 24);
         if(attackSpeedBoost != 0)
-            r.drawStaticText(pc,"Attack Speed Boost:  +" + ((double)((int)(attackSpeedBoost * 100)) / 100) + "%", 520, 548, 0xFFbcbcbc, 24);
+            r.drawStaticText(pc,"AS Boost:  +" + ((double)((int)(attackSpeedBoost * 100)) / 100) + "%", 620, 548, 0xFFbcbcbc, 24);
         if(rangeBoost != 0)
-            r.drawStaticText(pc,"Range Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 260, 548, 0xFFbcbcbc, 24);
+            r.drawStaticText(pc,"Rng Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 400, 548, 0xFFbcbcbc, 24);
         if(hp != 0)
             r.drawStaticText(pc,"Hp: " + hp, 320, 548, 0xFFbcbcbc, 24);
         if(vel != 0)
@@ -115,6 +111,7 @@ public class Gui
     {
         clear();
         name = tower.getName();
+        range = tower.getRange();
         attackSpeedBoost = tower.getAttackSpeedBoost() * 100;
         rangeBoost = (int)(tower.getRangeBoost() * 100);
     }
