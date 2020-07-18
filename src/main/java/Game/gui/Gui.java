@@ -9,6 +9,7 @@ import Map.Tower;
 import Map.Towers.AirTower;
 import Map.Towers.LightingTower;
 import Map.Towers.MagmaTower;
+import Map.Towers.MasterAirTower;
 import engine.*;
 
 public class Gui
@@ -18,13 +19,13 @@ public class Gui
     private static Field hpEmblem = new Field(Assets.HP, 940, 100);
     private static Field energyEmblem = new Field(Assets.ENERGY24, 940, 140);
     private static String name = "";
-    private static int dmg = 0;
+    private static int damage = 0;
     private static double attackSpeed = 0;
     private static double damagePerSecond = 0;
-    private static double slowPercentage = 0;
     private static int range = 0;
     private static double attackSpeedBoost = 0;
     private static double rangeBoost = 0;
+    private static double damageBoost = 0;
     private static int hp = 0;
     private static double vel = 0;
     private static int cost = 0;
@@ -65,8 +66,8 @@ public class Gui
         AdvancedUpgradeMenu.render(pc, r);
         if(name != "")
         r.drawStaticText(pc, name, 16, 548, 0xFFbcbcbc, 24);
-        if(dmg != 0)
-        r.drawStaticText(pc,"Damage: " + dmg, 420, 548, 0xFFbcbcbc, 24);
+        if(damage != 0)
+        r.drawStaticText(pc,"Damage: " + damage, 420, 548, 0xFFbcbcbc, 24);
         if(attackSpeed != 0)
         r.drawStaticText(pc,"Attack Speed: " + ((double)((int)(attackSpeed * 100)) / 100), 590, 548, 0xFFbcbcbc, 24);
         if(damagePerSecond != 0)
@@ -77,6 +78,8 @@ public class Gui
             r.drawStaticText(pc,"AS Boost:  +" + ((double)((int)(attackSpeedBoost * 100)) / 100) + "%", 620, 548, 0xFFbcbcbc, 24);
         if(rangeBoost != 0)
             r.drawStaticText(pc,"Rng Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 400, 548, 0xFFbcbcbc, 24);
+        if(rangeBoost != 0)
+            r.drawStaticText(pc,"Dmg Boost:  +" + ((double)((int)(rangeBoost * 100)) / 100) + "%", 820, 548, 0xFFbcbcbc, 24);
         if(hp != 0)
             r.drawStaticText(pc,"Hp: " + hp, 320, 548, 0xFFbcbcbc, 24);
         if(vel != 0)
@@ -87,7 +90,7 @@ public class Gui
     private static void clear()
     {
         name = "";
-        dmg = 0;
+        damage = 0;
         attackSpeed = 0;
         damagePerSecond = 0;
         range = 0;
@@ -103,7 +106,7 @@ public class Gui
     {
         clear();
         name = tower.getName();
-        dmg = tower.getDmg();
+        damage = tower.getDamage();
         attackSpeed = 1 / tower.getFireDelay();
         range = tower.getRange();
     }
@@ -115,18 +118,27 @@ public class Gui
         attackSpeedBoost = tower.getAttackSpeedBoost() * 100;
         rangeBoost = (int)(tower.getRangeBoost() * 100);
     }
+    public static void masterAirTowerInfo(MasterAirTower tower)
+    {
+        clear();
+        name = tower.getName();
+        range = tower.getRange();
+        attackSpeedBoost = tower.getAttackSpeedBoost() * 100;
+        rangeBoost = (int)(tower.getRangeBoost() * 100);
+        damageBoost = tower.getDamageBoost() * 100;
+    }
     public static void magmaTowerInfo(MagmaTower tower)
     {
         clear();
         name = tower.getName();
-        damagePerSecond = tower.getDmg();
+        damagePerSecond = tower.getDamage();
         range = tower.getRange();
     }
     public static void lightingTowerInfo(LightingTower tower)
     {
         clear();
         name = tower.getName();
-        damagePerSecond = tower.getDmg();
+        damagePerSecond = tower.getDamage();
         range = tower.getRange();
     }
     public static void enemyInfo(Enemy enemy, int wave, int id)

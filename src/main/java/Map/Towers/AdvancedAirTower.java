@@ -10,11 +10,11 @@ import engine.Image;
 public class AdvancedAirTower extends AirTower
 {
 
-    public AdvancedAirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost) {
-        super(Assets.ADVANCEDAIRTOWER, name, tiles, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission, attackSpeedBoost, rangeBoost);
+    public AdvancedAirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost) {
+        super(Assets.ADVANCEDAIRTOWER, name, tiles, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission, attackSpeedBoost, rangeBoost);
     }
-    public AdvancedAirTower(String name, Image img, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost) {
-        super(img, name, tiles, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission, attackSpeedBoost, rangeBoost);
+    public AdvancedAirTower(String name, Image img, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost) {
+        super(img, name, tiles, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission, attackSpeedBoost, rangeBoost);
     }
     protected void boost(Tile[] tiles)
     {
@@ -24,8 +24,8 @@ public class AdvancedAirTower extends AirTower
             {
                 if(Geometry.distance(posX, posY, tiles[i].getPosX(), tiles[i].getPosY()) <= range)
                 {
-                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() * (1 + Stats.attackSpeedBoost[5]) / (1 + Stats.attackSpeedBoost[5]));
-                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() / (1 + Stats.rangeBoost[5]) * (1 + Stats.rangeBoost[5])));
+                    ((Tower)(tiles[i])).setFireDelay(((Tower)(tiles[i])).getFireDelay() * (1 + Stats.attackSpeedBoost[1]) / (1 + Stats.attackSpeedBoost[5]));
+                    ((Tower)(tiles[i])).setRange((int)(((Tower)(tiles[i])).getRange() / (1 + Stats.rangeBoost[1]) * (1 + Stats.rangeBoost[5])));
                     boostMark.add(new Field(Assets.BOOSTMARK, tiles[i].getPosX(), tiles[i].getPosY()));
                 }
             }

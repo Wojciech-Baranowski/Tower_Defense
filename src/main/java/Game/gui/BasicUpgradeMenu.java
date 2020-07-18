@@ -13,24 +13,16 @@ public class BasicUpgradeMenu
     public static final Button MENU = new Button(Assets.BASICUPGRADEMENU, -1000, -1000);
     public static final Button CLOSER = new Button(Assets.CLOSER, -1000, -1000);
     public static final Button UPGRADEBUTTON = new Button(Assets.UPGRADEBUTTON64, -1000, -1000);
-    private static final Button FIRE = new Button(Assets.FIRE48, -1000, -1000);
-    private static final Button AIR = new Button(Assets.AIR48, -1000, -1000);
-    private static final Button WATER = new Button(Assets.WATER48, -1000, -1000);
-    private static final Button EARTH = new Button(Assets.EARTH48, -1000, -1000);
-    private static final Field FIREM = new Field(Assets.FIRE32, -1000, -1000);
-    private static final Field AIRM = new Field(Assets.AIR32, -1000, -1000);
-    private static final Field WATERM = new Field(Assets.WATER32, -1000, -1000);
-    private static final Field EARTHM = new Field(Assets.EARTH32, -1000, -1000);
+    private static final Field FIREM = new Field(Assets.FIRE24, -1000, -1000);
+    private static final Field AIRM = new Field(Assets.AIR24, -1000, -1000);
+    private static final Field WATERM = new Field(Assets.WATER24, -1000, -1000);
+    private static final Field EARTHM = new Field(Assets.EARTH24, -1000, -1000);
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
-        AIR.setImg(Assets.AIRANIMA48.updateLoop(AIR.getImg(), World.tickCount));
-        EARTH.setImg(Assets.EARTHANIMA48.updateLoop(EARTH.getImg(), World.tickCount));
-        FIRE.setImg(Assets.FIREANIMA48.updateLoop(FIRE.getImg(), World.tickCount));
-        WATER.setImg(Assets.WATERANIMA48.updateLoop(WATER.getImg(), World.tickCount));
-        AIRM.setImg(Assets.AIRANIMA32.updateLoop(AIRM.getImg(), World.tickCount));
-        EARTHM.setImg(Assets.EARTHANIMA32.updateLoop(EARTHM.getImg(), World.tickCount));
-        FIREM.setImg(Assets.FIREANIMA32.updateLoop(FIREM.getImg(), World.tickCount));
-        WATERM.setImg(Assets.WATERANIMA32.updateLoop(WATERM.getImg(), World.tickCount));
+        AIRM.setImg(Assets.AIRANIMA24.updateLoop(AIRM.getImg(), World.tickCount));
+        EARTHM.setImg(Assets.EARTHANIMA24.updateLoop(EARTHM.getImg(), World.tickCount));
+        FIREM.setImg(Assets.FIREANIMA24.updateLoop(FIREM.getImg(), World.tickCount));
+        WATERM.setImg(Assets.WATERANIMA24.updateLoop(WATERM.getImg(), World.tickCount));
         if(CLOSER.isClick(pc, CLOSER.getPosX(), CLOSER.getPosY(), CLOSER.getImg().getW(), CLOSER.getImg().getH()))
         {
             close();
@@ -119,33 +111,13 @@ public class BasicUpgradeMenu
             y = 64;
         }
         MENU.setPosX(posX + x);
-        MENU.setPosY(posY + y - 32);
-        UPGRADEBUTTON.setPosX(posX + x + 48);
-        UPGRADEBUTTON.setPosY(posY + y - 16);
-        if(towerId == 1)
-        {
-            FIRE.setPosX(posX + x + 32);
-            FIRE.setPosY(posY + y + 48);
-        }
-        else if(towerId == 2)
-        {
-            AIR.setPosX(posX + x + 32);
-            AIR.setPosY(posY + y + 48);
-        }
-        else if(towerId == 3)
-        {
-            WATER.setPosX(posX + x + 32);
-            WATER.setPosY(posY + y + 48);
-        }
-        else if(towerId == 4)
-        {
-            EARTH.setPosX(posX + x + 32);
-            EARTH.setPosY(posY + y + 48);
-        }
+        MENU.setPosY(posY + y);
+        UPGRADEBUTTON.setPosX(posX + x + 32);
+        UPGRADEBUTTON.setPosY(posY + y);
         if(typePermission[0] == true)
         {
             FIREM.setPosX(posX + x);
-            FIREM.setPosY(posY + y - 32);
+            FIREM.setPosY(posY + y + 3);
         }
         else
         {
@@ -154,8 +126,8 @@ public class BasicUpgradeMenu
         }
         if(typePermission[1] == true)
         {
-            AIRM.setPosX(posX + x);
-            AIRM.setPosY(posY + y);
+            AIRM.setPosX(posX + x + 3);
+            AIRM.setPosY(posY + y + 101);
         }
         else
         {
@@ -164,8 +136,8 @@ public class BasicUpgradeMenu
         }
         if(typePermission[2] == true)
         {
-            WATERM.setPosX(posX + x);
-            WATERM.setPosY(posY + y + 32);
+            WATERM.setPosX(posX + x + 98);
+            WATERM.setPosY(posY + y);
         }
         else
         {
@@ -174,16 +146,16 @@ public class BasicUpgradeMenu
         }
         if(typePermission[3] == true)
         {
-            EARTHM.setPosX(posX + x);
-            EARTHM.setPosY(posY + y + 64);
+            EARTHM.setPosX(posX + x + 103);
+            EARTHM.setPosY(posY + y + 96);
         }
         else
         {
             EARTHM.setPosX(-1000);
             EARTHM.setPosY(-1000);
         }
-        CLOSER.setPosX(posX + x + 128);
-        CLOSER.setPosY(posY + y - 32);
+        CLOSER.setPosX(posX + x + 52);
+        CLOSER.setPosY(posY + y + 99);
     }
     public static void close()
     {
@@ -194,36 +166,22 @@ public class BasicUpgradeMenu
         CLOSER.setPosY(-1000);
         UPGRADEBUTTON.setPosX(-1000);
         UPGRADEBUTTON.setPosY(-1000);
-        FIRE.setPosX(-1000);
-        FIRE.setPosY(-1000);
         FIREM.setPosX(-1000);
         FIREM.setPosY(-1000);
-        AIR.setPosX(-1000);
-        AIR.setPosY(-1000);
         AIRM.setPosX(-1000);
         AIRM.setPosY(-1000);
-        WATER.setPosX(-1000);
-        WATER.setPosY(-1000);
         WATERM.setPosX(-1000);
         WATERM.setPosY(-1000);
-        EARTH.setPosX(-1000);
-        EARTH.setPosY(-1000);
         EARTHM.setPosX(-1000);
         EARTHM.setPosY(-1000);
     }
     public static void render(ProgramContainer pc, Renderer r)
     {
+        System.out.println(towerId);
         r.drawStaticImage(pc, MENU.getImg(), (int)MENU.getPosX(), (int)MENU.getPosY());
         r.drawStaticImage(pc, CLOSER.getImg(), (int)CLOSER.getPosX(), (int)CLOSER.getPosY());
         r.drawStaticImage(pc, UPGRADEBUTTON.getImg(), (int)UPGRADEBUTTON.getPosX(), (int)UPGRADEBUTTON.getPosY());
-        r.drawStaticImage(pc, FIRE.getImg(), (int)FIRE.getPosX(), (int)FIRE.getPosY());
-        r.drawStaticImage(pc, AIR.getImg(), (int)AIR.getPosX(), (int)AIR.getPosY());
-        r.drawStaticImage(pc, WATER.getImg(), (int)WATER.getPosX(), (int)WATER.getPosY());
-        r.drawStaticImage(pc, EARTH.getImg(), (int)EARTH.getPosX(), (int)EARTH.getPosY());
-        r.drawStaticText(pc, "" + Stats.cost[4], (int)FIRE.getPosX() + 28, (int)FIRE.getPosY() + 16, 0xFF000000, 10);
-        r.drawStaticText(pc, "" + Stats.cost[5], (int)AIR.getPosX() + 28, (int)AIR.getPosY() + 16, 0xFF000000, 10);
-        r.drawStaticText(pc, "" + Stats.cost[6], (int)WATER.getPosX() + 28, (int)WATER.getPosY() + 16, 0xFF000000, 10);
-        r.drawStaticText(pc, "" + Stats.cost[7], (int)EARTH.getPosX() + 28, (int)EARTH.getPosY() + 16, 0xFF000000, 10);
+        r.drawStaticText(pc, "" + Stats.cost[towerId + 3], (int)MENU.getPosX() + 48, (int)MENU.getPosY() + 62, 0xFFbcbcbc, 20);
         r.drawStaticImage(pc, FIREM.getImg(), (int)FIREM.getPosX(), (int)FIREM.getPosY());
         r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
         r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());

@@ -15,8 +15,8 @@ import engine.Renderer;
 public class LeafTower extends Tower
 {
 
-    public LeafTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission) {
-        super(name, Assets.LEAFTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+    public LeafTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission) {
+        super(name, Assets.LEAFTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class LeafTower extends Tower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new LeafBullet(Assets.LEAFBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[15], Stats.damage[15], enemyId.second, enemyId.first));
+                bullets.add(new LeafBullet(Assets.LEAFBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[15], damage, enemyId.second, enemyId.first));
             }
         }
     }

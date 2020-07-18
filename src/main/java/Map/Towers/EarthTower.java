@@ -14,13 +14,13 @@ import engine.Renderer;
 public class EarthTower extends Tower
 {
 
-    public EarthTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
+    public EarthTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission)
     {
-        super(name, Assets.EARTHTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, Assets.EARTHTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
     }
-    public EarthTower(Image img, String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
+    public EarthTower(Image img, String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission)
     {
-        super(name, img, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, img, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EarthTower extends Tower
             fireTimeStamp = passedTime;
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0) {
-                bullets.add(new EarthBullet(Assets.EARTHBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[3], Stats.damage[3], enemyId.second, enemyId.first, Stats.splashRange[3], Stats.splashDamage[3]));
+                bullets.add(new EarthBullet(Assets.EARTHBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[3], damage, enemyId.second, enemyId.first, Stats.splashRange[3], Stats.splashDamage[3]));
             }
         }
     }

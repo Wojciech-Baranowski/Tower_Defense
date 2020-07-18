@@ -16,8 +16,8 @@ import engine.Renderer;
 public class IceTower extends Tower
 {
 
-    public IceTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission) {
-        super(name, Assets.ICETOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+    public IceTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission) {
+        super(name, Assets.ICETOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
 
     }
 
@@ -41,7 +41,7 @@ public class IceTower extends Tower
             Pair enemyId = targetChoose(level, tiles);
             if(enemyId.first >= 0)
             {
-                bullets.add(new IceBullet(Assets.ICEBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[14], Stats.damage[14], enemyId.second, enemyId.first));
+                bullets.add(new IceBullet(Assets.ICEBULLET, (int)posX + 32, (int)posY + 4, Stats.bulletVelocity[14], damage, enemyId.second, enemyId.first));
             }
         }
     }

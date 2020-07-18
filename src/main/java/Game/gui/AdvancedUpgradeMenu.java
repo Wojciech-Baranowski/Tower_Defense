@@ -93,7 +93,7 @@ public class AdvancedUpgradeMenu
                 close();
                 Stats.energy -= Stats.cost[9];
                 tileId[id] = 222;
-                tiles[id] = new MasterAirTower("MasterAirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 3, passedTime, 22, Stats.damage[9], Stats.range[9], Stats.fireDelay[9], ((Tower)(tiles[id])).getTypePermission(), Stats.attackSpeedBoost[9], Stats.rangeBoost[9]);
+                tiles[id] = new MasterAirTower("MasterAirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 3, passedTime, 22, Stats.damage[9], Stats.range[9], Stats.fireDelay[9], ((Tower)(tiles[id])).getTypePermission(), Stats.attackSpeedBoost[9], Stats.rangeBoost[9], Stats.damageBoost[9]);
             }
             else if((towerId == 13) && (Stats.energy >= Stats.cost[10]))
             {

@@ -11,7 +11,7 @@ public class Wolf extends Enemy
 {
 
     public Wolf(double posX, double posY, int startDirection, int wave, int id) {
-        super("Wolf", Assets.WOLF, posX, posY, EnemyStats.velocity[1], EnemyStats.hp[1], EnemyStats.armor[1], EnemyStats.cost[1], startDirection, wave, id, EnemyStats.reward[1]);
+        super("Peasant", Assets.PEASANT, posX, posY, EnemyStats.velocity[1], EnemyStats.hp[1], EnemyStats.armor[1], EnemyStats.cost[1], startDirection, wave, id, EnemyStats.reward[1]);
     }
 
     @Override

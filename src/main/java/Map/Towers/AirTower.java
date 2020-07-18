@@ -15,17 +15,17 @@ public class AirTower extends Tower
     protected double attackSpeedBoost;
     protected double rangeBoost;
     protected Vector<Field> boostMark;
-    public AirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
+    public AirTower(String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
     {
-        super(name, Assets.AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, Assets.AIRTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
         this.attackSpeedBoost = attackSpeedBoost;
         this.rangeBoost = rangeBoost;
         boostMark = new Vector<>();
         boost(tiles);
     }
-    public AirTower(Image img, String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
+    public AirTower(Image img, String name, Tile[] tiles, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission, double attackSpeedBoost, double rangeBoost)
     {
-        super(name, img, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+        super(name, img, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
         this.attackSpeedBoost = attackSpeedBoost;
         this.rangeBoost = rangeBoost;
         boostMark = new Vector<>();
@@ -42,7 +42,6 @@ public class AirTower extends Tower
     {
         for(int i = 0; i < boostMark.size(); i++)
         {
-            if(pc.getWorld().getTiles()[((int)boostMark.get(i).getPosY() / 64) * 16 + ((int)boostMark.get(i).getPosX() / 64)].getClass() != MagmaTower.class)
             r.drawImage(pc, boostMark.get(i).getImg(), (int)boostMark.get(i).getPosX(), (int)boostMark.get(i).getPosY());
         }
     }
@@ -93,4 +92,5 @@ public class AirTower extends Tower
     public double getRangeBoost() {
         return rangeBoost;
     }
+
 }

@@ -84,10 +84,10 @@ public class BuildMenu implements Clickable
         r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
         r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());
         r.drawStaticImage(pc, EARTHM.getImg(), (int)EARTHM.getPosX(), (int)EARTHM.getPosY());
-        r.drawStaticText(pc, "" + Stats.cost[0], (int)FIRE.getPosX(), (int)FIRE.getPosY() + 20, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Stats.cost[1], (int)AIR.getPosX(), (int)AIR.getPosY() + 20, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Stats.cost[2], (int)WATER.getPosX(), (int)WATER.getPosY() + 20, 0xFF000000, 20);
-        r.drawStaticText(pc, "" + Stats.cost[3], (int)EARTH.getPosX(), (int)EARTH.getPosY() + 20, 0xFF000000, 20);
+        r.drawStaticText(pc, "" + Stats.cost[0], (int)FIRE.getPosX(), (int)FIRE.getPosY() + 20, 0xFFbcbcbc, 20);
+        r.drawStaticText(pc, "" + Stats.cost[1], (int)AIR.getPosX(), (int)AIR.getPosY() + 20, 0xFFbcbcbc, 20);
+        r.drawStaticText(pc, "" + Stats.cost[2], (int)WATER.getPosX(), (int)WATER.getPosY() + 20, 0xFFbcbcbc, 20);
+        r.drawStaticText(pc, "" + Stats.cost[3], (int)EARTH.getPosX(), (int)EARTH.getPosY() + 20, 0xFFbcbcbc, 20);
     }
     public static void open(double posX, double posY, int iD, boolean[] typePermission)
     {

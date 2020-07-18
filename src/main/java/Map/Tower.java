@@ -17,22 +17,24 @@ public abstract class Tower extends Tile implements Clickable
     protected double fireTimeStamp;
     protected Queue<Bullet> bullets;
     protected int towerId;
-    protected int dmg;
+    protected int damage;
     protected int range;
     protected double fireDelay;
     protected boolean[] typePermission;
-    public Tower(String name, Image image, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission)
+    protected int boost;
+    public Tower(String name, Image image, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission)
     {
         super(image, posX, posY, id);
         this.name = name;
         this.upgradeLvl = upgradeLvl;
         this.fireTimeStamp = 0;
         this.towerId = towerId;
-        this.dmg = dmg;
+        this.damage = damage;
         this.range = range;
         this.fireDelay = fireDelay;
         this.typePermission = typePermission;
-        bullets = new LinkedList<Bullet>();
+        this.boost = 0;
+        bullets = new LinkedList<>();
     }
 
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
@@ -156,11 +158,15 @@ public abstract class Tower extends Tile implements Clickable
         return name;
     }
 
-    public int getDmg() {
-        return dmg;
+    public int getDamage() {
+        return damage;
     }
 
     public boolean[] getTypePermission() {
         return typePermission;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

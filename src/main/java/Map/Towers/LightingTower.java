@@ -13,8 +13,8 @@ public class LightingTower extends Tower
 {
     private double prevX;
     private double prevY;
-    public LightingTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int dmg, int range, double fireDelay, boolean[] typePermission) {
-        super(name, Assets.LIGHTINGTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, dmg, range, fireDelay, typePermission);
+    public LightingTower(String name, double posX, double posY, int id, int upgradeLvl, double fireTimeStamp, int towerId, int damage, int range, double fireDelay, boolean[] typePermission) {
+        super(name, Assets.LIGHTINGTOWER, posX, posY, id, upgradeLvl, fireTimeStamp, towerId, damage, range, fireDelay, typePermission);
         prevX = -1;
         prevY = -1;
     }
