@@ -12,29 +12,26 @@ public class BuildMenu implements Clickable
     private static int id = -1;
     public static final Button MENU = new Button(Assets.BUILDMENU, -1000, -1000);
     public static final Button CLOSER = new Button(Assets.CLOSER, -1000, -1000);
-    private static final Button FIRE = new Button(Assets.FIRE32, -1000, -1000);
-    private static final Button AIR = new Button(Assets.AIR32, -1000, -1000);
-    private static final Button WATER = new Button(Assets.WATER32, -1000, -1000);
-    private static final Button EARTH = new Button(Assets.EARTH32, -1000, -1000);
-    private static final Field FIREM = new Field(Assets.FIRE24, -1000, -1000);
-    private static final Field AIRM = new Field(Assets.AIR24, -1000, -1000);
-    private static final Field WATERM = new Field(Assets.WATER24, -1000, -1000);
-    private static final Field EARTHM = new Field(Assets.EARTH24, -1000, -1000);
+    private static final Button[] EMBLEMS64 = {new Button(Assets.FIRE64, -1000, -1000), new Button(Assets.AIR64, -1000, -1000), new Button(Assets.WATER64, -1000, -1000), new Button(Assets.EARTH64, -1000, -1000)};
+    private static final Field[] EMBLEMS24 = {new Field(Assets.FIRE24, -1000, -1000), new Field(Assets.AIR24, -1000, -1000), new Field(Assets.WATER24, -1000, -1000), new Field(Assets.EARTH24, -1000, -1000)};
+
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
-        AIR.setImg(Assets.AIRANIMA32.updateLoop(AIR.getImg(), World.tickCount));
-        EARTH.setImg(Assets.EARTHANIMA32.updateLoop(EARTH.getImg(), World.tickCount));
-        FIRE.setImg(Assets.FIREANIMA32.updateLoop(FIRE.getImg(), World.tickCount));
-        WATER.setImg(Assets.WATERANIMA32.updateLoop(WATER.getImg(), World.tickCount));
-        AIRM.setImg(Assets.AIRANIMA24.updateLoop(AIRM.getImg(), World.tickCount));
-        EARTHM.setImg(Assets.EARTHANIMA24.updateLoop(EARTHM.getImg(), World.tickCount));
-        FIREM.setImg(Assets.FIREANIMA24.updateLoop(FIREM.getImg(), World.tickCount));
-        WATERM.setImg(Assets.WATERANIMA24.updateLoop(WATERM.getImg(), World.tickCount));
+        EMBLEMS64[0].setImg(Assets.FIREANIMA32.updateLoop(EMBLEMS64[0].getImg(), World.tickCount));
+        EMBLEMS64[1].setImg(Assets.AIRANIMA32.updateLoop(EMBLEMS64[1].getImg(), World.tickCount));
+        EMBLEMS64[2].setImg(Assets.WATERANIMA32.updateLoop(EMBLEMS64[2].getImg(), World.tickCount));
+        EMBLEMS64[3].setImg(Assets.EARTHANIMA32.updateLoop(EMBLEMS64[3].getImg(), World.tickCount));
+
+        EMBLEMS24[0].setImg(Assets.FIREANIMA24.updateLoop(EMBLEMS24[0].getImg(), World.tickCount));
+        EMBLEMS24[1].setImg(Assets.AIRANIMA24.updateLoop(EMBLEMS24[1].getImg(), World.tickCount));
+        EMBLEMS24[2].setImg(Assets.WATERANIMA24.updateLoop(EMBLEMS24[2].getImg(), World.tickCount));
+        EMBLEMS24[3].setImg(Assets.EARTHANIMA24.updateLoop(EMBLEMS24[3].getImg(), World.tickCount));
+
         if(CLOSER.isClick(pc, CLOSER.getPosX(), CLOSER.getPosY(), CLOSER.getImg().getW(), CLOSER.getImg().getH()))
         {
             close();
         }
-        if((FIRE.isClick(pc, FIRE.getPosX(), FIRE.getPosY(), FIRE.getImg().getW(), FIRE.getImg().getH())) && (Stats.energy >= Stats.cost[0]))
+        if((EMBLEMS64[0].isClick(pc, EMBLEMS64[0].getPosX(), EMBLEMS64[0].getPosY(), EMBLEMS64[0].getImg().getW(), EMBLEMS64[0].getImg().getH())) && (Stats.energy >= Stats.cost[0]))
         {
             close();
             Stats.energy -= Stats.cost[0];
@@ -44,14 +41,14 @@ public class BuildMenu implements Clickable
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((AIR.isClick(pc, AIR.getPosX(), AIR.getPosY(), AIR.getImg().getW(), AIR.getImg().getH())) && (Stats.energy >= Stats.cost[1]))
+        if((EMBLEMS64[1].isClick(pc, EMBLEMS64[1].getPosX(), EMBLEMS64[1].getPosY(), EMBLEMS64[1].getImg().getW(), EMBLEMS64[1].getImg().getH())) && (Stats.energy >= Stats.cost[1]))
         {
             close();
             Stats.energy -= Stats.cost[1];
             tileId[id] = 22;
             tiles[id] = new AirTower("AirTower", tiles,(id % 16) * 64, (id / 16) * 64, id, 1, passedTime, 2, Stats.damage[1], Stats.range[1], Stats.fireDelay[1], ((TowerPlace)(tiles[id])).getTypePermission(), Stats.attackSpeedBoost[1], Stats.rangeBoost[1]);
         }
-        if((WATER.isClick(pc, WATER.getPosX(), WATER.getPosY(), WATER.getImg().getW(), WATER.getImg().getH())) && (Stats.energy >= Stats.cost[2]))
+        if((EMBLEMS64[2].isClick(pc, EMBLEMS64[2].getPosX(), EMBLEMS64[2].getPosY(), EMBLEMS64[2].getImg().getW(), EMBLEMS64[2].getImg().getH())) && (Stats.energy >= Stats.cost[2]))
         {
             close();
             Stats.energy -= Stats.cost[2];
@@ -61,7 +58,7 @@ public class BuildMenu implements Clickable
             AdvancedAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
             MasterAirTower.boostCheck(tiles, id, (id % 16) * 64, (id / 16) * 64);
         }
-        if((EARTH.isClick(pc, EARTH.getPosX(), EARTH.getPosY(), EARTH.getImg().getW(), EARTH.getImg().getH())) && (Stats.energy >= Stats.cost[3]))
+        if((EMBLEMS64[3].isClick(pc, EMBLEMS64[3].getPosX(), EMBLEMS64[3].getPosY(), EMBLEMS64[3].getImg().getW(), EMBLEMS64[3].getImg().getH())) && (Stats.energy >= Stats.cost[3]))
         {
             close();
             Stats.energy -= Stats.cost[3];
@@ -76,18 +73,12 @@ public class BuildMenu implements Clickable
     {
         r.drawStaticImage(pc, MENU.getImg(), (int)MENU.getPosX(), (int)MENU.getPosY());
         r.drawStaticImage(pc, CLOSER.getImg(), (int)CLOSER.getPosX(), (int)CLOSER.getPosY());
-        r.drawStaticImage(pc, FIRE.getImg(), (int)FIRE.getPosX(), (int)FIRE.getPosY());
-        r.drawStaticImage(pc, AIR.getImg(), (int)AIR.getPosX(), (int)AIR.getPosY());
-        r.drawStaticImage(pc, WATER.getImg(), (int)WATER.getPosX(), (int)WATER.getPosY());
-        r.drawStaticImage(pc, EARTH.getImg(), (int)EARTH.getPosX(), (int)EARTH.getPosY());
-        r.drawStaticImage(pc, FIREM.getImg(), (int)FIREM.getPosX(), (int)FIREM.getPosY());
-        r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
-        r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());
-        r.drawStaticImage(pc, EARTHM.getImg(), (int)EARTHM.getPosX(), (int)EARTHM.getPosY());
-        r.drawStaticText(pc, "" + Stats.cost[0], (int)FIRE.getPosX(), (int)FIRE.getPosY() + 20, 0xFFbcbcbc, 20);
-        r.drawStaticText(pc, "" + Stats.cost[1], (int)AIR.getPosX(), (int)AIR.getPosY() + 20, 0xFFbcbcbc, 20);
-        r.drawStaticText(pc, "" + Stats.cost[2], (int)WATER.getPosX(), (int)WATER.getPosY() + 20, 0xFFbcbcbc, 20);
-        r.drawStaticText(pc, "" + Stats.cost[3], (int)EARTH.getPosX(), (int)EARTH.getPosY() + 20, 0xFFbcbcbc, 20);
+        for(int i = 0 ; i < 4; i++)
+        {
+            r.drawStaticImage(pc, EMBLEMS64[i].getImg(), (int)EMBLEMS64[i].getPosX(), (int)EMBLEMS64[i].getPosY());
+            r.drawStaticImage(pc, EMBLEMS24[i].getImg(), (int)EMBLEMS24[i].getPosX(), (int)EMBLEMS24[i].getPosY());
+            r.drawStaticText(pc, "" + Stats.cost[0], (int)EMBLEMS64[i].getPosX(), (int)EMBLEMS64[i].getPosY() + 20, 0xFFbcbcbc, 20);
+        }
     }
     public static void open(double posX, double posY, int iD, boolean[] typePermission)
     {
@@ -133,59 +124,59 @@ public class BuildMenu implements Clickable
             MENU.setPosY(posY + y);
             if(typePermission[0] == true)
             {
-                FIRE.setPosX(posX + x + 48);
-                FIRE.setPosY(posY + y);
-                FIREM.setPosX(posX + x + 3);
-                FIREM.setPosY(posY + y + 3);
+                EMBLEMS64[0].setPosX(posX + x + 48);
+                EMBLEMS64[0].setPosY(posY + y);
+                EMBLEMS24[0].setPosX(posX + x + 3);
+                EMBLEMS24[0].setPosY(posY + y + 3);
             }
             else
             {
-                FIRE.setPosX(-1000);
-                FIRE.setPosY(-1000);
-                FIREM.setPosX(-1000);
-                FIREM.setPosY(-1000);
+                EMBLEMS64[0].setPosX(-1000);
+                EMBLEMS64[0].setPosY(-1000);
+                EMBLEMS24[0].setPosX(-1000);
+                EMBLEMS24[0].setPosY(-1000);
             }
             if(typePermission[1] == true)
             {
-                AIR.setPosX(posX + x + 4);
-                AIR.setPosY(posY + y + 44);
-                AIRM.setPosX(posX + x + 3);
-                AIRM.setPosY(posY + y + 101);
+                EMBLEMS64[1].setPosX(posX + x + 4);
+                EMBLEMS64[1].setPosY(posY + y + 44);
+                EMBLEMS24[1].setPosX(posX + x + 3);
+                EMBLEMS24[1].setPosY(posY + y + 101);
             }
             else
             {
-                AIR.setPosX(-1000);
-                AIR.setPosY(-1000);
-                AIRM.setPosX(-1000);
-                AIRM.setPosY(-1000);
+                EMBLEMS64[1].setPosX(-1000);
+                EMBLEMS64[1].setPosY(-1000);
+                EMBLEMS24[1].setPosX(-1000);
+                EMBLEMS24[1].setPosY(-1000);
             }
             if(typePermission[2] == true)
             {
-                WATER.setPosX(posX + x + 92);
-                WATER.setPosY(posY + y + 44);
-                WATERM.setPosX(posX + x + 98);
-                WATERM.setPosY(posY + y);
+                EMBLEMS64[2].setPosX(posX + x + 92);
+                EMBLEMS64[2].setPosY(posY + y + 44);
+                EMBLEMS24[2].setPosX(posX + x + 98);
+                EMBLEMS24[2].setPosY(posY + y);
             }
             else
             {
-                WATER.setPosX(-1000);
-                WATER.setPosY(-1000);
-                WATERM.setPosX(-1000);
-                WATERM.setPosY(-1000);
+                EMBLEMS64[2].setPosX(-1000);
+                EMBLEMS64[2].setPosY(-1000);
+                EMBLEMS24[2].setPosX(-1000);
+                EMBLEMS24[2].setPosY(-1000);
             }
             if(typePermission[3] == true)
             {
-                EARTH.setPosX(posX + x + 48);
-                EARTH.setPosY(posY + y + 88);
-                EARTHM.setPosX(posX + x + 103);
-                EARTHM.setPosY(posY + y + 96);
+                EMBLEMS64[3].setPosX(posX + x + 48);
+                EMBLEMS64[3].setPosY(posY + y + 88);
+                EMBLEMS24[3].setPosX(posX + x + 103);
+                EMBLEMS24[3].setPosY(posY + y + 96);
             }
             else
             {
-                EARTH.setPosX(-1000);
-                EARTH.setPosY(-1000);
-                EARTHM.setPosX(-1000);
-                EARTHM.setPosY(-1000);
+                EMBLEMS64[3].setPosX(-1000);
+                EMBLEMS64[3].setPosY(-1000);
+                EMBLEMS24[3].setPosX(-1000);
+                EMBLEMS24[3].setPosY(-1000);
             }
         CLOSER.setPosX(posX + x + 52);
         CLOSER.setPosY(posY + y + 52);
@@ -197,22 +188,13 @@ public class BuildMenu implements Clickable
         MENU.setPosY(-1000);
         CLOSER.setPosX(-1000);
         CLOSER.setPosY(-1000);
-        FIRE.setPosX(-1000);
-        FIRE.setPosY(-1000);
-        FIREM.setPosX(-1000);
-        FIREM.setPosY(-1000);
-        AIR.setPosX(-1000);
-        AIR.setPosY(-1000);
-        AIRM.setPosX(-1000);
-        AIRM.setPosY(-1000);
-        WATER.setPosX(-1000);
-        WATER.setPosY(-1000);
-        WATERM.setPosX(-1000);
-        WATERM.setPosY(-1000);
-        EARTH.setPosX(-1000);
-        EARTH.setPosY(-1000);
-        EARTHM.setPosX(-1000);
-        EARTHM.setPosY(-1000);
+        for(int i = 0; i < 4; i++)
+        {
+            EMBLEMS64[i].setPosX(-1000);
+            EMBLEMS64[i].setPosY(-1000);
+            EMBLEMS24[i].setPosX(-1000);
+            EMBLEMS24[i].setPosY(-1000);
+        }
     }
 
     @Override

@@ -13,16 +13,20 @@ public class BasicUpgradeMenu
     public static final Button MENU = new Button(Assets.BASICUPGRADEMENU, -1000, -1000);
     public static final Button CLOSER = new Button(Assets.CLOSER, -1000, -1000);
     public static final Button UPGRADEBUTTON = new Button(Assets.UPGRADEBUTTON64, -1000, -1000);
-    private static final Field FIREM = new Field(Assets.FIRE24, -1000, -1000);
-    private static final Field AIRM = new Field(Assets.AIR24, -1000, -1000);
-    private static final Field WATERM = new Field(Assets.WATER24, -1000, -1000);
-    private static final Field EARTHM = new Field(Assets.EARTH24, -1000, -1000);
+    private static final Field[] EMBLEMS64 = {new Field(Assets.FIRE64, -1000, -1000), new Field(Assets.AIR64, -1000, -1000), new Field(Assets.WATER64, -1000, -1000), new Field(Assets.EARTH64, -1000, -1000)};
+    private static final Field[] EMBLEMS24 = {new Field(Assets.FIRE24, -1000, -1000), new Field(Assets.AIR24, -1000, -1000), new Field(Assets.WATER24, -1000, -1000), new Field(Assets.EARTH24, -1000, -1000)};
     public static void update(ProgramContainer pc, Tile[] tiles, double passedTime, int[] tileId)
     {
-        AIRM.setImg(Assets.AIRANIMA24.updateLoop(AIRM.getImg(), World.tickCount));
-        EARTHM.setImg(Assets.EARTHANIMA24.updateLoop(EARTHM.getImg(), World.tickCount));
-        FIREM.setImg(Assets.FIREANIMA24.updateLoop(FIREM.getImg(), World.tickCount));
-        WATERM.setImg(Assets.WATERANIMA24.updateLoop(WATERM.getImg(), World.tickCount));
+        EMBLEMS64[0].setImg(Assets.FIREANIMA64.updateLoop(EMBLEMS64[0].getImg(), World.tickCount));
+        EMBLEMS64[1].setImg(Assets.AIRANIMA64.updateLoop(EMBLEMS64[1].getImg(), World.tickCount));
+        EMBLEMS64[2].setImg(Assets.WATERANIMA64.updateLoop(EMBLEMS64[2].getImg(), World.tickCount));
+        EMBLEMS64[3].setImg(Assets.EARTHANIMA64.updateLoop(EMBLEMS64[3].getImg(), World.tickCount));
+
+        EMBLEMS24[0].setImg(Assets.FIREANIMA24.updateLoop(EMBLEMS24[0].getImg(), World.tickCount));
+        EMBLEMS24[1].setImg(Assets.AIRANIMA24.updateLoop(EMBLEMS24[1].getImg(), World.tickCount));
+        EMBLEMS24[2].setImg(Assets.WATERANIMA24.updateLoop(EMBLEMS24[2].getImg(), World.tickCount));
+        EMBLEMS24[3].setImg(Assets.EARTHANIMA24.updateLoop(EMBLEMS24[3].getImg(), World.tickCount));
+
         if(CLOSER.isClick(pc, CLOSER.getPosX(), CLOSER.getPosY(), CLOSER.getImg().getW(), CLOSER.getImg().getH()))
         {
             close();
@@ -116,43 +120,51 @@ public class BasicUpgradeMenu
         UPGRADEBUTTON.setPosY(posY + y);
         if(typePermission[0] == true)
         {
-            FIREM.setPosX(posX + x);
-            FIREM.setPosY(posY + y + 3);
+            EMBLEMS24[0].setPosX(posX + x);
+            EMBLEMS24[0].setPosY(posY + y + 3);
         }
         else
         {
-            FIREM.setPosX(-1000);
-            FIREM.setPosY(-1000);
+            EMBLEMS24[0].setPosX(-1000);
+            EMBLEMS24[0].setPosY(-1000);
         }
         if(typePermission[1] == true)
         {
-            AIRM.setPosX(posX + x + 3);
-            AIRM.setPosY(posY + y + 101);
+            EMBLEMS24[1].setPosX(posX + x + 3);
+            EMBLEMS24[1].setPosY(posY + y + 101);
         }
         else
         {
-            AIRM.setPosX(-1000);
-            AIRM.setPosY(-1000);
+            EMBLEMS24[1].setPosX(-1000);
+            EMBLEMS24[1].setPosY(-1000);
         }
         if(typePermission[2] == true)
         {
-            WATERM.setPosX(posX + x + 98);
-            WATERM.setPosY(posY + y);
+            EMBLEMS24[2].setPosX(posX + x + 98);
+            EMBLEMS24[2].setPosY(posY + y);
         }
         else
         {
-            WATERM.setPosX(-1000);
-            WATERM.setPosY(-1000);
+            EMBLEMS24[2].setPosX(-1000);
+            EMBLEMS24[2].setPosY(-1000);
         }
         if(typePermission[3] == true)
         {
-            EARTHM.setPosX(posX + x + 103);
-            EARTHM.setPosY(posY + y + 96);
+            EMBLEMS24[3].setPosX(posX + x + 103);
+            EMBLEMS24[3].setPosY(posY + y + 96);
         }
         else
         {
-            EARTHM.setPosX(-1000);
-            EARTHM.setPosY(-1000);
+            EMBLEMS24[3].setPosX(-1000);
+            EMBLEMS24[3].setPosY(-1000);
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            if(towerId == i + 1)
+            {
+                EMBLEMS64[i].setPosX(posX + x + 32);
+                EMBLEMS64[i].setPosY(posY + y);
+            }
         }
         CLOSER.setPosX(posX + x + 52);
         CLOSER.setPosY(posY + y + 99);
@@ -166,26 +178,25 @@ public class BasicUpgradeMenu
         CLOSER.setPosY(-1000);
         UPGRADEBUTTON.setPosX(-1000);
         UPGRADEBUTTON.setPosY(-1000);
-        FIREM.setPosX(-1000);
-        FIREM.setPosY(-1000);
-        AIRM.setPosX(-1000);
-        AIRM.setPosY(-1000);
-        WATERM.setPosX(-1000);
-        WATERM.setPosY(-1000);
-        EARTHM.setPosX(-1000);
-        EARTHM.setPosY(-1000);
+        for(int i = 0; i < 4; i++)
+        {
+            EMBLEMS24[i].setPosX(-1000);
+            EMBLEMS24[i].setPosY(-1000);
+            EMBLEMS64[i].setPosX(-1000);
+            EMBLEMS64[i].setPosY(-1000);
+        }
     }
     public static void render(ProgramContainer pc, Renderer r)
     {
-        System.out.println(towerId);
         r.drawStaticImage(pc, MENU.getImg(), (int)MENU.getPosX(), (int)MENU.getPosY());
         r.drawStaticImage(pc, CLOSER.getImg(), (int)CLOSER.getPosX(), (int)CLOSER.getPosY());
-        r.drawStaticImage(pc, UPGRADEBUTTON.getImg(), (int)UPGRADEBUTTON.getPosX(), (int)UPGRADEBUTTON.getPosY());
         r.drawStaticText(pc, "" + Stats.cost[towerId + 3], (int)MENU.getPosX() + 48, (int)MENU.getPosY() + 62, 0xFFbcbcbc, 20);
-        r.drawStaticImage(pc, FIREM.getImg(), (int)FIREM.getPosX(), (int)FIREM.getPosY());
-        r.drawStaticImage(pc, AIRM.getImg(), (int)AIRM.getPosX(), (int)AIRM.getPosY());
-        r.drawStaticImage(pc, WATERM.getImg(), (int)WATERM.getPosX(), (int)WATERM.getPosY());
-        r.drawStaticImage(pc, EARTHM.getImg(), (int)EARTHM.getPosX(), (int)EARTHM.getPosY());
+        for(int i = 0; i < 4; i++)
+        {
+            r.drawStaticImage(pc, EMBLEMS24[i].getImg(), (int)EMBLEMS24[i].getPosX(), (int)EMBLEMS24[i].getPosY());
+            r.drawStaticImage(pc, EMBLEMS64[i].getImg(), (int)EMBLEMS64[i].getPosX(), (int)EMBLEMS64[i].getPosY());
+        }
+        r.drawStaticImage(pc, UPGRADEBUTTON.getImg(), (int)UPGRADEBUTTON.getPosX(), (int)UPGRADEBUTTON.getPosY());
     }
 }
 
