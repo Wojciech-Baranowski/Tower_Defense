@@ -1,6 +1,5 @@
 package Entities;
 
-import Game.Assets;
 import Game.gui.Gui;
 import Game.Level;
 import Game.Stats;
@@ -8,8 +7,7 @@ import Map.Road;
 import Map.Towers.MagmaTower;
 import engine.*;
 
-public abstract class Enemy extends Entity implements Clickable
-{
+public abstract class Enemy extends Entity implements Clickable, Movable {
     String name;
     protected EnemyImageSheet sheet;
     protected double hp;
@@ -61,7 +59,7 @@ public abstract class Enemy extends Entity implements Clickable
         {
             onClick(pc, posX, posY, img.getW(), img.getH());
             if(snareDuration <= 0)
-            move(level.getTileId());
+            move(level.getTileId(), null);
             walkAnimate();
             if(snareDuration > 0)
                 snareDuration -= (1.0 / 60.0);
@@ -78,7 +76,7 @@ public abstract class Enemy extends Entity implements Clickable
             {
                 Stats.hp -= cost;
             }
-            if((isOnMagma == true) && (((Road)(pc.getWorld().getTiles()[(int)(posY / 64) * 16 + (int)(posX / 64)])).isMagma() == false))
+            if((isOnMagma == true) && (((Road)(level.getTiles()[(int)(posY / 64) * 16 + (int)(posX / 64)])).isMagma() == false))
             {
                 isOnMagma = false;
                 MagmaTower.scorch(this);
@@ -106,7 +104,8 @@ public abstract class Enemy extends Entity implements Clickable
     }
     public abstract void indUpdate(ProgramContainer pc, double passedTime);
     public abstract void indrender(ProgramContainer pc, Renderer r);
-    public void move(int[] tileId)
+    @Override
+    public void move(int[] tileId, Enemy enemy)
     {
         if(img.getW() < 32)
         {

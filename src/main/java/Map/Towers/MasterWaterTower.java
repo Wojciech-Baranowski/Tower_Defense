@@ -5,7 +5,6 @@ import Game.Assets;
 import Game.Level;
 import Game.Stats;
 import Map.Tile;
-import engine.Pair;
 
 public class MasterWaterTower extends AdvancedWaterTower
 {

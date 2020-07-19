@@ -2,14 +2,13 @@ package Entities.Particles;
 
 import Entities.Enemy;
 import Entities.Entity;
-import Entities.Particles.Bullets.LeafBullet;
 import Game.Level;
 import engine.Image;
+import engine.Movable;
 import engine.ProgramContainer;
 import engine.Renderer;
 
-public abstract class Bullet extends Entity
-{
+public abstract class Bullet extends Entity implements Movable {
     protected int dmg;
     protected int targetId;
     protected int targetWaveId;
@@ -25,7 +24,7 @@ public abstract class Bullet extends Entity
     @Override
     public void update(ProgramContainer pc, double passedTime, Level level)
     {
-        move(level.getWaves()[targetWaveId].getEnemies()[targetId]);
+        move(null, level.getWaves()[targetWaveId].getEnemies()[targetId]);
         hit(level.getWaves()[targetWaveId].getEnemies()[targetId]);
         indUpdate(level);
     }
@@ -35,7 +34,8 @@ public abstract class Bullet extends Entity
         r.drawImage(pc,img, (int)posX, (int)posY);
     }
     public abstract void indUpdate(Level level);
-    public void move(Enemy enemy)
+    @Override
+    public void move(int[] tileId, Enemy enemy)
     {
         double n = 0;
         double m = 0;

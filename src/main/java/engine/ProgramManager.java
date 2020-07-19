@@ -1,6 +1,6 @@
 package engine;
 
-public class ProgramManager extends AbstractProgram
+public class ProgramManager
 {
 
     public ProgramManager()
@@ -14,7 +14,6 @@ public class ProgramManager extends AbstractProgram
         pc.getWorld().update(pc, dt);
     }
 
-    @Override
     public void render(ProgramContainer pc, Renderer r)
     {
         pc.getWorld().render(pc, r);

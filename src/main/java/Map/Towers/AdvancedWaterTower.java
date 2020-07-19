@@ -1,13 +1,11 @@
 package Map.Towers;
 
-import Entities.Particles.Bullets.FireBullet;
 import Entities.Particles.Bullets.WaterBullet;
 import Game.Assets;
 import Game.Level;
 import Game.Stats;
 import Map.Tile;
 import engine.Image;
-import engine.Pair;
 
 public class AdvancedWaterTower extends WaterTower
 {

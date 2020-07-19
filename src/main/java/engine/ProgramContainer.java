@@ -7,7 +7,7 @@ public class ProgramContainer implements Runnable
     private Renderer renderer;
     private Input input;
     private Camera camera;
-    private AbstractProgram program;
+    private ProgramManager program;
     private World world;
 
 
@@ -21,7 +21,7 @@ public class ProgramContainer implements Runnable
     private float scale = 1.2f;
     private  String title = "title";
 
-    public ProgramContainer(AbstractProgram program)
+    public ProgramContainer(ProgramManager program)
     {
         this.program = program;
     }

@@ -6,7 +6,6 @@ import Game.Level;
 import Game.Stats;
 import Map.Tile;
 import engine.Image;
-import engine.Pair;
 
 public class AdvancedEarthTower extends EarthTower
 {

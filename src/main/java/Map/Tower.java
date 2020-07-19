@@ -37,6 +37,17 @@ public abstract class Tower extends Tile implements Clickable
         bullets = new LinkedList<>();
     }
 
+    protected class Pair
+    {
+        public int first;
+        public int second;
+        public Pair(int a, int b)
+        {
+            this.first = a;
+            this.second = b;
+        }
+    }
+
     public void update(ProgramContainer pc, Tile[] tiles, double passedTime, Level level)
     {
         fire(level, tiles, passedTime);
@@ -100,7 +111,7 @@ public abstract class Tower extends Tile implements Clickable
         }
     }
     public abstract void fire(Level level, Tile[] tiles, double passedTime);
-    protected engine.Pair targetChoose(Level level, Tile[] tiles)
+    protected Pair targetChoose(Level level, Tile[] tiles)
     {
         Pair p = new Pair(-1, -1);
         for(int i = 0; i < level.getWavesAmount(); i++)

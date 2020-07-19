@@ -1,6 +1,5 @@
 package Map.Towers;
 
-import Entities.Particles.Bullets.IceBullet;
 import Entities.Particles.Bullets.LeafBullet;
 import Game.Assets;
 import Game.Level;
@@ -8,7 +7,6 @@ import Game.Stats;
 import Map.Tile;
 import Map.Tower;
 import engine.Image;
-import engine.Pair;
 import engine.ProgramContainer;
 import engine.Renderer;
 

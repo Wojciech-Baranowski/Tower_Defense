@@ -15,7 +15,6 @@ public class World
     private Image background;
     public static Field canvas;
     private Level level;
-    private Tile[] tiles;
     private Stats stats;
     private EnemyStats enemyStats;
     public final static String zer0 = "Mateusz, sam jestes leb xD";
@@ -23,11 +22,10 @@ public class World
     {
         background = Assets.BACKGROUND;
         this.paused = true;
-        tiles = new Tile[144];
+
         stats = JSONReader.parseJSONStats(FReader.read("data/towers.txt"));
         enemyStats = JSONReader.parseJSONEnemyStats(FReader.read("data/enemies.txt"));
         level = JSONReader.parseJSONLevel(FReader.read("levels/testLevel.txt"));
-        level.levelInit(tiles);
         canvas = new Field(new Image("/canvas.png", 1024, 576, 0), 0, 0);
     }
 
@@ -36,10 +34,9 @@ public class World
         pause(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
-        Gui.update(pc, level, passedTime, tiles);
         if((paused == true) && (stats.getHp() > 0))
         {
-            level.update(pc, tiles, passedTime);
+            level.update(pc, passedTime);
         }
         Input.isHolding(pc);
         tickCount++;
@@ -47,7 +44,7 @@ public class World
     public void render(ProgramContainer pc, Renderer r)
     {
         r.drawStaticImage(pc, background, 0, 0);
-        level.render(pc, r, tiles);
+        level.render(pc, r);
         Gui.render(pc, r, level, passedTime);
         r.drawStaticImage(pc, canvas.getImg(), (int)canvas.getPosX(), (int)canvas.getPosY());
     }
@@ -61,9 +58,6 @@ public class World
         {
             paused = true;
         }
-    }
-    public Tile[] getTiles() {
-        return tiles;
     }
 }
 

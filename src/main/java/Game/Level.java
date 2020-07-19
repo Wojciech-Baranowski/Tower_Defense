@@ -1,5 +1,6 @@
 package Game;
 
+import Game.gui.Gui;
 import Map.Road;
 import Map.Tile;
 import Map.Towers.AdvancedAirTower;
@@ -10,9 +11,10 @@ import engine.*;
 
 public class Level
 {
+    private Tile[] tiles;
+    private Wave[] waves;
     private int wavesAmount;
     private int currentWave;
-    private Wave[] waves;
     private int[] wavePosition;
     private int[] tileId;
     private int[] waveDelay;
@@ -25,8 +27,10 @@ public class Level
         this.waveInfo = waveInfo;
         this.wavesAmount = wavesAmmount;
         this.wavePosition = wavePosition;
+        tiles = new Tile[144];
+        levelInit();
     }
-    public void levelInit(Tile[] tiles)
+    public void levelInit()
     {
         waves = new Wave[wavesAmount];
         for(int i = 0; i < 144; i++)
@@ -46,8 +50,9 @@ public class Level
                 waves[i] = new Wave(waveInfo[i], (wavePosition[i] % 16) * 64 + 100, (wavePosition[i] / 16) * 64, 32, (Road)tiles[wavePosition[i]], i);
         }
     }
-    public void update(ProgramContainer pc, Tile[] tiles, double passedTime)
+    public void update(ProgramContainer pc, double passedTime)
     {
+        Gui.update(pc, this, passedTime, tiles);
         for(int i = 0; i < 144; i++)
         {
             tiles[i].update(pc, tiles, passedTime, this);
@@ -66,7 +71,7 @@ public class Level
                 break;
         }
     }
-    public void render(ProgramContainer pc, Renderer r, Tile[] tiles)
+    public void render(ProgramContainer pc, Renderer r)
     {
         for(int i = 0; i < 144; i++)
         {
@@ -171,6 +176,9 @@ public class Level
         }
     }
 
+    public Tile[] getTiles() {
+        return tiles;
+    }
     public int getWavesAmount() {
         return wavesAmount;
     }

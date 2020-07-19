@@ -7,7 +7,6 @@ import Game.Level;
 import Map.Tile;
 import Map.Tower;
 import engine.Image;
-import engine.Pair;
 import engine.ProgramContainer;
 import engine.Renderer;
 
