@@ -21,4 +21,8 @@ public class JSONReader {
     {
         return JSON.toJSONString(object);
     }
+    public static Boolean[] parseJSONBooleanArray(String json)
+    {
+        return JSON.parseObject(json, Boolean[].class);
+    }
 }
