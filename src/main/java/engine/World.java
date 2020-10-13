@@ -6,13 +6,12 @@ import Map.Tile;
 
 import java.awt.event.KeyEvent;
 
-public class World
+public class World implements State
 {
     private double deltaTime;
     private double passedTime = 0;
     public static long tickCount = 0;
     private boolean paused;
-    private Image background;
     public static Field canvas;
     private Level level;
     private Stats stats;
@@ -20,7 +19,6 @@ public class World
     public final static String zer0 = "Mateusz, sam jestes leb xD";
     public World(ProgramContainer pc)
     {
-        background = Assets.BACKGROUND;
         this.paused = true;
 
         stats = JSONReader.parseJSONStats(FReader.read("data/towers.txt"));
@@ -43,7 +41,6 @@ public class World
     }
     public void render(ProgramContainer pc, Renderer r)
     {
-        r.drawStaticImage(pc, background, 0, 0);
         level.render(pc, r);
         Gui.render(pc, r, level, passedTime);
         r.drawStaticImage(pc, canvas.getImg(), (int)canvas.getPosX(), (int)canvas.getPosY());

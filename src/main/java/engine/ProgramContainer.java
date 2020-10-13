@@ -9,7 +9,9 @@ public class ProgramContainer implements Runnable
     private Camera camera;
     private ProgramManager program;
     private World world;
-
+    private Menu menu;
+    private UpgradeMenu upgradeMenu;
+    private Options options;
 
     private int fps;
 
@@ -32,6 +34,9 @@ public class ProgramContainer implements Runnable
         camera = new Camera();
         thread = new Thread(this);
         world = new World(this);
+        menu = new Menu(this);
+        upgradeMenu = new UpgradeMenu(this);
+        options = new Options(this);
         thread.run();
     }
     public void stop()
@@ -133,5 +138,15 @@ public class ProgramContainer implements Runnable
         return world;
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
 
+    public UpgradeMenu getUpgradeMenu() {
+        return upgradeMenu;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
 }
