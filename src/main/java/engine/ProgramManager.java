@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class ProgramManager
 {
-    private enum StatePointer {WORLD, MENU, UPGRADEMENU, OPTIONS}
+    public enum StatePointer {WORLD, MENU, UPGRADEMENU, OPTIONS}
     private static StatePointer statePointer;
     private static Image background;
     public ProgramManager()
@@ -54,14 +54,27 @@ public class ProgramManager
         {
             pc.getOptions().render(pc, r);
         }
+        else if(statePointer == StatePointer.MENU)
+        {
+            pc.getMenu().render(pc, r);
+        }
+        Input.isHolding(pc);
         //r.drawStaticText(pc, Integer.toString(pc.getFps()), 4, 0, 0XFF00FF00);
     }
 
 
     public static void main(String args[]) {
         ProgramContainer pc = new ProgramContainer(new ProgramManager());
-        ProgramManager.statePointer = StatePointer.WORLD;
+        ProgramManager.statePointer = StatePointer.MENU;
         background = Assets.BACKGROUND;
         pc.start();
+    }
+
+    public static StatePointer getStatePointer() {
+        return statePointer;
+    }
+
+    public static void setStatePointer(StatePointer statePointer) {
+        ProgramManager.statePointer = statePointer;
     }
 }

@@ -7,6 +7,11 @@ import engine.Image;
 
 public class Assets
 {
+
+    public static final Image MENUGUI = new Image("/gui/menuGui.png", 352, 288, 0);
+    public static final Image MENUGUIBUTTON = new Image("/gui/menuGuiButton.png", 288, 48, 0);
+    public static final Image MENUGUIBUTTONCKICKED = new Image("/gui/menuGuiButtonClicked.png", 288, 48, 0);
+
     public static final Image BLANK = new Image("/blank.png", 1, 1, 0);
     public static final Image BLANK64 = new Image("/blank.png", 64, 64, 0);
     public static final Image DEFAULTFIELD = new Image("/defaultField.png", 1, 1, 0);

@@ -41,7 +41,7 @@ public class ProgramContainer implements Runnable
     }
     public void stop()
     {
-
+        running = false;
     }
     public void run()
     {

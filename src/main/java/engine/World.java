@@ -36,7 +36,6 @@ public class World implements State
         {
             level.update(pc, passedTime);
         }
-        Input.isHolding(pc);
         tickCount++;
     }
     public void render(ProgramContainer pc, Renderer r)
