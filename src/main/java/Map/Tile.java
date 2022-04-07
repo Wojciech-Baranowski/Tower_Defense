@@ -42,7 +42,7 @@ public abstract class Tile
                 dir[id % 10 - 1] = true;
                 id /= 10;
             }
-            String p = "/road/";
+            String p = "road/";
             for(int j = 1; j <= 4; j++)
             {
                 if(dir[j - 1] == true)

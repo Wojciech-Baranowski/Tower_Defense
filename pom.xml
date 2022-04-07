@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>main</groupId>
-    <artifactId>Tower Defense</artifactId>
+    <artifactId>Tower_Defense</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <fastjson.version>1.2.61</fastjson.version>
+        <fastjson.version>1.2.80</fastjson.version>
     </properties>
     <dependencies>
      <dependency>

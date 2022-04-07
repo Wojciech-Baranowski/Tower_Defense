@@ -65,7 +65,7 @@ public class ProgramManager
 
     public static void main(String args[]) {
         ProgramContainer pc = new ProgramContainer(new ProgramManager());
-        ProgramManager.statePointer = StatePointer.MENU;
+        ProgramManager.statePointer = StatePointer.WORLD;
         background = Assets.BACKGROUND;
         pc.start();
     }

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Image
 {
@@ -18,7 +19,7 @@ public class Image
         this.frame = frame;
         try
         {
-            image = ImageIO.read(Image.class.getResourceAsStream((path)));
+            image = ImageIO.read(Objects.requireNonNull(ClassLoader.getSystemResource(path)));
         }
         catch (IOException e)
         {

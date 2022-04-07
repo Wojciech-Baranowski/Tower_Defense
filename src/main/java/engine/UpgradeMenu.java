@@ -9,7 +9,7 @@ public class UpgradeMenu implements State
     {
         points = 3;
         //TODO: do something with point saving
-        unlocked = JSONReader.parseJSONBooleanArray(FReader.read("data/upgrades.txt"));
+        //unlocked = JSONReader.parseJSONBooleanArray(FReader.read("data/upgrades.txt"));
     }
 
     public void update(ProgramContainer pc, double currentTime) {

@@ -50,7 +50,7 @@ public abstract class Enemy extends Entity implements Clickable, Movable {
         this.dotaDuration = 0;
         this.currentDotaDamage = 0;
         this.isOnMagma = false;
-        this.healthBar = new Image("/entities/healthBarFull.png", 16, 2, 0);
+        this.healthBar = new Image("entities/healthBarFull.png", 16, 2, 0);
         healthUpdate(0);
     }
     public void update(ProgramContainer pc, double passedTime, Level level)

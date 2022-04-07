@@ -21,10 +21,10 @@ public class World implements State
     {
         this.paused = true;
 
-        stats = JSONReader.parseJSONStats(FReader.read("data/towers.txt"));
-        enemyStats = JSONReader.parseJSONEnemyStats(FReader.read("data/enemies.txt"));
-        level = JSONReader.parseJSONLevel(FReader.read("levels/testLevel.txt"));
-        canvas = new Field(new Image("/canvas.png", 1024, 576, 0), 0, 0);
+        stats = JSONReader.parseJSONStats(FReader.read(ClassLoader.getSystemResource("data/towers.txt").getPath()));
+        enemyStats = JSONReader.parseJSONEnemyStats(FReader.read(ClassLoader.getSystemResource("data/enemies.txt").getPath()));
+        level = JSONReader.parseJSONLevel(FReader.read(ClassLoader.getSystemResource("levels/testLevel.txt").getPath()));
+        canvas = new Field(new Image("canvas.png", 1024, 576, 0), 0, 0);
     }
 
     public void update(ProgramContainer pc, double currentTime)
